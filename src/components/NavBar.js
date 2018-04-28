@@ -3,7 +3,11 @@ import {
   BrowserRouter as Router,
   Route,
 } from "react-router-dom";
+
 import { Switch } from "react-router";
+import { connect } from "react-redux"
+import actions from '../actions'
+
 import {
   Nav,
   NavItem,
@@ -34,6 +38,10 @@ class NavBar extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.loginOnEnter = this.loginOnEnter.bind(this)
+  }
+
+  componentDidMount(){
+    console.log("NAVBAR X", this.props)
   }
 
   loginOnEnter(e) {
@@ -131,7 +139,7 @@ class NavBar extends Component {
           </div> */}
         <NavItem onClick={this.handleLogout}>
           Logout
-          </NavItem>
+        </NavItem>    
       </Nav>
     )
 
@@ -151,4 +159,23 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+const mapStateToProps = state =>{
+  console.log("mapStateToProps",state)
+  return {
+    username: state.auth.username,
+  }
+}
+
+const mapDispatchToProps= dispatch=>{
+
+  return {
+    handleUsernameChange:(e) =>{
+      const value=e.target.value
+      dispatch(actions.set_username(value))
+    }
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

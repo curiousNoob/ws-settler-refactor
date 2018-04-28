@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import { Switch } from "react-router";
 import PropTypes from 'prop-types';
+import { Provider } from 'react-redux'
 import {
   Nav,
   NavItem,
@@ -18,6 +19,8 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+
+import store from './store'
 
 import { cookieName } from './constants'
 import { isProduction } from './constants'
@@ -122,10 +125,12 @@ class App extends Component {
     )
 
     return (
-      <div>
-        <NavBar {...this.state} onLogin={this.handleLogin} onLogout={this.handleLogout} />
-        {isLoggedIn ? router : loginRequestDiv}
-      </div>
+       <Provider store={store}>
+        <div>
+          <NavBar {...this.state} onLogin={this.handleLogin} onLogout={this.handleLogout} />
+          {isLoggedIn ? router : loginRequestDiv}
+        </div>
+      </Provider>
     );
   }
 }
