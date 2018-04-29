@@ -1,8 +1,30 @@
-import { set_username } from './auth'
+import { 
+	setUsername,
+	setPassword,
+
+	auth,
+	authStart,
+	authSuccess,
+	authFail,
+	logout,
+
+	setHome,
+	setAway,
+} from './auth'
 
 
 const actions={
-	set_username,
+	setUsername,
+	setPassword,
+
+	auth,
+	authStart,
+	authSuccess,
+	authFail,
+	logout,
+	
+	setHome,
+	setAway,
 }
 
 

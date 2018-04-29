@@ -25,13 +25,13 @@ import store from './store'
 import { cookieName } from './constants'
 import { isProduction } from './constants'
 
-import NavBar from './components/NavBar'
+import NavBarContainer from './containers/NavBarContainer'
 import TableNavigation from './components/TableNavigation'
 import SettleTable from './components/SettleTable'
 import WebSocketConnection from './components/WebSocketConnection'
 
 import TeamA from './pages/TeamA'
-import TeamB from './pages/TeamB'
+import TeamB from './pages/TeamB' 
 
 //uncomment this for PRODUCTION
 export const root_url = isProduction?window.location.pathname:""
@@ -127,7 +127,7 @@ class App extends Component {
     return (
        <Provider store={store}>
         <div>
-          <NavBar {...this.state} onLogin={this.handleLogin} onLogout={this.handleLogout} />
+          <NavBarContainer {...this.state} onLogin={this.handleLogin} onLogout={this.handleLogout} />
           {isLoggedIn ? router : loginRequestDiv}
         </div>
       </Provider>

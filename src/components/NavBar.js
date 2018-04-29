@@ -24,17 +24,15 @@ import Cookies from "js-cookie";
 
 import { isProduction } from '../constants'
 
+
+import WebSocketConnection from './WebSocketConnection'//del
+
 class NavBar extends Component {
   constructor() {
-    super();
-
-    this.state = {
-      password: "",
-    }
+    super(); 
 
     this.handleLogin = this.handleLogin.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.loginOnEnter = this.loginOnEnter.bind(this)
   }
 
@@ -67,7 +65,7 @@ class NavBar extends Component {
   }
 
   handleLogin() {
-    const request = "username=" + this.props.username + "&password=" + this.state.password
+    const request = "username=" + this.props.username + "&password=" + this.props.password
     const self = this
 
     //uncomment this for PRODUCTION
@@ -89,13 +87,6 @@ class NavBar extends Component {
   }
 
   
-
-  handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value,
-    })
-  }
-
   render() {
     const { isLoggedIn, home, away } = this.props
 
@@ -116,8 +107,8 @@ class NavBar extends Component {
           <FormControl
             type="password"
             placeholder="password"
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
+            value={this.props.password}
+            onChange={this.props.handlePasswordChange}
             onKeyPress={this.loginOnEnter}
           />
         </FormGroup>{' '}
@@ -146,29 +137,12 @@ class NavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           {isLoggedIn ? successLoginDiv : loginForm}
-        </Navbar.Collapse>
+        </Navbar.Collapse>        
       </Navbar>
     )
   }
 }
 
-const mapStateToProps = state =>{
-  console.log("mapStateToProps",state)
-  return {
-    username: state.auth.username,
-  }
-}
-
-const mapDispatchToProps= dispatch=>{
-
-  return {
-    handleUsernameChange:(e) =>{
-      const value=e.target.value
-      dispatch(actions.set_username(value))
-    }
-  }
-}
 
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default NavBar
