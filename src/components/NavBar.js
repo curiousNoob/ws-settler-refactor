@@ -29,13 +29,11 @@ class NavBar extends Component {
     super();
 
     this.state = {
-      username: "",
       password: "",
     }
 
     this.handleLogin = this.handleLogin.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
-    this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.loginOnEnter = this.loginOnEnter.bind(this)
   }
@@ -69,7 +67,7 @@ class NavBar extends Component {
   }
 
   handleLogin() {
-    const request = "username=" + this.state.username + "&password=" + this.state.password
+    const request = "username=" + this.props.username + "&password=" + this.state.password
     const self = this
 
     //uncomment this for PRODUCTION
@@ -90,12 +88,7 @@ class NavBar extends Component {
       });
   }
 
-  handleUsernameChange(e) {
-
-    this.setState({
-      username: e.target.value,
-    })
-  }
+  
 
   handlePasswordChange(e) {
     this.setState({
@@ -113,8 +106,8 @@ class NavBar extends Component {
           <FormControl
             type="text"
             placeholder="username"
-            value={this.state.username}
-            onChange={this.handleUsernameChange}
+            value={this.props.username}
+            onChange={this.props.handleUsernameChange}
             onKeyPress={this.loginOnEnter}
           />
         </FormGroup>{' '}
