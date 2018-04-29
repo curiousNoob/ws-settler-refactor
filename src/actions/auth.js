@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import * as actionTypes from './actionTypes'
+import { isProduction } from '../constants'
 
 
 export const setUsername=(username)=>{
@@ -16,7 +17,6 @@ export const setPassword=(password)=>{
 		payload:password,
 	}
 }
-
 
 
 export const authStart = () => {
@@ -44,9 +44,11 @@ export const logout = () => {
     };
 };
 
-export const auth = (email, password) => {
+export const auth = (username, password) => {
+	console.log("invalid", username, password)
+
     return dispatch => {
-    	const uri= isProduction?(window.location.origin+'/api/auth'):"https://cct-stage.iosport.co.uk/api/auth"    					
+    	const uri= isProduction?(window.location.origin+'/api/auth'):"https://cct-stage.iosport.co.uk/api/auth"//"http://localhost:8080/api/auth"
 
         dispatch(authStart());
 

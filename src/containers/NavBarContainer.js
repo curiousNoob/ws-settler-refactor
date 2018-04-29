@@ -31,11 +31,13 @@ const mapDispatchToProps= dispatch=>{
     handleLogin:(username, password)=>{
       dispatch(actions.auth(username, password))
     },
-    hadleLogout:()=>{
+    handleLogout:()=>{
       dispatch(actions.logout())
     },
   }
 }
+
+console.log("ACTIONS--->", actions)
 
 const NavbarContainer=connect(mapStateToProps, mapDispatchToProps)(NavBar)
 
