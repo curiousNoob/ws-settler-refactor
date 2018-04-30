@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
@@ -23,6 +25,7 @@ const auth=(state=initialState, action)=>{
 			return {...state, isLogInError:true}
 		case "AUTH_LOGOUT":
 			return {...state, isLoggedIn:false}
+		
 		default:
 			return state
 	}

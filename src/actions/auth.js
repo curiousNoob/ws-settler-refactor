@@ -1,7 +1,8 @@
 import axios from 'axios'
+import Cookies from "js-cookie"
 
 import * as actionTypes from './actionTypes'
-import { isProduction } from '../constants'
+import { isProduction , cookieName } from '../constants'
 
 
 export const setUsername=(username)=>{
@@ -64,6 +65,18 @@ export const auth = (username, password) => {
         
     };
 };
+
+export const checkCookies=()=>{
+	return dispatch => {
+		 const cookie = Cookies.get(cookieName);
+
+		 if (isProduction) {
+		     if (cookie !== undefined) {
+		     	dispatch(authSuccess())
+		     }
+	     }
+	}
+}
 
 
 export const setHome=(home)=>{

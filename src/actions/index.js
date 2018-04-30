@@ -7,11 +7,12 @@ import {
 	authSuccess,
 	authFail,
 	logout,
+	checkCookies,
 
 	setHome,
 	setAway,
 } from './auth'
-
+	
 
 const actions={
 	setUsername,
@@ -22,6 +23,7 @@ const actions={
 	authSuccess,
 	authFail,
 	logout,
+	checkCookies,
 	
 	setHome,
 	setAway,
