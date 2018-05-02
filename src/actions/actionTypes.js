@@ -3,6 +3,7 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const CHECK_COOKIES="CHECK_COOKIES"
+export const REMOVE_COOKIES="REMOVE_COOKIES"
 
 export const SET_USERNAME="SET_USERNAME"
 export const SET_PASSWORD="SET_PASSWORD"

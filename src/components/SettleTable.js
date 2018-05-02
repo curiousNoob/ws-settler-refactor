@@ -21,6 +21,9 @@ import Cookies from "js-cookie";
 import SettleThead from './SettleThead'
 import SettleTbody from './SettleTbody'
 import TableNavigation from './TableNavigation'
+import SettleModal from './SettleModal'
+
+
 
 import { isProduction } from '../constants'
 
@@ -115,12 +118,6 @@ class SettleTable extends Component {
     this.handleFancyMarkets = this.handleFancyMarkets.bind(this)
     this.handleFancyMarketBtn = this.handleFancyMarketBtn.bind(this)
     this.settleFancyMarkets = this.settleFancyMarkets.bind(this)
-
-    this.test = this.test.bind(this)
-  }
-
-  test() {
-    console.log("TEST")
   }
 
   componentDidMount() {
@@ -156,10 +153,6 @@ class SettleTable extends Component {
       uri = "ws://localhost:8080/api/settler/ws"//"wss://cct-stage.iosport.co.uk/api/settler/ws"
     }
 
-
-    //del
-    //to test locally
-    // uri = "wss://cct-stage.iosport.co.uk/api/settler/ws"
 
     this.ws = new WebSocket(uri);
     this.ws.onopen = function () {
@@ -221,16 +214,11 @@ class SettleTable extends Component {
         self.props.setMatchNames(response.home, response.away)
         once = false
       }
-
     }
+
     this.ws.onerror = function (e) {
       console.log("WS error", e);
-    }
-    // if (this.ws !== undefined) {
-    //   console.log("WS is getting closed")
-    //   this.ws.close();
-    //   this.ws = undefined;
-    // }
+    }   
 
     console.log("================WS================", this.ws)
   }
@@ -358,7 +346,7 @@ class SettleTable extends Component {
   }
 
   handleFancyMarkets(e, marketType) {
-    const val = Math.floor(e.target.value);
+      const val = Math.floor(e.target.value);
     if (val < 0) {
       return
     }
@@ -477,8 +465,7 @@ class SettleTable extends Component {
   }
 
   render() {
-    // console.log("Cookies.get", Cookies.get('cricket~settler'))
-
+    
     return (
       <div>
         <TableNavigation activeKey="1" />
@@ -495,38 +482,39 @@ class SettleTable extends Component {
           />
         </table>
 
-        <Modal bsSize="small" show={this.state.showMatchoddsModal} onHide={this.handleHide}>
-          <Modal.Body>
-            {this.state.isSettle ? "Settle Matchodds @ " + this.state.finalMo : (this.state.isVoid ? "Void Matchodds" : "none")}
-          </Modal.Body>
+        <SettleModal 
+          marketType="MatchOdds"
+          showModal={this.state.showMatchoddsModal}
+          finalValue={this.state.finalMo}          
+          settleAction={this.settleMatchOdds}
 
-          <Modal.Footer>
-            <Button bsStyle="success" onClick={this.settleMatchOdds}>Yes</Button>
-            <Button bsStyle="danger" onClick={this.handleHide}>No</Button>
-          </Modal.Footer>
-        </Modal>
+          handleHide={this.handleHide}
+          isSettle={this.state.isSettle}
+          isVoid={this.state.isVoid}          
+        />
+        
+        <SettleModal 
+          marketType="Lambi"
+          showModal={this.state.showLambiModal}
+          finalValue={this.state.finalLambi}          
+          settleAction={this.settleLambi}
 
-        <Modal bsSize="small" show={this.state.showLambiModal} onHide={this.handleHide}>
-          <Modal.Body>
-            {this.state.isSettle ? "Settle Lambi @ " + this.state.finalLambi : (this.state.isVoid ? "Void Lambi" : "none")}
-          </Modal.Body>
+          handleHide={this.handleHide}
+          isSettle={this.state.isSettle}
+          isVoid={this.state.isVoid}          
+        />
 
-          <Modal.Footer>
-            <Button bsStyle="success" onClick={this.settleLambi}>Yes</Button>
-            <Button bsStyle="danger" onClick={this.handleHide}>No</Button>
-          </Modal.Footer>
-        </Modal>
+        <SettleModal 
+          marketType="Fancy Market"
+          showModal={this.state.showFancyMarketModal}
+          finalValue={this.state.final_ir_fancy_market}          
+          settleAction={this.settleFancyMarkets}
 
-        <Modal bsSize="small" show={this.state.showFancyMarketModal} onHide={this.handleHide}>
-          <Modal.Body>
-            {this.state.isSettle ? "Settle Fancy Market @ " + this.state.final_ir_fancy_market : (this.state.isVoid ? "Void Fancy Market" : "none")}
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button bsStyle="success" onClick={this.settleFancyMarkets}>Yes</Button>
-            <Button bsStyle="danger" onClick={this.handleHide}>No</Button>
-          </Modal.Footer>
-        </Modal>
+          handleHide={this.handleHide}
+          isSettle={this.state.isSettle}
+          isVoid={this.state.isVoid}          
+        />
+        
       </div>
     );
   }

@@ -25,17 +25,11 @@ import Cookies from "js-cookie";
 import { isProduction } from '../constants'
 
 
-import WebSocketConnection from './WebSocketConnection'//del
-
 class NavBar extends Component {
   constructor() {
     super(); 
 
     this.loginOnEnter = this.loginOnEnter.bind(this)
-  }
-
-  componentDidMount(){
-    console.log("NAVBAR X", this.props)
   }
 
   loginOnEnter(e) {
@@ -76,10 +70,7 @@ class NavBar extends Component {
     )
 
     const successLoginDiv = (
-      <Nav pullRight>
-        {/* <div className="alert alert-warning" style={{ position: "absolute", right: "102px", paddingTop: "5px", paddingBottom: "5px", top: "14px" }}>
-            Hello, {this.state.username}!:)
-          </div> */}
+      <Nav pullRight>     
         <NavItem onClick={this.props.handleLogout}>
           Logout
         </NavItem>    

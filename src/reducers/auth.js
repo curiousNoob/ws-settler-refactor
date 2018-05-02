@@ -1,5 +1,7 @@
 import Cookies from "js-cookie";
 
+import { isProduction , cookieName } from '../constants'
+
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
@@ -25,7 +27,20 @@ const auth=(state=initialState, action)=>{
 			return {...state, isLogInError:true}
 		case "AUTH_LOGOUT":
 			return {...state, isLoggedIn:false}
-		
+		case "CHECK_COOKIES":
+			const cookie = Cookies.get(cookieName)
+			
+			if (isProduction) {
+		      if (cookie !== undefined) {
+		        return {...state, isLoggedIn:true}
+		      }
+		    }
+			return state
+		case "REMOVE_COOKIES":
+			if (isProduction) {
+		      Cookies.remove(cookieName);
+		    }
+			return {...state, isLoggedIn:false}
 		default:
 			return state
 	}

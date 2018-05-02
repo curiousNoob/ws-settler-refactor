@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { Switch } from "react-router";
 import PropTypes from 'prop-types';
-import { Provider } from 'react-redux'
+
 import {
   Nav,
   NavItem,
@@ -19,8 +19,6 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
-
-import store from './store'
 
 import { cookieName } from './constants'
 import { isProduction } from './constants'
@@ -41,52 +39,22 @@ class App extends Component {
   constructor() {
     super()
 
-    this.state = {
-      isLoggedIn: false,
+    this.state = {      
       home: "",
       away: "",
     }
 
-    this.handleLogin = this.handleLogin.bind(this)
-    this.handleLogout = this.handleLogout.bind(this)
+    
     this.setMatchNames=this.setMatchNames.bind(this)
   }
 
-
   componentDidMount() {
-    const cookie = Cookies.get(cookieName);
-    if (isProduction && cookie!==undefined) {      
-      console.log("componentDidMount-", cookie)
-    }
-    
-    if (isProduction) {
-      if (cookie !== undefined) {
-        this.setState({ isLoggedIn: true })
-      }
-    }
+    this.props.checkCookies()
   }
 
   // componentDidUpdate(){
   //   console.log("APP componentDidUpdate")
   // }
-
-  handleLogin() {
-    this.setState({
-      isLoggedIn: true,
-    })
-  }
-
-  handleLogout() {
-    console.log("handleLogout")
-
-    if (isProduction) {
-      Cookies.remove(cookieName);
-    }
-
-    this.setState({
-      isLoggedIn: false,
-    })
-  }
 
   setMatchNames(home, away){
     this.setState({
@@ -96,10 +64,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      isLoggedIn,
-    } = this.state
-
+    
     const router = (
       <Router>
         <Switch>
@@ -107,7 +72,7 @@ class App extends Component {
             path={isProduction?root_url:"/"}
             render={() => (
               <SettleTable
-                isLoggedIn={isLoggedIn}
+                isLoggedIn={this.props.isLoggedIn}
                 setMatchNames={this.setMatchNames}
               />
             )}
@@ -125,12 +90,11 @@ class App extends Component {
     )
 
     return (
-       <Provider store={store}>
+       
         <div>
-          <NavBarContainer {...this.state} onLogin={this.handleLogin} onLogout={this.handleLogout} />
-          {isLoggedIn ? router : loginRequestDiv}
+          <NavBarContainer {...this.state}  />
+          {this.props.isLoggedIn ? router : loginRequestDiv}
         </div>
-      </Provider>
     );
   }
 }

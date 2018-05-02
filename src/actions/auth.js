@@ -67,16 +67,14 @@ export const auth = (username, password) => {
 };
 
 export const checkCookies=()=>{
-	return dispatch => {
-		 const cookie = Cookies.get(cookieName);
-
-		 if (isProduction) {
-		     if (cookie !== undefined) {
-		     	dispatch(authSuccess())
-		     }
-	     }
+	return {
+		type:actionTypes.CHECK_COOKIES,
 	}
 }
+
+export const rmCookies=()=>({
+	type:actionTypes.REMOVE_COOKIES,
+})
 
 
 export const setHome=(home)=>{

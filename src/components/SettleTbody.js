@@ -462,11 +462,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{finalMo}</td>
                     <td>
-                        {/* <select defaultValue="either" onChange={this.props.onMatchoddsSettleChange}>
-                            <option value="either" hidden>Settle/Void</option>
-                            <option value="settle">settle</option>
-                            <option value="void">void</option>
-                        </select> */}
+                        
                         {settleVoidMatchoddsBtn}
                     </td>
                     <td>
@@ -490,11 +486,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{finalLambi}</td>
                     <td>
-                        {/* <select name="" id="" defaultValue="either" onChange={this.props.onLambiSettleChange}>
-                            <option value="either" hidden>Settle/Void</option>
-                            <option value="settle">settle</option>
-                            <option value="void">void</option>
-                        </select> */}
+                        
                         {settleVoidLambiBtn}
                     </td>
                     <td>
@@ -516,11 +508,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{final_ir_fancy_1_6}</td>
                     <td>
-                        {/* <select name="" id="" defaultValue="either" onChange={this.props.onLambiSettleChange}>
-                            <option value="either" hidden>Settle/Void</option>
-                            <option value="settle">settle</option>
-                            <option value="void">void</option>
-                        </select> */}
+                        
                         {settleVoidFancy_1_6_Btn}
                     </td>
                     <td>
@@ -542,11 +530,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{final_ir_fancy_1_12}</td>
                     <td>
-                        {/* <select name="" id="" defaultValue="either" onChange={this.props.onLambiSettleChange}>
-                            <option value="either" hidden>Settle/Void</option>
-                            <option value="settle">settle</option>
-                            <option value="void">void</option>
-                        </select> */}
+                        
                         {settleVoidFancy_1_12_Btn}
                     </td>
                     <td>
@@ -568,11 +552,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{final_ir_fancy_2_6}</td>
                     <td>
-                        {/* <select name="" id="" defaultValue="either" onChange={this.props.onLambiSettleChange}>
-                            <option value="either" hidden>Settle/Void</option>
-                            <option value="settle">settle</option>
-                            <option value="void">void</option>
-                        </select> */}
+                        
                         {settleVoidFancy_2_6_Btn}
                     </td>
                     <td>
@@ -594,11 +574,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{final_ir_fancy_2_12}</td>
                     <td>
-                        {/* <select name="" id="" defaultValue="either" onChange={this.props.onLambiSettleChange}>
-                            <option value="either" hidden>Settle/Void</option>
-                            <option value="settle">settle</option>
-                            <option value="void">void</option>
-                        </select> */}
+                     
                         {settleVoidFancy_2_12_Btn}
                     </td>
                     <td>

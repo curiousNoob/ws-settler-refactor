@@ -8,6 +8,7 @@ import {
 	authFail,
 	logout,
 	checkCookies,
+	rmCookies,
 
 	setHome,
 	setAway,
@@ -24,6 +25,7 @@ const actions={
 	authFail,
 	logout,
 	checkCookies,
+	rmCookies,
 	
 	setHome,
 	setAway,

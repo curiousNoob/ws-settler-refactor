@@ -32,8 +32,9 @@ const mapDispatchToProps= dispatch=>{
       dispatch(actions.auth(username, password))
     },
     handleLogout:()=>{
+      dispatch(actions.rmCookies())
       dispatch(actions.logout())
-    },
+    },   
   }
 }
 
