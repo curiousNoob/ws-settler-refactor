@@ -27,7 +27,6 @@ import SettleModal from './SettleModal'
 
 import { isProduction } from '../constants'
 
-console.log("HERE")
 
 class SettleTable extends Component {
   constructor() {
@@ -108,20 +107,23 @@ class SettleTable extends Component {
       final_fancy_market_sel: "",
     }
 
-    this.handleMatchoddsSettleChange = this.handleMatchoddsSettleChange.bind(this)
-    this.handleLambiSettleChange = this.handleLambiSettleChange.bind(this)
-    this.handleHide = this.handleHide.bind(this)
+    this.handleMatchoddsChange = this.handleMatchoddsChange.bind(this)
     this.handleLambiChange = this.handleLambiChange.bind(this)
-    this.handleOutcomeChange = this.handleOutcomeChange.bind(this)
-    this.settleMatchOdds = this.settleMatchOdds.bind(this)
-    this.settleLambi = this.settleLambi.bind(this)
     this.handleFancyMarkets = this.handleFancyMarkets.bind(this)
-    this.handleFancyMarketBtn = this.handleFancyMarketBtn.bind(this)
+
+    this.handleMatchoddsSettleChange = this.handleMatchoddsSettleChange.bind(this)
+    this.handleLambiSettleChange = this.handleLambiSettleChange.bind(this)    
+    
+    this.settleMatchOdds = this.settleMatchOdds.bind(this)
+    this.settleLambi = this.settleLambi.bind(this)    
     this.settleFancyMarkets = this.settleFancyMarkets.bind(this)
+
+    this.handleFancyMarketBtn = this.handleFancyMarketBtn.bind(this)
+
+    this.handleHide = this.handleHide.bind(this)
   }
 
   componentDidMount() {
-    //WebSocketConnection
     console.log("WebSocketConnection")
 
     if (!("WebSocket" in window)) {
@@ -163,7 +165,7 @@ class SettleTable extends Component {
     };
     this.ws.onmessage = function (evt) {
       var response = JSON.parse(evt.data);
-      console.log("Received: ", (response));
+      //console.log("Received: ", (response));
       if (response.mo.winner !== undefined && prevMoWinner !== response.mo.winner) {
         self.setState({
           finalMo: response.mo.winner,
@@ -220,7 +222,7 @@ class SettleTable extends Component {
       console.log("WS error", e);
     }   
 
-    console.log("================WS================", this.ws)
+    //console.log("================WS================", this.ws)
   }
 
   componentWillUnmount() {
@@ -231,111 +233,8 @@ class SettleTable extends Component {
     }
   }
 
-  handleLambiSettleChange(val) {
-    this.setState({
-      showLambiModal: true,
-    })
 
-    if (val === "settle") {
-      this.setState({
-        isSettle: true,
-        isVoid: false
-      })
-    } else if (val === "void") {
-      this.setState({
-        isVoid: true,
-        isSettle: false,
-      })
-    }
-  }
-
-  handleFancyMarketBtn(btnType, marketType) {
-    this.setState({
-      showFancyMarketModal: true,
-    })
-
-    if (btnType === "settle") {
-      this.setState({
-        isSettle: true,
-        isVoid: false
-      })
-    } else if (btnType === "void") {
-      this.setState({
-        isVoid: true,
-        isSettle: false,
-      })
-    }
-
-    switch (marketType) {
-      case "fancy_1_6":
-        this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_1_6,
-          final_fancy_market_sel: "ir_fancy_1_6"
-        })
-        break
-      case "fancy_1_12":
-        this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_1_12,
-          final_fancy_market_sel: "ir_fancy_1_12"
-        })
-        break
-      case "fancy_2_6":
-        this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_2_6,
-          final_fancy_market_sel: "ir_fancy_2_6"
-        })
-        break
-      case "fancy_2_12":
-        this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_2_12,
-          final_fancy_market_sel: "ir_fancy_2_12"
-        })
-        break
-    }
-  }
-
-  handleMatchoddsSettleChange(val) {
-    this.setState({
-      showMatchoddsModal: true,
-    })
-
-    if (val === "settle") {
-      this.setState({
-        isSettle: true,
-        isVoid: false
-      })
-    } else if (val === "void") {
-      this.setState({
-        isVoid: true,
-        isSettle: false,
-      })
-    }
-  }
-
-  handleHide() {
-    this.setState({
-      showMatchoddsModal: false,
-      showLambiModal: false,
-      showFancyMarketModal: false,
-      isSettle: false,
-      isVoid: false
-    })
-  }
-
-  handleLambiChange(e) {
-    const val = Math.floor(e.target.value);
-    if (val < 0) {
-      return
-    }
-    const mssg = { data: JSON.stringify({ ir_lambi: { runs: val } }) }
-    console.log("mssg", mssg)
-    // this.ws.send(mssg)
-    this.setState({
-      finalLambi: val,
-    })
-  }
-
-  handleOutcomeChange(e) {
+  handleMatchoddsChange(e) {
     const val = e.target.value
 
     console.log("handleOutcomeChange", val)
@@ -345,6 +244,19 @@ class SettleTable extends Component {
     })
   }
 
+  handleLambiChange(e) {
+    const val = Math.floor(e.target.value);
+    if (val < 0) {
+      return
+    }
+    const mssg = { data: JSON.stringify({ ir_lambi: { runs: val } }) }
+    //console.log("mssg", mssg)
+    // this.ws.send(mssg)
+    this.setState({
+      finalLambi: val,
+    })
+  }
+  
   handleFancyMarkets(e, marketType) {
       const val = Math.floor(e.target.value);
     if (val < 0) {
@@ -376,6 +288,44 @@ class SettleTable extends Component {
     }
   }
 
+
+  handleMatchoddsSettleChange(val) {
+    this.setState({
+      showMatchoddsModal: true,
+    })
+
+    if (val === "settle") {
+      this.setState({
+        isSettle: true,
+        isVoid: false
+      })
+    } else if (val === "void") {
+      this.setState({
+        isVoid: true,
+        isSettle: false,
+      })
+    }
+  }
+
+  handleLambiSettleChange(val) {
+    this.setState({
+      showLambiModal: true,
+    })
+
+    if (val === "settle") {
+      this.setState({
+        isSettle: true,
+        isVoid: false
+      })
+    } else if (val === "void") {
+      this.setState({
+        isVoid: true,
+        isSettle: false,
+      })
+    }
+  }
+
+  
   settleMatchOdds() {
     console.log("settleMatchOdds", this.state.isSettle)
     if (this.state.isSettle) {
@@ -464,6 +414,64 @@ class SettleTable extends Component {
     this.handleHide()
   }
 
+
+  handleFancyMarketBtn(btnType, marketType) {
+    this.setState({
+      showFancyMarketModal: true,
+    })
+
+    if (btnType === "settle") {
+      this.setState({
+        isSettle: true,
+        isVoid: false
+      })
+    } else if (btnType === "void") {
+      this.setState({
+        isVoid: true,
+        isSettle: false,
+      })
+    }
+
+    switch (marketType) {
+      case "fancy_1_6":
+        this.setState({
+          final_ir_fancy_market: this.state.final_ir_fancy_1_6,
+          final_fancy_market_sel: "ir_fancy_1_6"
+        })
+        break
+      case "fancy_1_12":
+        this.setState({
+          final_ir_fancy_market: this.state.final_ir_fancy_1_12,
+          final_fancy_market_sel: "ir_fancy_1_12"
+        })
+        break
+      case "fancy_2_6":
+        this.setState({
+          final_ir_fancy_market: this.state.final_ir_fancy_2_6,
+          final_fancy_market_sel: "ir_fancy_2_6"
+        })
+        break
+      case "fancy_2_12":
+        this.setState({
+          final_ir_fancy_market: this.state.final_ir_fancy_2_12,
+          final_fancy_market_sel: "ir_fancy_2_12"
+        })
+        break
+    }
+  }
+
+  
+  handleHide() {
+    this.setState({
+      showMatchoddsModal: false,
+      showLambiModal: false,
+      showFancyMarketModal: false,
+      isSettle: false,
+      isVoid: false
+    })
+  }
+  
+
   render() {
     
     return (
@@ -474,7 +482,7 @@ class SettleTable extends Component {
           <SettleTbody
             {...this.state}
             onLambiChange={this.handleLambiChange}
-            onOutcomeChange={this.handleOutcomeChange}
+            onMatchoddsChange={this.handleMatchoddsChange}
             onMatchoddsSettleChange={this.handleMatchoddsSettleChange}
             onLambiSettleChange={this.handleLambiSettleChange}
             onFancyMarketsChange={this.handleFancyMarkets}

@@ -165,7 +165,7 @@ class SettleTbody extends Component {
             final_ir_fancy_2_12,
       } = this.props
 
-        console.log("mo.status", mo.status)
+        //console.log("mo.status", mo.status)
 
         const isFancy_1_6_Voided=statusFancyStruct.ir_fancy_1_6.isFancyVoided
         const isFancy_1_6_Settled=statusFancyStruct.ir_fancy_1_6.isFancySettled
@@ -453,7 +453,7 @@ class SettleTbody extends Component {
                     </td>
                     <td>{mo.winner ? mo.winner : "-"}</td>
                     <td>
-                        <select name="" id="" defaultValue="outcome" onChange={this.props.onOutcomeChange}>
+                        <select name="" id="" defaultValue="outcome" onChange={this.props.onMatchoddsChange}>
                             <option value="outcome" hidden>Choose outcome</option>
                             <option value="Draw">Draw</option>
                             <option value={home}>{home}</option>
