@@ -19,6 +19,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
 
+import ActionBtn from './ActionBtn'
+
 
 
 class SettleTbody extends Component {
@@ -190,137 +192,62 @@ class SettleTbody extends Component {
             "settled": "-"
         }
 
-        let settleVoidMatchoddsBtn
+        let settleVoidMatchoddsBtn 
         let settleVoidLambiBtn
         let settleVoidFancy_1_6_Btn
         let settleVoidFancy_1_12_Btn
         let settleVoidFancy_2_6_Btn
         let settleVoidFancy_2_12_Btn
 
-        if (isMatchOddsVoided) {
-            settleVoidMatchoddsBtn = <Button bsStyle="info">Void</Button>
-        } else if (isMatchOddsSettled) {
-            settleVoidMatchoddsBtn = <Button bsStyle="success">Settle</Button>
-        } else {
-            settleVoidMatchoddsBtn = (
-                <div style={{ position: "relative" }} className="btn-action" onMouseLeave={this.hideMatchoddsAction}>
-                    <Button
-                        bsStyle="danger"
-                        onMouseEnter={this.showMatchoddsAction}
-                    >
-                        Action{' '}
-                        <span className="badge">
-                            {
-                                badgeSignal[mo.status]
-                            }
-                        </span>
-                    </Button>
-                    {
-                        this.state.matchoddsAction && (
-                            <div style={{ position: "absolute", zIndex: 999, top: 0 }}>
-                                {
-                                    mo.status === "ready_to_settle" &&
-                                    <Button
-                                        bsStyle="success"
-                                        onClick={() => { this.props.onMatchoddsSettleChange("settle") }}
-                                    >Settle
-                                            </Button>
-                                }
-                                {' '}
-                                {
-                                    (mo.status === "active" || mo.status === "ready_to_settle") &&
-                                    <Button
-                                        bsStyle="info"
-                                        onClick={() => this.props.onMatchoddsSettleChange("void")}
-                                        style={mo.status === "active" ? { width: "101px" } : {}}
-                                    >Void</Button>
-                                }
 
-                            </div>
-                        )
-                    }
-                </div>
-            )
-        }
+        settleVoidMatchoddsBtn = <ActionBtn 
+                                    isVoided={isMatchOddsVoided}
+                                    isSettled={isMatchOddsSettled}
 
-        if (isLambiVoided) {
-            settleVoidLambiBtn = <Button bsStyle="info">Void</Button>
-        } else if (isLambiSettled) {
-            settleVoidLambiBtn = <Button bsStyle="success">Settle</Button>
-        } else {
-            settleVoidLambiBtn = (
-                <div style={{ position: "relative" }} className="btn-action" onMouseLeave={this.hideLambiAction}>
-                    <button
-                        className="btn btn-danger"
-                        onMouseEnter={this.showLambiAction}
-                    >
-                        Action{' '}
-                        <span className="badge">{badgeSignal[ir_lambi.status]}</span>
-                    </button>
-                    {
-                        this.state.lambiAction && (
-                            <div style={{ position: "absolute", zIndex: 999, top: 0 }}>
-                                {
-                                    ir_lambi.status === "ready_to_settle" &&
-                                    <Button
-                                        bsStyle="success"
-                                        onClick={() => this.props.onLambiSettleChange("settle")}
-                                    >Settle</Button>
-                                }{' '}
-                                {
-                                    (ir_lambi.status === "active" || ir_lambi.status === "ready_to_settle") &&
-                                    <Button
-                                        bsStyle="info"
-                                        onClick={() => this.props.onLambiSettleChange("void")}
-                                        style={ir_lambi.status === "active" ? { width: "101px" } : {}}
-                                    >Void</Button>
-                                }
+                                    showAction={this.showMatchoddsAction}
+                                    hideAction={this.hideMatchoddsAction}
 
-                            </div>
-                        )
-                    }
-                </div>
-            )
-        }
+                                    status={mo.status}
+                                    isShowAction={this.state.matchoddsAction}
 
-        if (isFancy_1_6_Voided) {
-            settleVoidFancy_1_6_Btn = <Button bsStyle="info">Void</Button>
-        } else if (isFancy_1_6_Settled) {
-            settleVoidFancy_1_6_Btn = <Button bsStyle="success">Settle</Button>
-        } else {
-            settleVoidFancy_1_6_Btn = (
-                <div style={{ position: "relative" }} className="btn-action" onMouseLeave={()=>this.hideFancyMarketAction("fancy_1_6")}>
-                    <button
-                        className="btn btn-danger"
-                        onMouseEnter={()=>this.showFancyMarketAction("fancy_1_6")}
-                    >
-                        Action{' '}
-                        <span className="badge">{badgeSignal[ir_fancy_1_6.status]}</span>
-                    </button>
-                    {
-                        this.state.fancy_1_6_Action && (
-                            <div style={{ position: "absolute", zIndex: 999, top: 0 }}>
-                                {
-                                    ir_fancy_1_6.status === "ready_to_settle" &&
-                                    <Button
-                                        bsStyle="success"
-                                        onClick={() => this.props.onFancyMarketBtn("settle","fancy_1_6")}
-                                    >Settle</Button>
-                                }{' '}
-                                {
-                                    (ir_fancy_1_6.status === "active" || ir_fancy_1_6.status === "ready_to_settle") &&
-                                    <Button
-                                        bsStyle="info"
-                                        onClick={() => this.props.onFancyMarketBtn("void", "fancy_1_6")}
-                                        style={ir_fancy_1_6.status === "active" ? { width: "101px" } : {}}
-                                    >Void</Button>
-                                }
-                            </div>
-                        )
-                    }
-                </div>
-            )
-        }
+                                    onAction={this.props.onMatchoddsSettleChange}
+
+                                    marketType={undefined}
+                                />
+
+
+        settleVoidLambiBtn = <ActionBtn 
+                                    isVoided={isLambiVoided}
+                                    isSettled={isLambiSettled}
+
+                                    showAction={this.showLambiAction}
+                                    hideAction={this.hideLambiAction}
+
+                                    status={ir_lambi.status}
+                                    isShowAction={this.state.lambiAction}
+
+                                    onAction={this.props.onLambiSettleChange}
+
+                                    marketType={undefined}
+                            />        
+
+        settleVoidFancy_1_6_Btn = <ActionBtn 
+                                    isVoided={isFancy_1_6_Voided}
+                                    isSettled={isFancy_1_6_Settled}
+
+                                    showAction={()=>this.showFancyMarketAction("fancy_1_6")}
+                                    hideAction={()=>this.hideFancyMarketAction("fancy_1_6")}
+
+                                    status={ir_fancy_1_6.status}
+                                    isShowAction={this.state.fancy_1_6_Action}
+
+                                    onAction={this.props.onFancyMarketBtn}
+
+                                    marketType="fancy_1_6"
+                                /> 
+        
+
+        
 
         
         if (isFancy_1_12_Voided) {
@@ -442,36 +369,36 @@ class SettleTbody extends Component {
 
         return (
             <tbody>
-                <tr>
-                    <td>Matchodds</td>
-                    <td>N/A</td>
-                    <td>
-                        <h3>
-                            <Label bsStyle={labelStyleObj[mo.status]}>{mo.status}</Label>
-                        </h3>
+                    <tr>
+                        <td>Matchodds</td>
+                        <td>N/A</td>
+                        <td>
+                            <h3>
+                                <Label bsStyle={labelStyleObj[mo.status]}>{mo.status}</Label>
+                            </h3>
 
-                    </td>
-                    <td>{mo.winner ? mo.winner : "-"}</td>
-                    <td>
-                        <select name="" id="" defaultValue="outcome" onChange={this.props.onMatchoddsChange}>
-                            <option value="outcome" hidden>Choose outcome</option>
-                            <option value="Draw">Draw</option>
-                            <option value={home}>{home}</option>
-                            <option value={away}>{away}</option>
-                        </select>
-                    </td>
-                    <td>{finalMo}</td>
-                    <td>
-                        
-                        {settleVoidMatchoddsBtn}
-                    </td>
-                    <td>
-                        <button className="btn btn-primary">Undo</button>
-                    </td>
-                    <td>
-                        active*
-                    </td>
-                </tr>
+                        </td>
+                        <td>{mo.winner ? mo.winner : "-"}</td>
+                        <td>
+                            <select name="" id="" defaultValue="outcome" onChange={this.props.onMatchoddsChange}>
+                                <option value="outcome" hidden>Choose outcome</option>
+                                <option value="Draw">Draw</option>
+                                <option value={home}>{home}</option>
+                                <option value={away}>{away}</option>
+                            </select>
+                        </td>
+                        <td>{finalMo}</td>
+                        <td>
+                            
+                            {settleVoidMatchoddsBtn}
+                        </td>
+                        <td>
+                            <button className="btn btn-primary">Undo</button>
+                        </td>
+                        <td>
+                            active*
+                        </td>
+                    </tr>
                 <tr>
                     <td>Lambi</td>
                     <td>{ir_lambi.team ? ir_lambi.team : "-"}</td>
