@@ -32,8 +32,7 @@ class SettleModal extends Component {
   render() {
     // console.log("Cookies.get", Cookies.get('cricket~settler'))
 
-    return (     
-
+    return (    
         <Modal bsSize="small" show={this.props.showModal} onHide={this.props.handleHide}>
           <Modal.Body>
             {
