@@ -14,6 +14,9 @@ const mapStateToProps = state =>{
     isLoading: state.auth.isLoading,
     isLoggedIn: state.auth.isLoggedIn,
     isLogInError: state.auth.isLogInError,
+
+    home:state.cricketApp.home,
+    away:state.cricketApp.away,    
   }
 }
 

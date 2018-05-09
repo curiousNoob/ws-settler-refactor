@@ -77,17 +77,5 @@ export const rmCookies=()=>({
 })
 
 
-export const setHome=(home)=>{
-	return {
-		type:actionTypes.SET_HOME,
-		payload:home,
-	}
-}
 
-export const setAway=(away)=>{
-	return {
-		type:actionTypes.SET_AWAY,
-		payload:away,
-	}
-}
 

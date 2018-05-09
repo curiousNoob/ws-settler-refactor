@@ -26,19 +26,7 @@ import { isProduction } from '../constants'
 
 
 class NavBar extends Component {
-  constructor() {
-    super(); 
-
-    this.loginOnEnter = this.loginOnEnter.bind(this)
-  }
-
-  loginOnEnter(e) {
-    if (e.key === 'Enter') {
-      console.log("13")
-      this.props.onLogin();
-    }
-  }
-
+  
     
   render() {
     const { isLoggedIn, home, away } = this.props
@@ -51,8 +39,7 @@ class NavBar extends Component {
             type="text"
             placeholder="username"
             value={this.props.username}
-            onChange={this.props.handleUsernameChange}
-            onKeyPress={this.loginOnEnter}
+            onChange={this.props.handleUsernameChange}            
           />
         </FormGroup>{' '}
         <FormGroup>
@@ -62,7 +49,6 @@ class NavBar extends Component {
             placeholder="password"
             value={this.props.password}
             onChange={this.props.handlePasswordChange}
-            onKeyPress={this.loginOnEnter}
           />
         </FormGroup>{' '}
         <Button type="submit" onClick={()=>this.props.handleLogin(this.props.username, this.props.password)}>Login</Button>

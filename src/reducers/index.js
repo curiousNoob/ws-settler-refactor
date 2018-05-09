@@ -1,10 +1,28 @@
 import { combineReducers } from "redux"
 
 import auth from "./auth"
+import socket from "./socket"
+import cricketApp from "./cricketApp"
+
+import matchOdds from "./matchOdds"
+import lambi from "./lambi"
+import fancy_1_6 from "./fancy_1_6"
+import fancy_1_12 from "./fancy_1_12"
+import fancy_2_6 from "./fancy_2_6"
+import fancy_2_12 from "./fancy_2_12"
 
 
 const reducers = combineReducers({
  	auth,
+ 	socket,
+	cricketApp,
+
+	matchOdds,
+	lambi,
+	fancy_1_6,
+	fancy_1_12,
+	fancy_2_6,
+	fancy_2_12,
 })
 
 

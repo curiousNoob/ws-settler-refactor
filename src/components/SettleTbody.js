@@ -203,9 +203,9 @@ class SettleTbody extends Component {
                                     status={mo.status}
                                     isShowAction={this.state.matchoddsAction}
 
-                                    onAction={this.props.onMatchoddsSettleChange}
+                                    onAction={this.props.onActionBtn}
 
-                                    marketType={undefined}
+                                    marketType={"matchOdds"}
                                 />
 
 
@@ -219,9 +219,9 @@ class SettleTbody extends Component {
                                     status={ir_lambi.status}
                                     isShowAction={this.state.lambiAction}
 
-                                    onAction={this.props.onLambiSettleChange}
+                                    onAction={this.props.onActionBtn}
 
-                                    marketType={undefined}
+                                    marketType={"lambi"}
                             />        
 
         settleVoidFancy_1_6_Btn = <ActionBtn 
@@ -234,9 +234,9 @@ class SettleTbody extends Component {
                                     status={ir_fancy_1_6.status}
                                     isShowAction={this.state.fancy_1_6_Action}
 
-                                    onAction={this.props.onFancyMarketBtn}
+                                    onAction={this.props.onActionBtn}
 
-                                    marketType="fancy_1_6"
+                                    marketType={"fancy_1_6"}
                                 /> 
         
         settleVoidFancy_1_12_Btn = <ActionBtn 
@@ -249,9 +249,9 @@ class SettleTbody extends Component {
                                     status={ir_fancy_1_12.status}
                                     isShowAction={this.state.fancy_1_12_Action}
 
-                                    onAction={this.props.onFancyMarketBtn}
+                                    onAction={this.props.onActionBtn}
 
-                                    marketType="fancy_1_12"
+                                    marketType={"fancy_1_12"}
                                 /> 
         
         settleVoidFancy_2_6_Btn = <ActionBtn 
@@ -264,9 +264,9 @@ class SettleTbody extends Component {
                                     status={ir_fancy_2_6.status}
                                     isShowAction={this.state.fancy_2_6_Action}
 
-                                    onAction={this.props.onFancyMarketBtn}
+                                    onAction={this.props.onActionBtn}
 
-                                    marketType="fancy_2_6"
+                                    marketType={"fancy_2_6"}
                                 />
         
         settleVoidFancy_2_12_Btn = <ActionBtn 
@@ -279,9 +279,9 @@ class SettleTbody extends Component {
                                     status={ir_fancy_2_12.status}
                                     isShowAction={this.state.fancy_2_12_Action}
 
-                                    onAction={this.props.onFancyMarketBtn}
+                                    onAction={this.props.onActionBtn}
 
-                                    marketType="fancy_2_12"
+                                    marketType={"fancy_2_12"}
                                 />           
 
         return (

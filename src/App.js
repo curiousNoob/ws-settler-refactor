@@ -25,7 +25,7 @@ import { isProduction } from './constants'
 
 import NavBarContainer from './containers/NavBarContainer'
 import TableNavigation from './components/TableNavigation'
-import SettleTable from './components/SettleTable'
+import SettleTableContainer from './containers/SettleTableContainer'
 import WebSocketConnection from './components/WebSocketConnection'
 
 import TeamA from './pages/TeamA'
@@ -35,34 +35,12 @@ import TeamB from './pages/TeamB'
 export const root_url = isProduction?window.location.pathname:""
 
 
-class App extends Component {
-  constructor() {
-    super()
-
-    this.state = {      
-      home: "",
-      away: "",
-    }
-
-    
-    this.setMatchNames=this.setMatchNames.bind(this)
-  }
+class App extends Component { 
 
   componentDidMount() {
     this.props.checkCookies()
   }
-
-  // componentDidUpdate(){
-  //   console.log("APP componentDidUpdate")
-  // }
-
-  setMatchNames(home, away){
-    this.setState({
-      home,
-      away,
-    })
-  }
-
+ 
   render() {
     
     const router = (
@@ -70,12 +48,7 @@ class App extends Component {
         <Switch>
           <Route exact
             path={isProduction?root_url:"/"}
-            render={() => (
-              <SettleTable
-                isLoggedIn={this.props.isLoggedIn}
-                setMatchNames={this.setMatchNames}
-              />
-            )}
+            component={<SettleTableContainer/>}
           />
           <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={TeamA} />
           <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={TeamB} />
@@ -92,7 +65,7 @@ class App extends Component {
     return (
        
         <div>
-          <NavBarContainer {...this.state}  />
+          <NavBarContainer />
           {this.props.isLoggedIn ? router : loginRequestDiv}
         </div>
     );

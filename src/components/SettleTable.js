@@ -33,53 +33,19 @@ class SettleTable extends Component {
     super()
 
     this.state = {
-      ir_lambi: {
-        status: "inactive",//active, inactive, ready_to_settle
-        team: "",
-        runs: "",
-      },
       mo: {
-        status: "inactive",
+        status: "inactive",//active, inactive, ready_to_settle
         winner: "",
       },
-      home: "",
-      away: "",
-      appinfo: "",
-      name: "",
-      marketTypeForModal:"",
-      showMatchoddsModal: false,
-      showLambiModal: false,
-      showFancyMarketModal: false,
-      isSettle: false,
-      isVoid: false,
-      finalLambi: "",
-      finalMo: "",
-      isMatchOddsVoided: false,
-      isMatchOddsSettled: false,
-      isLambiVoided: false,
-      isLambiSettled: false,
-      statusFancyStruct: {
-        ir_fancy_1_6: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        },
-        ir_fancy_1_12: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        },
-        ir_fancy_2_6: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        },
-        ir_fancy_2_12: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        }
-      },
+      ir_lambi: {
+        runs: "",
+        status: "inactive",
+        team: "",        
+      },      
       ir_fancy_1_6: {
         overs: 6,
-        runs: 0,
-        status: "inactive",
+        runs: 0,        
+        status: "inactive",        
         team: "Delhi Daredevils"
       },
       ir_fancy_1_12: {
@@ -100,26 +66,55 @@ class SettleTable extends Component {
         status: "inactive",
         team: "Kolkata Knight Riders"
       },
+
+      finalMo: "",
+      finalLambi: "",
       final_ir_fancy_1_6: "",
       final_ir_fancy_1_12: "",
       final_ir_fancy_2_6: "",
       final_ir_fancy_2_12: "",
-      final_ir_fancy_market: "",
-      final_fancy_market_sel: "",
+
+      marketTypeForModal:"",
+      finalMarketValueForModal: "",
+      finalMarketSelectedForModal: "",
+      isShowMarketModal: false,
+      isSettle: false,
+      isVoid: false,
+      
+      isMatchOddsSettled: false,      
+      isMatchOddsVoided: false,
+      isLambiSettled: false,      
+      isLambiVoided: false,
+      statusFancyStruct: {
+        ir_fancy_1_6: {
+          isFancyVoided: false,
+          isFancySettled: false,
+        },
+        ir_fancy_1_12: {
+          isFancyVoided: false,
+          isFancySettled: false,
+        },
+        ir_fancy_2_6: {
+          isFancyVoided: false,
+          isFancySettled: false,
+        },
+        ir_fancy_2_12: {
+          isFancyVoided: false,
+          isFancySettled: false,
+        }
+      },      
+      
+      appinfo: "",
+      name: "",
     }
 
     this.handleMatchoddsChange = this.handleMatchoddsChange.bind(this)
     this.handleLambiChange = this.handleLambiChange.bind(this)
     this.handleFancyMarketsChange = this.handleFancyMarketsChange.bind(this)
-
-    this.handleMatchoddsSettleChange = this.handleMatchoddsSettleChange.bind(this)
-    this.handleLambiSettleChange = this.handleLambiSettleChange.bind(this)
-    this.handleFancyMarketBtn = this.handleFancyMarketBtn.bind(this)   
     
-    this.settleMatchOdds = this.settleMatchOdds.bind(this)
-    this.settleLambi = this.settleLambi.bind(this)    
-    this.settleFancyMarkets = this.settleFancyMarkets.bind(this)
+    this.handleActionBtn = this.handleActionBtn.bind(this)   
     
+    this.settleAction = this.settleAction.bind(this)    
 
     this.handleHide = this.handleHide.bind(this)
   }
@@ -127,7 +122,7 @@ class SettleTable extends Component {
   componentDidMount() {
 
     if (!("WebSocket" in window)) {
-      alert("This browser does not support WebSockets");
+      alert("This browser does not support WebSockets.");
     }
 
     let prevLambiRuns;
@@ -141,11 +136,11 @@ class SettleTable extends Component {
 
     const self = this
     let uri;
-    //uncomment this for PRODUCTION
+
     if (isProduction) {
       const host = window.location.host;
       const path = "/api/settler/ws";
-      console.log("PROTOCOL", window.location.protocol)
+
       if (window.location.protocol === "https:") {
         uri = "wss://" + host + path;
       } else {
@@ -155,7 +150,6 @@ class SettleTable extends Component {
       uri = "ws://localhost:8080/api/settler/ws"//"wss://cct-stage.iosport.co.uk/api/settler/ws"
     }
 
-
     this.ws = new WebSocket(uri);
     this.ws.onopen = function () {
       console.log('Connected');
@@ -163,39 +157,44 @@ class SettleTable extends Component {
     this.ws.onclose = function (e) {
       console.log('Connection closed', e.reason);
     };
+    this.ws.onerror = function (e) {
+      console.log("WS error", e);
+    }
     this.ws.onmessage = function (evt) {
-      var response = JSON.parse(evt.data);
-      //console.log("Received: ", (response));
-      if (response.mo.winner !== undefined && prevMoWinner !== response.mo.winner) {
+      const response = JSON.parse(evt.data);
+      // console.log("Received data: ", response);
+
+      if (prevMoWinner !== response.mo.winner) {
         self.setState({
           finalMo: response.mo.winner,
         })
       }
-      if (response.ir_lambi.runs !== undefined && prevLambiRuns !== response.ir_lambi.runs) {
+
+      if (prevLambiRuns !== response.ir_lambi.runs) {
         self.setState({
           finalLambi: response.ir_lambi.runs,
         })
       }
 
-      if(response.ir_fancy_1_6.runs!==undefined && prevFancy_1_6_runs!==response.ir_fancy_1_6.runs){
+      if(prevFancy_1_6_runs!==response.ir_fancy_1_6.runs){
         self.setState({
           final_ir_fancy_1_6:response.ir_fancy_1_6.runs,
         })
       }
 
-      if(response.ir_fancy_1_12.runs!==undefined && prevFancy_1_12_runs!==response.ir_fancy_1_12.runs){
+      if(prevFancy_1_12_runs!==response.ir_fancy_1_12.runs){
         self.setState({
           final_ir_fancy_1_12:response.ir_fancy_1_12.runs,
         })
       }
 
-      if(response.ir_fancy_2_6.runs!==undefined && prevFancy_2_6_runs!==response.ir_fancy_2_6.runs){
+      if(prevFancy_2_6_runs!==response.ir_fancy_2_6.runs){
         self.setState({
           final_ir_fancy_2_6:response.ir_fancy_2_6.runs,
         })
       }
 
-      if(response.ir_fancy_2_12.runs!==undefined && prevFancy_2_12_runs!==response.ir_fancy_2_12.runs){
+      if(prevFancy_2_12_runs!==response.ir_fancy_2_12.runs){
         self.setState({
           final_ir_fancy_2_12:response.ir_fancy_2_12.runs,
         })
@@ -210,19 +209,11 @@ class SettleTable extends Component {
 
       self.setState(response);
 
-      // console.log("WS onmessage response", response);
-
       if (once) {
         self.props.setMatchNames(response.home, response.away)
         once = false
       }
     }
-
-    this.ws.onerror = function (e) {
-      console.log("WS error", e);
-    }   
-
-    //console.log("================WS================", this.ws)
   }
 
   componentWillUnmount() {
@@ -236,8 +227,6 @@ class SettleTable extends Component {
 
   handleMatchoddsChange(e) {
     const val = e.target.value
-
-    console.log("handleOutcomeChange", val)
 
     this.setState({
       finalMo: val,
@@ -288,45 +277,9 @@ class SettleTable extends Component {
   }
 
 
-  handleMatchoddsSettleChange(val) {
+  handleActionBtn(btnType, marketType) {
     this.setState({
-      showMatchoddsModal: true,
-    })
-
-    if (val === "settle") {
-      this.setState({
-        isSettle: true,
-        isVoid: false
-      })
-    } else if (val === "void") {
-      this.setState({
-        isVoid: true,
-        isSettle: false,
-      })
-    }
-  }
-
-  handleLambiSettleChange(val) {
-    this.setState({
-      showLambiModal: true,
-    })
-
-    if (val === "settle") {
-      this.setState({
-        isSettle: true,
-        isVoid: false
-      })
-    } else if (val === "void") {
-      this.setState({
-        isVoid: true,
-        isSettle: false,
-      })
-    }
-  }
-
-  handleFancyMarketBtn(btnType, marketType) {
-    this.setState({
-      showFancyMarketModal: true,
+      isShowMarketModal: true,
     })
 
     if (btnType === "settle") {
@@ -336,41 +289,54 @@ class SettleTable extends Component {
       })
     } else if (btnType === "void") {
       this.setState({
-        isVoid: true,
         isSettle: false,
+        isVoid: true,        
       })
-    }
+    }    
 
     switch (marketType) {
+      case "matchOdds":
+        this.setState({
+          finalMarketValueForModal: this.state.finalMo,
+          finalMarketSelectedForModal: "matchOdds"
+        })
+        break
+      case "lambi":
+        this.setState({
+          finalMarketValueForModal: this.state.finalLambi,
+          finalMarketSelectedForModal: "lambi"
+        })
+        break
       case "fancy_1_6":
         this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_1_6,
-          final_fancy_market_sel: "ir_fancy_1_6"
+          finalMarketValueForModal: this.state.final_ir_fancy_1_6,
+          finalMarketSelectedForModal: "ir_fancy_1_6"
         })
         break
       case "fancy_1_12":
         this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_1_12,
-          final_fancy_market_sel: "ir_fancy_1_12"
+          finalMarketValueForModal: this.state.final_ir_fancy_1_12,
+          finalMarketSelectedForModal: "ir_fancy_1_12"
         })
         break
       case "fancy_2_6":
         this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_2_6,
-          final_fancy_market_sel: "ir_fancy_2_6"
+          finalMarketValueForModal: this.state.final_ir_fancy_2_6,
+          finalMarketSelectedForModal: "ir_fancy_2_6"
         })
         break
       case "fancy_2_12":
         this.setState({
-          final_ir_fancy_market: this.state.final_ir_fancy_2_12,
-          final_fancy_market_sel: "ir_fancy_2_12"
+          finalMarketValueForModal: this.state.final_ir_fancy_2_12,
+          finalMarketSelectedForModal: "ir_fancy_2_12"
         })
         break
     }
   }
 
-  //general
-  settleAction(){
+
+  settleAction(){   
+
     const { 
       marketTypeForModal,
 
@@ -381,8 +347,8 @@ class SettleTable extends Component {
       isVoid,
 
       statusFancyStruct,
-      final_fancy_market_sel,
-      final_ir_fancy_market,
+      finalMarketSelectedForModal,
+      finalMarketValueForModal,
     } = this.state
 
     let marketSettledObj 
@@ -390,12 +356,12 @@ class SettleTable extends Component {
     let settleMsgOverWS
     let voidMsgOverWS
 
-    switch(marketTypeForModal){
-      case "MatchOdds":
+    switch(finalMarketSelectedForModal){
+      case "matchOdds":
         if(!finalMo){
           return
         }
-
+        
         marketSettledObj={isMatchOddsSettled: true,}
         marketVoidedObj={isMatchOddsVoided: true,}
 
@@ -403,7 +369,7 @@ class SettleTable extends Component {
         voidMsgOverWS=JSON.stringify({ "market": "mo", "void": true })
 
         break
-      case "Lambi":
+      case "lambi":
         if(!finalLambi){
           return
         }
@@ -415,29 +381,32 @@ class SettleTable extends Component {
         voidMsgOverWS=JSON.stringify({ "market": "ir_lambi", "void": true })
 
         break
-      case "Fancy Market":
-        if (!final_ir_fancy_market) {
+      case "ir_fancy_1_6":
+      case "ir_fancy_1_12":
+      case "ir_fancy_2_6":
+      case "ir_fancy_2_12":
+        if ( !finalMarketValueForModal) {
           return
         }
 
         let statusFancyStruct = JSON.parse(JSON.stringify(this.state.statusFancyStruct))          
 
-        statusFancyStruct[final_fancy_market_sel]={...statusFancyStruct[final_fancy_market_sel],isFancySettled:true}          
+        statusFancyStruct[finalMarketSelectedForModal]={...statusFancyStruct[finalMarketSelectedForModal],isFancySettled:true}          
         marketSettledObj={statusFancyStruct,}
 
         statusFancyStruct={...statusFancyStruct}
 
-        statusFancyStruct[final_fancy_market_sel]={...statusFancyStruct[final_fancy_market_sel],isFancyVoided:true}
+        statusFancyStruct[finalMarketSelectedForModal]={...statusFancyStruct[finalMarketSelectedForModal],isFancyVoided:true}
         marketVoidedObj={statusFancyStruct}
 
-        settleMsgOverWS=JSON.stringify({ "market": final_fancy_market_sel, "settle": Number(final_ir_fancy_market) })
-        voidMsgOverWS=JSON.stringify({ "market": final_fancy_market_sel, "void": true })
+        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
+        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
 
         break
     }
 
     if (this.ws.readyState === this.ws.OPEN) {
-      if (isSettle) {        
+      if (isSettle) {  
         this.ws.send(settleMsgOverWS)
         this.setState(marketSettledObj)      
       } else if (isVoid) {
@@ -449,95 +418,10 @@ class SettleTable extends Component {
     this.handleHide()
   } 
 
-  settleMatchOdds() {
-    console.log("settleMatchOdds", this.state.isSettle)
-    if (this.ws.readyState === this.ws.OPEN) {
-      if (this.state.isSettle) {      
-        if (!this.state.finalMo) {
-          return
-        }
-        this.ws.send(JSON.stringify({ "market": "mo", "settle": this.state.finalMo }))
-        this.setState({
-          isMatchOddsSettled: true,
-        })      
-      } else if (this.state.isVoid) {
-        this.ws.send(JSON.stringify({ "market": "mo", "void": true }))
-        this.setState({
-          isMatchOddsVoided: true,
-        })
-      }
-    }
-
-    this.handleHide()
-  }
-
-  settleLambi() {
-    if (this.ws.readyState === this.ws.OPEN) {
-      if (this.state.isSettle) {        
-        console.log("settle LAMBI json", JSON.stringify({ "market": "ir_lambi", "settle": Number(this.state.finalLambi) }))
-        this.ws.send(JSON.stringify({ "market": "ir_lambi", "settle": Number(this.state.finalLambi) }))
-        this.setState({
-          isLambiSettled: true,
-        })        
-      } else if (this.state.isVoid) {
-          this.ws.send(JSON.stringify({ "market": "ir_lambi", "void": true }))
-
-          this.setState({
-            isLambiVoided: true,
-          })
-      }
-    }
-    this.handleHide()
-  }
-
-  settleFancyMarkets() {
-    // console.log("settleFancyMarkets")
-    console.log("FANCY market type - settleFancyMarkets", this.state.final_fancy_market_sel, this.state.final_ir_fancy_market)
-
-    if (this.ws.readyState === this.ws.OPEN) {
-      if (this.state.isSettle) {
-        
-          console.log("settle LAMBI json", JSON.stringify({ "market": this.state.final_fancy_market_sel, "settle": Number(this.state.final_ir_fancy_market) }))
-          if (!this.state.final_ir_fancy_market) {
-            return
-          }
-          this.ws.send(JSON.stringify({ "market": this.state.final_fancy_market_sel, "settle": Number(this.state.final_ir_fancy_market) }))
-
-          const statusFancyStruct = JSON.parse(JSON.stringify(this.state.statusFancyStruct))
-          console.log("statusFancyStruct isSettle", statusFancyStruct)
-
-          statusFancyStruct[this.state.final_fancy_market_sel].isFancySettled = true
-
-          console.log("statusFancyStruct isSettle AFTER", statusFancyStruct)
-
-          this.setState({
-            statusFancyStruct,
-          })
-      } else if (this.state.isVoid) {
-          this.ws.send(JSON.stringify({ "market": this.state.final_fancy_market_sel, "void": true }))
-
-          const statusFancyStruct = JSON.parse(JSON.stringify(this.state.statusFancyStruct))
-
-          console.log("statusFancyStruct isVoid", statusFancyStruct)
-
-          statusFancyStruct[this.state.final_fancy_market_sel].isFancyVoided = true
-
-          console.log("statusFancyStruct isVoid AFTER", statusFancyStruct)
-
-          this.setState({
-            statusFancyStruct,
-          })
-      }
-    }
-
-    this.handleHide()
-  }
   
   handleHide() {
     this.setState({
-      showMatchoddsModal: false,
-      showLambiModal: false,
-      showFancyMarketModal: false,
+      isShowMarketModal: false,
       isSettle: false,
       isVoid: false
     })
@@ -545,6 +429,23 @@ class SettleTable extends Component {
   
 
   render() {
+
+    const {
+      finalMarketSelectedForModal,
+      isShowMarketModal,
+      finalMarketValueForModal,
+      isSettle,
+      isVoid,
+    }=this.state
+
+    const marketTypeToModalNameMap = {
+      matchOdds:"Match Odds",
+      lambi:"Lambi",
+      ir_fancy_1_6:"Fancy 1 6",
+      ir_fancy_1_12:"Fancy 1 12",
+      ir_fancy_2_6:"Fancy 2 6",
+      ir_fancy_2_12:"Fancy 2 12",
+    }
     
     return (
       <div>
@@ -558,45 +459,22 @@ class SettleTable extends Component {
             onLambiChange={this.handleLambiChange}
             onFancyMarketsChange={this.handleFancyMarketsChange}
             
-            onMatchoddsSettleChange={this.handleMatchoddsSettleChange}
-            onLambiSettleChange={this.handleLambiSettleChange}
+            onActionBtn={this.handleActionBtn}
             
             onFancyMarketBtn={this.handleFancyMarketBtn}
           />
         </table>
 
         <SettleModal 
-          marketType="MatchOdds"
-          showModal={this.state.showMatchoddsModal}
-          finalValue={this.state.finalMo}          
-          settleAction={this.settleMatchOdds}
+          marketType={finalMarketSelectedForModal!=""?marketTypeToModalNameMap[finalMarketSelectedForModal]:"No Market"}
+          showModal={isShowMarketModal}
+          finalValue={finalMarketValueForModal}          
+          settleAction={this.settleAction}
 
           handleHide={this.handleHide}
-          isSettle={this.state.isSettle}
-          isVoid={this.state.isVoid}          
-        />
-        
-        <SettleModal 
-          marketType="Lambi"
-          showModal={this.state.showLambiModal}
-          finalValue={this.state.finalLambi}          
-          settleAction={this.settleLambi}
-
-          handleHide={this.handleHide}
-          isSettle={this.state.isSettle}
-          isVoid={this.state.isVoid}          
-        />
-
-        <SettleModal 
-          marketType="Fancy Market"
-          showModal={this.state.showFancyMarketModal}
-          finalValue={this.state.final_ir_fancy_market}          
-          settleAction={this.settleFancyMarkets}
-
-          handleHide={this.handleHide}
-          isSettle={this.state.isSettle}
-          isVoid={this.state.isVoid}          
-        />
+          isSettle={isSettle}
+          isVoid={isVoid}          
+        />  
         
       </div>
     );
