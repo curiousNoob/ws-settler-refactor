@@ -20,7 +20,7 @@ const matchOdds=(state=initialState, action)=>{
 			return {...state, status:status, winner:winner}	
 
 		case "SET_FINAL_MO":
-			return {...state, finalMo:payload}		
+			return {...state, finalMo:action.payload}		
 		
 		default:
 			return state

@@ -48,7 +48,7 @@ class App extends Component {
         <Switch>
           <Route exact
             path={isProduction?root_url:"/"}
-            component={<SettleTableContainer/>}
+            component={SettleTableContainer}
           />
           <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={TeamA} />
           <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={TeamB} />

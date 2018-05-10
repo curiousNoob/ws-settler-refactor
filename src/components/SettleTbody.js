@@ -38,12 +38,14 @@ class SettleTbody extends Component {
             fancy_2_12_Action:false,
         }
 
-        this.hideLambiAction = this.hideLambiAction.bind(this)
-        this.showLambiAction = this.showLambiAction.bind(this)
         this.showMatchoddsAction = this.showMatchoddsAction.bind(this)
         this.hideMatchoddsAction = this.hideMatchoddsAction.bind(this)
-        this.hideFancyMarketAction = this.hideFancyMarketAction.bind(this)
+
+        this.showLambiAction = this.showLambiAction.bind(this)
+        this.hideLambiAction = this.hideLambiAction.bind(this)
+        
         this.showFancyMarketAction = this.showFancyMarketAction.bind(this)
+        this.hideFancyMarketAction = this.hideFancyMarketAction.bind(this)        
     }
 
     showMatchoddsAction() {
@@ -62,6 +64,7 @@ class SettleTbody extends Component {
         }
     }
 
+
     showLambiAction() {
         if (!this.state.lambiAction) {
             this.setState({
@@ -77,8 +80,9 @@ class SettleTbody extends Component {
             })
         }
     }
+    
 
-    showFancyMarketAction(marketType){
+    showFancyMarketAction(marketType) {
         switch(marketType){
             case "fancy_1_6":
                 if (!this.state.fancy_1_6_Action) {
@@ -111,7 +115,7 @@ class SettleTbody extends Component {
         }        
     }
 
-    hideFancyMarketAction(marketType){
+    hideFancyMarketAction(marketType) {
         switch(marketType){
             case "fancy_1_6":
                 if (this.state.fancy_1_6_Action) {
@@ -147,25 +151,28 @@ class SettleTbody extends Component {
 
     render() {
         const {
-            ir_lambi,
             mo,
-            home,
-            away,
+            ir_lambi,
+            ir_fancy_1_6,
+            ir_fancy_1_12,
+            ir_fancy_2_6,
+            ir_fancy_2_12,
+
             finalMo,
             finalLambi,
+            final_ir_fancy_1_6,            
+            final_ir_fancy_1_12,            
+            final_ir_fancy_2_6,            
+            final_ir_fancy_2_12,
+            
+            home,
+            away,
+            
             isMatchOddsVoided,
             isMatchOddsSettled,
             isLambiVoided,
             isLambiSettled,
-            statusFancyStruct,
-            ir_fancy_1_6,
-            final_ir_fancy_1_6,
-            ir_fancy_1_12,
-            final_ir_fancy_1_12,
-            ir_fancy_2_6,
-            final_ir_fancy_2_6,
-            ir_fancy_2_12,
-            final_ir_fancy_2_12,
+            statusFancyStruct,            
         } = this.props
 
 
@@ -289,7 +296,7 @@ class SettleTbody extends Component {
                 <MatchOddsRow
                     status={mo.status}
                     winner={mo.winner}
-                    onMatchoddsChange={this.props.onMatchoddsChange}
+                    onMatchoddsChange={this.props.handleMatchoddsChange}
                     home={home}
                     away={away}
                     finalMo={finalMo}
@@ -302,7 +309,7 @@ class SettleTbody extends Component {
                     status={ir_lambi.status}
                     runs={ir_lambi.runs}
                     finalMarketValue={finalLambi}
-                    onFancyMarketChange={this.props.onLambiChange}
+                    onFancyMarketChange={this.props.handleLambiChange}
                     settleVoidBtn={settleVoidLambiBtn}
                 /> 
 
@@ -312,7 +319,7 @@ class SettleTbody extends Component {
                     status={ir_fancy_1_6.status}
                     runs={ir_fancy_1_6.runs}
                     finalMarketValue={final_ir_fancy_1_6}
-                    onFancyMarketChange={e=>this.props.onFancyMarketsChange(e, "fancy_1_6")}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_1_6")}
                     settleVoidBtn={settleVoidFancy_1_6_Btn}
                 /> 
 
@@ -322,7 +329,7 @@ class SettleTbody extends Component {
                     status={ir_fancy_1_12.status}
                     runs={ir_fancy_1_12.runs}
                     finalMarketValue={final_ir_fancy_1_12}
-                    onFancyMarketChange={e=>this.props.onFancyMarketsChange(e, "fancy_1_12")}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_1_12")}
                     settleVoidBtn={settleVoidFancy_1_12_Btn}
                 />
 
@@ -332,7 +339,7 @@ class SettleTbody extends Component {
                     status={ir_fancy_2_6.status}
                     runs={ir_fancy_2_6.runs}
                     finalMarketValue={final_ir_fancy_2_6}
-                    onFancyMarketChange={e=>this.props.onFancyMarketsChange(e, "fancy_2_6")}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_2_6")}
                     settleVoidBtn={settleVoidFancy_2_6_Btn}
                 />
 
@@ -342,7 +349,7 @@ class SettleTbody extends Component {
                     status={ir_fancy_2_12.status}
                     runs={ir_fancy_2_12.runs}
                     finalMarketValue={final_ir_fancy_2_12}
-                    onFancyMarketChange={e=>this.props.onFancyMarketsChange(e, "fancy_2_12")}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_2_12")}
                     settleVoidBtn={settleVoidFancy_2_12_Btn}
                 />  
                

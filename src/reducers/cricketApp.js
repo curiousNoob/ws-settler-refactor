@@ -20,7 +20,6 @@ const cricketApp=(state=initialState, action)=>{
 			return {...state, appinfo: action.payload}
 			
 		case "SET_NAME":
-			state.ws.close()//close websocket, in reducer
 			return {...state, name: action.payload}
 
 		default:

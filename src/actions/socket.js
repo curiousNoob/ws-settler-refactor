@@ -48,6 +48,12 @@ export const openWebSocket = ()=>{
 	}
 }
 
+export const closedWebsocket = ()=>{
+	return {
+		type:actionTypes.CLOSED_WEBSOCKET,
+	}
+}
+
 export const closeWebsocket = ()=>{
 	return {
 		type:actionTypes.CLOSE_WEBSOCKET,
@@ -137,7 +143,7 @@ export const establishWebSocketConnection=()=>{
 	    }
 
 	    ws.onclose = (e) =>{
-	    	dispatch(closeWebsocket())
+	    	dispatch(closedWebsocket())
 	    }
 
 	    ws.onmessage = (response) => {

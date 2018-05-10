@@ -1,12 +1,11 @@
 import { isProduction , cookieName } from '../constants'
 
 const initialState={
-	overs: 6,
-    runs: 0,        
-    status: "inactive",        
-    team: "No team",
-
-    finalLambi: "",
+	finalMarketValueForModal: "",
+	finalMarketSelectedForModal: "",
+	isShowMarketModal: false,
+	isSettle: false,
+	isVoid: false,
 }
 
 

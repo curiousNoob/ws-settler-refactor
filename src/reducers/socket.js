@@ -13,6 +13,7 @@ const auth=(state=initialState, action)=>{
 			return {...state, isNotSuppWebSocket:true}
 
 		case "WEBSOCKET_SUCCESS":
+			console.log("WS",state.ws)
 			return {...state, ws: action.payload}
 
 		case "WEBSOCKET_ERR":

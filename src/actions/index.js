@@ -79,6 +79,20 @@ const actions={
 	websocketConnectedErr,
 	establishWebSocketConnection,
 
+	setFinalMo,
+	setFinalLambi,
+	setFinalFancy_1_6,
+	setFinalFancy_1_12,
+	setFinalFancy_2_6,
+	setFinalFancy_2_12,
+
+	setMatchOdds,
+	setLambi,
+	setFancy_1_6,
+	setFancy_1_12,
+	setFancy_2_6,
+	setFancy_2_12,
+
 	initSettleModal,
 }
 

@@ -11,6 +11,8 @@ import fancy_1_12 from "./fancy_1_12"
 import fancy_2_6 from "./fancy_2_6"
 import fancy_2_12 from "./fancy_2_12"
 
+import settleModal from "./settleModal"
+
 
 const reducers = combineReducers({
  	auth,
@@ -23,6 +25,8 @@ const reducers = combineReducers({
 	fancy_1_12,
 	fancy_2_6,
 	fancy_2_12,
+
+	settleModal,
 })
 
 
