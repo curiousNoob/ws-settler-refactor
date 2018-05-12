@@ -172,12 +172,15 @@ class SettleTbody extends Component {
             isMatchOddsSettled,
             isLambiVoided,
             isLambiSettled,
-            statusFancyStruct,            
+            statusFancyStruct,
+
+            isFancy_1_6_Settled,
+            isFancy_1_6_Voided,
+
         } = this.props
 
 
-        const isFancy_1_6_Voided=statusFancyStruct.ir_fancy_1_6.isFancyVoided
-        const isFancy_1_6_Settled=statusFancyStruct.ir_fancy_1_6.isFancySettled
+
         const isFancy_1_12_Voided=statusFancyStruct.ir_fancy_1_12.isFancyVoided
         const isFancy_1_12_Settled=statusFancyStruct.ir_fancy_1_12.isFancySettled
         const isFancy_2_12_Settled=statusFancyStruct.ir_fancy_2_12.isFancySettled
@@ -200,9 +203,9 @@ class SettleTbody extends Component {
         let settleVoidFancy_2_12_Btn
 
 
-        settleVoidMatchoddsBtn = <ActionBtnContainer 
-                                    isVoided={isMatchOddsVoided}
+        settleVoidMatchoddsBtn = <ActionBtnContainer
                                     isSettled={isMatchOddsSettled}
+                                    isVoided={isMatchOddsVoided}                                    
 
                                     showAction={this.showMatchoddsAction}
                                     hideAction={this.hideMatchoddsAction}
@@ -215,9 +218,9 @@ class SettleTbody extends Component {
                                 />
 
 
-        settleVoidLambiBtn = <ActionBtnContainer 
-                                    isVoided={isLambiVoided}
-                                    isSettled={isLambiSettled}
+        settleVoidLambiBtn = <ActionBtnContainer
+                                    isSettled={isLambiSettled}                                    
+                                    isVoided={isLambiVoided}                                    
 
                                     showAction={this.showLambiAction}
                                     hideAction={this.hideLambiAction}
@@ -230,8 +233,8 @@ class SettleTbody extends Component {
                             />        
 
         settleVoidFancy_1_6_Btn = <ActionBtnContainer 
-                                    isVoided={isFancy_1_6_Voided}
                                     isSettled={isFancy_1_6_Settled}
+                                    isVoided={isFancy_1_6_Voided}                                    
 
                                     showAction={()=>this.showFancyMarketAction("fancy_1_6")}
                                     hideAction={()=>this.hideFancyMarketAction("fancy_1_6")}
@@ -244,8 +247,8 @@ class SettleTbody extends Component {
                                 /> 
         
         settleVoidFancy_1_12_Btn = <ActionBtnContainer 
-                                    isVoided={isFancy_1_12_Voided}
                                     isSettled={isFancy_1_12_Settled}
+                                    isVoided={isFancy_1_12_Voided}                                    
 
                                     showAction={()=>this.showFancyMarketAction("fancy_1_12")}
                                     hideAction={()=>this.hideFancyMarketAction("fancy_1_12")}
@@ -258,8 +261,8 @@ class SettleTbody extends Component {
                                 /> 
         
         settleVoidFancy_2_6_Btn = <ActionBtnContainer 
-                                    isVoided={isFancy_2_6_Voided}
                                     isSettled={isFancy_2_6_Settled}
+                                    isVoided={isFancy_2_6_Voided}                                    
 
                                     showAction={()=>this.showFancyMarketAction("fancy_2_6")}
                                     hideAction={()=>this.hideFancyMarketAction("fancy_2_6")}
@@ -272,8 +275,8 @@ class SettleTbody extends Component {
                                 />
         
         settleVoidFancy_2_12_Btn = <ActionBtnContainer 
-                                    isVoided={isFancy_2_12_Voided}
                                     isSettled={isFancy_2_12_Settled}
+                                    isVoided={isFancy_2_12_Voided}                                    
 
                                     showAction={()=>this.showFancyMarketAction("fancy_2_12")}
                                     hideAction={()=>this.hideFancyMarketAction("fancy_2_12")}

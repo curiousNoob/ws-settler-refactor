@@ -33,11 +33,7 @@ class SettleTable extends Component {
 
     this.state = {     
 
-      statusFancyStruct: {
-        ir_fancy_1_6: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        },
+      statusFancyStruct: {        
         ir_fancy_1_12: {
           isFancyVoided: false,
           isFancySettled: false,
@@ -123,6 +119,16 @@ class SettleTable extends Component {
 
         break
       case "ir_fancy_1_6":
+        if ( !finalMarketValueForModal) {
+          return
+        }
+
+        settledFunc=this.props.settledFancy_1_6
+        voidedFunc=this.props.voidedFancy_1_6
+
+        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
+        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
+
       case "ir_fancy_1_12":
       case "ir_fancy_2_6":
       case "ir_fancy_2_12":

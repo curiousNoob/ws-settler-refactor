@@ -29,6 +29,9 @@ const mapStateToProps = (state, ownProps) => {
     isLambiVoided:state.lambi.isLambiVoided,
     isLambiSettled:state.lambi.isLambiSettled,
 
+    isFancy_1_6_Settled:state.fancy_1_6.isFancySettled,
+    isFancy_1_6_Voided:state.fancy_1_6.isFancyVoided,
+
     statusFancyStruct:ownProps.statusFancyStruct,
   }
 }

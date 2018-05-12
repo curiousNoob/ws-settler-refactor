@@ -31,10 +31,7 @@ const lambi=(state=initialState, action)=>{
 					team:team,
 
 					
-			}	
-			
-		case "SET_FINAL_LAMBI":
-			return {...state, finalLambi:action.payload}
+			}		
 
 		case "SET_FINAL_LAMBI":
 			return {...state, finalLambi:action.payload}

@@ -62,6 +62,12 @@ const mapDispatchToProps= dispatch=>{
       dispatch(actions.voidedLambi())
     },
 
+    settledFancy_1_6:() => {
+      dispatch(actions.settledFancy_1_6())
+    },
+    voidedFancy_1_6:() => {
+      dispatch(actions.voidedFancy_1_6())
+    },
     
   }
 }

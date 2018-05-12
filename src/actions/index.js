@@ -44,6 +44,8 @@ import {
 
 import {
 	setFancy_1_6,
+	settledFancy_1_6,
+	voidedFancy_1_6,
 } from './fancy_1_6'
 
 import {
@@ -104,8 +106,12 @@ const actions={
 	setLambi,
 	settledLambi,
 	voidedLambi,
-	
+
 	setFancy_1_6,
+	settledFancy_1_6,
+	voidedFancy_1_6,
+	
+	
 	setFancy_1_12,
 	setFancy_2_6,
 	setFancy_2_12,
