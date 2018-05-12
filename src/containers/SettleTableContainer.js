@@ -16,6 +16,13 @@ const mapStateToProps = state =>{
     final_ir_fancy_1_12:state.fancy_1_12.final_ir_fancy_1_12,            
     final_ir_fancy_2_6:state.fancy_2_6.final_ir_fancy_2_6,            
     final_ir_fancy_2_12:state.fancy_2_12.final_ir_fancy_2_12,
+
+    finalMarketValueForModal: state.settleModal.finalMarketValueForModal,
+    finalMarketSelectedForModal: state.settleModal.finalMarketSelectedForModal,
+    isShowMarketModal: state.settleModal.isShowMarketModal,
+    isSettle: state.settleModal.isSettle,
+    isVoid: state.settleModal.isVoid,
+
   }
 }
 
@@ -34,9 +41,31 @@ const mapDispatchToProps= dispatch=>{
     },
     closeWebSocketConnection:() => {
       dispatch(actions.closeWebsocket())
-    },  
+    },
+
+    handleHide:()=>{
+      dispatch(actions.hideSettleModal())
+      dispatch(actions.resetSettleModal())
+    },
+
+    settledMatchOdds:() => {
+      dispatch(actions.settledMatchOdds())
+    },
+    voidedMatchOdds:() => {
+      dispatch(actions.voidedMatchOdds())
+    },
+
+    settledLambi:() => {
+      dispatch(actions.settledLambi())
+    },
+    voidedLambi:() => {
+      dispatch(actions.voidedLambi())
+    },
+
+    
   }
 }
+
 
 const SettleTableContainer=connect(mapStateToProps, mapDispatchToProps)(SettleTable)
 

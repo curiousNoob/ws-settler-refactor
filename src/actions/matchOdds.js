@@ -7,3 +7,15 @@ export const setMatchOdds = (mo)=>{
 		payload:mo,
 	}
 }
+
+export const settledMatchOdds = ()=>{
+	return {
+		type:actionTypes.SETTLED_MATCH_ODDS,
+	}
+}
+
+export const voidedMatchOdds = ()=>{
+	return {
+		type:actionTypes.SETTLED_MATCH_ODDS,
+	}
+}

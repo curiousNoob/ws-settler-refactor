@@ -21,18 +21,28 @@ import Cookies from "js-cookie";
 
 class SettleThead extends Component {
     render() {
+        const theadNamesArr = [
+            "Market",
+            "Selection",
+            "Status",
+            "Value",
+            "Manual",
+            "Final",
+            "Settle/Void",
+            "Undo",
+            "CBstatus",      
+        ]
+
+        const theadNamesList = theadNamesArr.map(theadName=>(
+            <th key={theadName}>
+                {theadName}
+            </th>
+        ))
+
         return (
             <thead>
                 <tr>
-                    <th>Market</th>
-                    <th>Selection</th>
-                    <th>Status</th>
-                    <th>Value</th>
-                    <th>Manual</th>
-                    <th>Final</th>
-                    <th>Settle/Void</th>
-                    <th>Undo</th>
-                    <th>CBstatus</th>
+                    {theadNamesList}
                 </tr>
             </thead>
         )

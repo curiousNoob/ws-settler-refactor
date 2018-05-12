@@ -7,6 +7,9 @@ const initialState={
     team: "No team",
 
     final_ir_fancy_1_6: "",
+
+    isFancyVoided: false,
+    isFancySettled: false,	
 }
 
 

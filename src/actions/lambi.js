@@ -7,3 +7,15 @@ export const setLambi = (lambi)=>{
 		payload:lambi,
 	}
 }
+
+export const settledLambi = ()=>{
+	return {
+		type:actionTypes.SETTLED_LAMBI,
+	}
+}
+
+export const voidedLambi = ()=>{
+	return {
+		type:actionTypes.VOIDED_LAMBI,
+	}
+}

@@ -78,7 +78,7 @@ const ActionBtn = ({
                                status === "ready_to_settle" &&
                                 <Button
                                     bsStyle="success"
-                                    onClick={() => { onAction("settle", marketType) }}
+                                    onClick={() => { onAction("settle") }}
                                 >Settle
                                 </Button>
                             }
@@ -87,7 +87,7 @@ const ActionBtn = ({
                                 (status === "active" || status === "ready_to_settle") &&
                                 <Button
                                     bsStyle="info"
-                                    onClick={() =>{ onAction("void", marketType)}}
+                                    onClick={() =>{ onAction("void")}}
                                     style={status === "active" ? { width: "101px" } : {}}
                                 >Void</Button>
                             }

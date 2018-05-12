@@ -21,13 +21,15 @@ const mapStateToProps = (state, ownProps) => {
     final_ir_fancy_2_12:state.fancy_2_12.final_ir_fancy_2_12,
 
     home:state.cricketApp.home,
-    away:state.cricketApp.away, 
+    away:state.cricketApp.away,
+    
+    isMatchOddsVoided:state.matchOdds.isMatchOddsVoided,
+    isMatchOddsSettled:state.matchOdds.isMatchOddsSettled,
 
-    isMatchOddsVoided:ownProps.isMatchOddsVoided,
-    isMatchOddsSettled:ownProps.isMatchOddsSettled,
-    isLambiVoided:ownProps.isLambiVoided,
-    isLambiSettled:ownProps.isLambiSettled,
-    statusFancyStruct:ownProps.statusFancyStruct, 
+    isLambiVoided:state.lambi.isLambiVoided,
+    isLambiSettled:state.lambi.isLambiSettled,
+
+    statusFancyStruct:ownProps.statusFancyStruct,
   }
 }
 
@@ -73,8 +75,6 @@ const mapDispatchToProps= (dispatch, ownProps) => {
           break
       }
     },
-
-    onActionBtn:ownProps.onActionBtn,
   }
 }
 

@@ -19,10 +19,10 @@ import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
 
-import ActionBtn from './ActionBtn'
 import MatchOddsRow from './MatchOddsRow'
 import FancyMarketsRow from './FancyMarketsRow'
 
+import ActionBtnContainer from '../containers/ActionBtnContainer'
 
 
 class SettleTbody extends Component {
@@ -200,7 +200,7 @@ class SettleTbody extends Component {
         let settleVoidFancy_2_12_Btn
 
 
-        settleVoidMatchoddsBtn = <ActionBtn 
+        settleVoidMatchoddsBtn = <ActionBtnContainer 
                                     isVoided={isMatchOddsVoided}
                                     isSettled={isMatchOddsSettled}
 
@@ -210,13 +210,12 @@ class SettleTbody extends Component {
                                     status={mo.status}
                                     isShowAction={this.state.matchoddsAction}
 
-                                    onAction={this.props.onActionBtn}
-
-                                    marketType={"matchOdds"}
+                                    finalMarketValue={finalMo}
+                                    finalMarketSelected={"matchOdds"}
                                 />
 
 
-        settleVoidLambiBtn = <ActionBtn 
+        settleVoidLambiBtn = <ActionBtnContainer 
                                     isVoided={isLambiVoided}
                                     isSettled={isLambiSettled}
 
@@ -226,12 +225,11 @@ class SettleTbody extends Component {
                                     status={ir_lambi.status}
                                     isShowAction={this.state.lambiAction}
 
-                                    onAction={this.props.onActionBtn}
-
-                                    marketType={"lambi"}
+                                    finalMarketValue={finalLambi}
+                                    finalMarketSelected={"lambi"}                                    
                             />        
 
-        settleVoidFancy_1_6_Btn = <ActionBtn 
+        settleVoidFancy_1_6_Btn = <ActionBtnContainer 
                                     isVoided={isFancy_1_6_Voided}
                                     isSettled={isFancy_1_6_Settled}
 
@@ -241,12 +239,11 @@ class SettleTbody extends Component {
                                     status={ir_fancy_1_6.status}
                                     isShowAction={this.state.fancy_1_6_Action}
 
-                                    onAction={this.props.onActionBtn}
-
-                                    marketType={"fancy_1_6"}
+                                    finalMarketValue={final_ir_fancy_1_6}
+                                    finalMarketSelected={"ir_fancy_1_6"}                                    
                                 /> 
         
-        settleVoidFancy_1_12_Btn = <ActionBtn 
+        settleVoidFancy_1_12_Btn = <ActionBtnContainer 
                                     isVoided={isFancy_1_12_Voided}
                                     isSettled={isFancy_1_12_Settled}
 
@@ -256,12 +253,11 @@ class SettleTbody extends Component {
                                     status={ir_fancy_1_12.status}
                                     isShowAction={this.state.fancy_1_12_Action}
 
-                                    onAction={this.props.onActionBtn}
-
-                                    marketType={"fancy_1_12"}
+                                    finalMarketValue={final_ir_fancy_1_12}
+                                    finalMarketSelected={"ir_fancy_1_12"}                                    
                                 /> 
         
-        settleVoidFancy_2_6_Btn = <ActionBtn 
+        settleVoidFancy_2_6_Btn = <ActionBtnContainer 
                                     isVoided={isFancy_2_6_Voided}
                                     isSettled={isFancy_2_6_Settled}
 
@@ -271,12 +267,11 @@ class SettleTbody extends Component {
                                     status={ir_fancy_2_6.status}
                                     isShowAction={this.state.fancy_2_6_Action}
 
-                                    onAction={this.props.onActionBtn}
-
-                                    marketType={"fancy_2_6"}
+                                    finalMarketValue={final_ir_fancy_2_6}
+                                    finalMarketSelected={"ir_fancy_2_6"} 
                                 />
         
-        settleVoidFancy_2_12_Btn = <ActionBtn 
+        settleVoidFancy_2_12_Btn = <ActionBtnContainer 
                                     isVoided={isFancy_2_12_Voided}
                                     isSettled={isFancy_2_12_Settled}
 
@@ -286,9 +281,8 @@ class SettleTbody extends Component {
                                     status={ir_fancy_2_12.status}
                                     isShowAction={this.state.fancy_2_12_Action}
 
-                                    onAction={this.props.onActionBtn}
-
-                                    marketType={"fancy_2_12"}
+                                    finalMarketValue={final_ir_fancy_2_12}
+                                    finalMarketSelected={"ir_fancy_2_12"} 
                                 />           
 
         return (

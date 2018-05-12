@@ -7,6 +7,9 @@ const initialState={
     team: "No team",
 
     finalLambi: "",
+
+    isLambiSettled: false,      
+    isLambiVoided: false,
 }
 
 
@@ -19,11 +22,29 @@ const lambi=(state=initialState, action)=>{
 			const { status } = payload
 			const { team } = payload
 			
-			return {...state, overs:overs, runs:runs, status:status, team:team}	
+			return {
+					...state,
+					 
+					overs:overs, 
+					runs:runs, 
+					status:status, 
+					team:team,
+
+					
+			}	
 			
 		case "SET_FINAL_LAMBI":
 			return {...state, finalLambi:action.payload}
+
+		case "SET_FINAL_LAMBI":
+			return {...state, finalLambi:action.payload}
+
+		case "SETTLED_LAMBI":
+			return {...state, isLambiSettled:true}
 		
+		case "VOIDED_LAMBI":
+			return {...state, isLambiVoided:true}
+			
 		default:
 			return state
 	}

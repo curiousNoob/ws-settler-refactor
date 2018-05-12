@@ -132,6 +132,30 @@ export const establishWebSocketConnection=()=>{
 
 	    let once = true;
 
+
+	    let didMoWinnerChange
+	    let didMoStatusChange
+
+	    let didLambiRunsChange
+	    let didLambiStatusChange
+	    let didLambiTeamChange
+
+	    let didFancy_1_6_RunsChange
+	    let didFancy_1_6_StatusChange
+	    let didFancy_1_6_TeamChange
+
+	    let didFancy_1_12_RunsChange
+	    let didFancy_1_12_StatusChange
+	    let didFancy_1_12_TeamChange
+
+	    let didFancy_2_6_RunsChange
+	    let didFancy_2_6_StatusChange
+	    let didFancy_2_6_TeamChange
+
+	    let didFancy_2_12_RunsChange
+	    let didFancy_2_12_StatusChange
+	    let didFancy_2_12_TeamChange
+
 	    let ws = new WebSocket(uri);
 
 	    ws.onopen = () =>{
@@ -148,68 +172,89 @@ export const establishWebSocketConnection=()=>{
 
 	    ws.onmessage = (response) => {
 	    	const data = JSON.parse(response.data)
-	    	
-			if (prevMoWinner !== data.mo.winner) {
-				dispatch(setFinalMo(data.mo.winner))
 
-				if(prevMoStatus!==data.mo.status){
-					dispatch(setMatchOdds(data.mo))
-				}
+	    	didMoWinnerChange=(prevMoWinner !== data.mo.winner)
+	    	didMoStatusChange=(prevMoStatus!==data.mo.status)
+
+	    	didLambiRunsChange=(prevLambiRuns !== data.ir_lambi.runs)
+	    	didLambiStatusChange=(prevLambiStatus !== data.ir_lambi.status)
+	    	didLambiTeamChange=(prevLambiTeam !== data.ir_lambi.team)
+
+	    	didFancy_1_6_RunsChange=(prevFancy_1_6_runs!==data.ir_fancy_1_6.runs)
+		    didFancy_1_6_StatusChange=(prevFancy_1_6_status!==data.ir_fancy_1_6.status)
+		    didFancy_1_6_TeamChange=(prevFancy_1_6_team!==data.ir_fancy_1_6.team)
+
+		    didFancy_1_12_RunsChange=(prevFancy_1_12_runs!==data.ir_fancy_1_12.runs)
+		    didFancy_1_12_StatusChange=(prevFancy_1_12_status!==data.ir_fancy_1_12.status)
+		    didFancy_1_12_TeamChange=(prevFancy_1_12_team!==data.ir_fancy_1_12.team)
+
+		    didFancy_2_6_RunsChange=(prevFancy_2_6_runs!==data.ir_fancy_2_6.runs)
+		    didFancy_2_6_StatusChange=(prevFancy_2_6_status!==data.ir_fancy_2_6.status)
+		    didFancy_2_6_TeamChange=(prevFancy_2_6_team!==data.ir_fancy_2_6.team)
+
+		    didFancy_2_12_RunsChange=(prevFancy_2_12_runs!==data.ir_fancy_2_12.runs)
+		    didFancy_2_12_StatusChange=(prevFancy_2_12_status!==data.ir_fancy_2_12.status)
+		    didFancy_2_12_TeamChange=(prevFancy_2_12_team!==data.ir_fancy_2_12.team)
+
+			if (didMoWinnerChange) {
+				dispatch(setFinalMo(data.mo.winner))				
+			}
+			if(didMoWinnerChange || 
+			   didMoStatusChange
+			){
+				dispatch(setMatchOdds(data.mo))
 			}
 
-			if (prevLambiRuns !== data.ir_lambi.runs){
-				dispatch(setFinalLambi(data.ir_lambi.runs))
+			if (didLambiRunsChange){
+				dispatch(setFinalLambi(data.ir_lambi.runs))				
+			}
+			if( didLambiRunsChange ||
+				didLambiStatusChange || 
+				didLambiTeamChange  
+			){
+				dispatch(setLambi(data.ir_lambi))
+			}			
 
-				if(prevLambiStatus !== data.ir_lambi.status || 
-				   prevLambiTeam !== data.ir_lambi.team
-				){
-					dispatch(setLambi(data.ir_lambi))
-				}
+			if(didFancy_1_6_RunsChange){
+				dispatch(setFinalFancy_1_6(data.ir_fancy_1_6.runs))								
+			}
+			if(	didFancy_1_6_RunsChange ||
+				didFancy_1_6_StatusChange ||
+				didFancy_1_6_TeamChange
+			){
+				dispatch(setFancy_1_6(data.ir_fancy_1_6))
+			}			
+
+			if(didFancy_1_12_RunsChange){
+				dispatch(setFinalFancy_1_12(data.ir_fancy_1_12.runs))							
+			}
+			if(	didFancy_1_12_RunsChange ||				
+				didFancy_1_12_StatusChange ||
+				didFancy_1_12_TeamChange					
+			){
+				dispatch(setFancy_1_12(data.ir_fancy_1_12))					
+			}			
+
+			if(didFancy_2_6_RunsChange){
+				dispatch(setFinalFancy_2_6(data.ir_fancy_2_6.runs))							
+			}
+			if( didFancy_2_6_RunsChange ||
+				didFancy_2_6_StatusChange ||
+				didFancy_2_6_TeamChange					
+			){
+				dispatch(setFancy_2_6(data.ir_fancy_2_6))					
+			}			
+
+			if(didFancy_2_12_RunsChange){
+				dispatch(setFinalFancy_2_12(data.ir_fancy_2_12.runs))							
+			}
+			if( didFancy_2_12_RunsChange ||
+				didFancy_2_12_StatusChange ||
+				didFancy_2_12_TeamChange
+			){
+				dispatch(setFancy_2_12(data.ir_fancy_2_12))
 			}
 
-			if(prevFancy_1_6_runs!==data.ir_fancy_1_6.runs){
-				dispatch(setFinalFancy_1_6(data.ir_fancy_1_6.runs))
-
-				if(
-					prevFancy_1_6_status!==data.ir_fancy_1_6.status ||
-					prevFancy_1_6_team!==data.ir_fancy_1_6.team
-				){
-					dispatch(setFancy_1_6(data.ir_fancy_1_6))
-				}				
-			}
-
-			if(prevFancy_1_12_runs!==data.ir_fancy_1_12.runs){
-				dispatch(setFinalFancy_1_12(data.ir_fancy_1_12.runs))
-
-				if(					
-					prevFancy_1_12_status!==data.ir_fancy_1_12.status ||
-					prevFancy_1_12_team!==data.ir_fancy_1_12.team					
-				){
-					dispatch(setFancy_1_12(data.ir_fancy_1_12))					
-				}			
-			}
-
-			if(prevFancy_2_6_runs!==data.ir_fancy_2_6.runs){
-				dispatch(setFinalFancy_2_6(data.ir_fancy_2_6.runs))
-
-				if(
-					prevFancy_2_6_status!==data.ir_fancy_2_6.status ||
-					prevFancy_2_6_team!==data.ir_fancy_2_6.team					
-				){
-					dispatch(setFancy_2_6(data.ir_fancy_2_6))					
-				}			
-			}
-
-			if(prevFancy_2_12_runs!==data.ir_fancy_2_12.runs){
-				dispatch(setFinalFancy_2_12(data.ir_fancy_2_12.runs))
-
-				if(
-					prevFancy_2_12_status!==data.ir_fancy_2_12.status ||
-					prevFancy_2_12_team!==data.ir_fancy_2_12.team
-				){
-					dispatch(setFancy_2_12(data.ir_fancy_2_12))
-				}			
-			}
 
 			if (once){
 				dispatch(setHome(data.home))

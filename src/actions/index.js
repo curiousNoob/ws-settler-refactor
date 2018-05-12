@@ -32,10 +32,14 @@ import {
 
 import {
 	setMatchOdds,
+	settledMatchOdds,
+	voidedMatchOdds,
 } from './matchOdds'
 
 import {
 	setLambi,
+	settledLambi,
+	voidedLambi,
 } from './lambi'
 
 import {
@@ -56,6 +60,13 @@ import {
 
 import {
 	initSettleModal,
+	showSettleModal,
+	hideSettleModal,
+	resetSettleModal,
+	setSettleModalToSettleState,
+	setSettleModalToVoidState,
+	setSettleModalFinalMarketValue,
+	setSettleModalFinalMarketSelected,
 } from './settleModal'
 	
 
@@ -87,13 +98,26 @@ const actions={
 	setFinalFancy_2_12,
 
 	setMatchOdds,
+	settledMatchOdds,
+	voidedMatchOdds,
+
 	setLambi,
+	settledLambi,
+	voidedLambi,
+	
 	setFancy_1_6,
 	setFancy_1_12,
 	setFancy_2_6,
 	setFancy_2_12,
 
 	initSettleModal,
+	showSettleModal,
+	hideSettleModal,
+	resetSettleModal,
+	setSettleModalToSettleState,
+	setSettleModalToVoidState,
+	setSettleModalFinalMarketValue,
+	setSettleModalFinalMarketSelected,
 }
 
 
