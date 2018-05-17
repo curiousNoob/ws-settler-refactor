@@ -32,6 +32,15 @@ const mapStateToProps = (state, ownProps) => {
     isFancy_1_6_Settled:state.fancy_1_6.isFancySettled,
     isFancy_1_6_Voided:state.fancy_1_6.isFancyVoided,
 
+    isFancy_1_12_Settled:state.fancy_1_12.isFancySettled,
+    isFancy_1_12_Voided:state.fancy_1_12.isFancyVoided,
+
+    isFancy_2_6_Settled:state.fancy_2_6.isFancySettled,
+    isFancy_2_6_Voided:state.fancy_2_6.isFancyVoided,
+
+    isFancy_2_12_Settled:state.fancy_2_12.isFancySettled,
+    isFancy_2_12_Voided:state.fancy_2_12.isFancyVoided,
+
     statusFancyStruct:ownProps.statusFancyStruct,
   }
 }

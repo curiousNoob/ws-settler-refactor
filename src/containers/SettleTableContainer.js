@@ -39,8 +39,8 @@ const mapDispatchToProps= dispatch=>{
     establishWebSocketConnection:() => {
       dispatch(actions.establishWebSocketConnection())
     },
-    closeWebSocketConnection:() => {
-      dispatch(actions.closeWebsocket())
+    closeWebSocketConnection:(ws) => {
+      dispatch(actions.closeWebsocket(ws))
     },
 
     handleHide:()=>{
@@ -67,6 +67,27 @@ const mapDispatchToProps= dispatch=>{
     },
     voidedFancy_1_6:() => {
       dispatch(actions.voidedFancy_1_6())
+    },
+
+    settledFancy_1_12:() => {
+      dispatch(actions.settledFancy_1_12())
+    },
+    voidedFancy_1_12:() => {
+      dispatch(actions.voidedFancy_1_12())
+    },
+
+    settledFancy_2_6:() => {
+      dispatch(actions.settledFancy_2_6())
+    },
+    voidedFancy_2_6:() => {
+      dispatch(actions.voidedFancy_2_6())
+    },
+
+    settledFancy_2_12:() => {
+      dispatch(actions.settledFancy_2_12())
+    },
+    voidedFancy_2_12:() => {
+      dispatch(actions.voidedFancy_2_12())
     },
     
   }

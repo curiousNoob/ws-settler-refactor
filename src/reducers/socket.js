@@ -1,4 +1,4 @@
-import { isProduction , cookieName } from '../constants'
+import { isProduction , cookieName, isBackendReady } from '../constants'
 
 const initialState={
 	ws:undefined,
@@ -19,8 +19,7 @@ const auth=(state=initialState, action)=>{
 		case "WEBSOCKET_ERR":
 			return {...state, webSocketErr: action.payload}
 			
-		case "CLOSE_WEBSOCKET":
-			state.ws.close()//close websocket, in reducer
+		case "CLOSED_WEBSOCKET":
 			return {...state, ws: undefined}
 
 		default:

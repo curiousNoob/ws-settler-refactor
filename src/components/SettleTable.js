@@ -29,49 +29,25 @@ import { isProduction } from '../constants'
 
 class SettleTable extends Component {
   constructor() {
-    super()
-
-    this.state = {     
-
-      statusFancyStruct: {        
-        ir_fancy_1_12: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        },
-        ir_fancy_2_6: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        },
-        ir_fancy_2_12: {
-          isFancyVoided: false,
-          isFancySettled: false,
-        }
-      },     
-    }
+    super()    
 
     this.settleAction = this.settleAction.bind(this)
   }
 
   componentDidMount(){
     this.props.checkWebSocketSupp()
-
     this.props.establishWebSocketConnection()
   }
 
   componentWillUnmount(){
-    if(this.props.ws!==undefined){
-      this.props.closeWebSocketConnection()
+    const { ws } = this.props
+
+    if(ws!==undefined){
+      this.props.closeWebSocketConnection(ws)
     }      
   }
 
-  settleAction(){   
-
-    const {
-
-      statusFancyStruct,
-      
-    } = this.state
-
+  settleAction(){ 
     const {
       finalMo,
       finalLambi,
@@ -129,22 +105,38 @@ class SettleTable extends Component {
         settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
         voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
 
+        break
       case "ir_fancy_1_12":
+        if ( !finalMarketValueForModal) {
+          return
+        }
+
+        settledFunc=this.props.settledFancy_1_12
+        voidedFunc=this.props.voidedFancy_1_12
+
+        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
+        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
+
+        break
       case "ir_fancy_2_6":
+        if ( !finalMarketValueForModal) {
+          return
+        }
+
+        settledFunc=this.props.settledFancy_2_6
+        voidedFunc=this.props.voidedFancy_2_6
+
+        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
+        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
+
+        break
       case "ir_fancy_2_12":
         if ( !finalMarketValueForModal) {
           return
         }
 
-        let statusFancyStruct = JSON.parse(JSON.stringify(this.state.statusFancyStruct))          
-
-        statusFancyStruct[finalMarketSelectedForModal]={...statusFancyStruct[finalMarketSelectedForModal],isFancySettled:true}          
-        marketSettledObj={statusFancyStruct,}
-
-        statusFancyStruct={...statusFancyStruct}
-
-        statusFancyStruct[finalMarketSelectedForModal]={...statusFancyStruct[finalMarketSelectedForModal],isFancyVoided:true}
-        marketVoidedObj={statusFancyStruct}
+        settledFunc=this.props.settledFancy_2_12
+        voidedFunc=this.props.voidedFancy_2_12
 
         settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
         voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
@@ -154,13 +146,11 @@ class SettleTable extends Component {
 
     if (this.props.ws.readyState === this.props.ws.OPEN) {
       if (isSettle) {  
-        this.props.ws.send(settleMsgOverWS)
-        this.setState(marketSettledObj)
+          this.props.ws.send(settleMsgOverWS)
 
         settledFunc()      
       } else if (isVoid) {
-        this.props. ws.send(voidMsgOverWS)
-        this.setState(marketVoidedObj)
+        this.props.ws.send(voidMsgOverWS)
 
         voidedFunc()
       }
@@ -170,12 +160,7 @@ class SettleTable extends Component {
   } 
    
 
-  render() {
-
-    const {      
-      statusFancyStruct, 
-    }=this.state
-
+  render() { 
     const {
       finalMarketSelectedForModal,
       finalMarketValueForModal,
@@ -201,10 +186,7 @@ class SettleTable extends Component {
         <TableNavigation activeKey="1" />
         <table className="table table-bordered table-condensed">
           <SettleThead />
-          <SettleTbodyContainer
-
-            statusFancyStruct={statusFancyStruct}            
-          />
+          <SettleTbodyContainer />
         </table>
 
         <SettleModal 

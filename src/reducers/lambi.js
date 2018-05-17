@@ -1,7 +1,9 @@
 import { isProduction , cookieName } from '../constants'
 
 const initialState={
-	overs: 6,
+	innings:0,
+
+	overs: 0,
     runs: 0,        
     status: "inactive",        
     team: "No team",
@@ -28,9 +30,7 @@ const lambi=(state=initialState, action)=>{
 					overs:overs, 
 					runs:runs, 
 					status:status, 
-					team:team,
-
-					
+					team:team,					
 			}		
 
 		case "SET_FINAL_LAMBI":

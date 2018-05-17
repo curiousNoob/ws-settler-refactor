@@ -176,17 +176,15 @@ class SettleTbody extends Component {
 
             isFancy_1_6_Settled,
             isFancy_1_6_Voided,
+            isFancy_1_12_Settled,
+            isFancy_1_12_Voided,            
+            isFancy_2_6_Settled,
+            isFancy_2_6_Voided,
+            isFancy_2_12_Settled,
+            isFancy_2_12_Voided,
 
         } = this.props
 
-
-
-        const isFancy_1_12_Voided=statusFancyStruct.ir_fancy_1_12.isFancyVoided
-        const isFancy_1_12_Settled=statusFancyStruct.ir_fancy_1_12.isFancySettled
-        const isFancy_2_12_Settled=statusFancyStruct.ir_fancy_2_12.isFancySettled
-        const isFancy_2_12_Voided=statusFancyStruct.ir_fancy_2_12.isFancyVoided  
-        const isFancy_2_6_Voided=statusFancyStruct.ir_fancy_2_6.isFancyVoided
-        const isFancy_2_6_Settled=statusFancyStruct.ir_fancy_2_6.isFancySettled        
 
         const labelStyleObj = {
             "inactive": "info",

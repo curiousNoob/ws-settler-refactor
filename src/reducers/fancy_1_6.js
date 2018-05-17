@@ -1,6 +1,8 @@
 import { isProduction , cookieName } from '../constants'
 
 const initialState={
+	innings:0,
+	
 	overs: 6,
     runs: 0,        
     status: "inactive",        
