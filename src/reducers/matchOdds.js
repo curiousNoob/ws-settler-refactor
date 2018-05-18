@@ -8,6 +8,8 @@ const initialState={
 
 	isMatchOddsSettled: false,      
     isMatchOddsVoided: false,
+
+    isShowAction:false,
 }
 
 

@@ -12,6 +12,8 @@ const initialState={
 
     isFancySettled: false,
     isFancyVoided: false,
+
+    isShowAction:false,
 }
 
 

@@ -24,7 +24,6 @@ import TableNavigation from './TableNavigation'
 
 import { isProduction } from '../constants'
 
-console.log("HERE")
 
 const SettleModal = ({ 
   showModal,

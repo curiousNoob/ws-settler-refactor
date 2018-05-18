@@ -25,11 +25,10 @@ import { isProduction } from './constants'
 
 import NavBarContainer from './containers/NavBarContainer'
 import TableNavigation from './components/TableNavigation'
-import SettleTableContainer from './containers/SettleTableContainer'
-import WebSocketConnection from './components/WebSocketConnection'
 
 import TeamA from './pages/TeamA'
 import TeamB from './pages/TeamB' 
+import MarketRuns from './pages/MarketRuns' 
 
 //uncomment this for PRODUCTION
 export const root_url = isProduction?window.location.pathname:""
@@ -41,14 +40,13 @@ class App extends Component {
     this.props.checkCookies()
   }
  
-  render() {
-    
+  render() {    
     const router = (
       <Router>
         <Switch>
           <Route exact
             path={isProduction?root_url:"/"}
-            component={SettleTableContainer}
+            component={MarketRuns}
           />
           <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={TeamA} />
           <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={TeamB} />
@@ -66,7 +64,7 @@ class App extends Component {
        
         <div>
           <NavBarContainer />
-          {this.props.isLoggedIn ? router : loginRequestDiv}
+          {this.props.isLoggedIn ? router : loginRequestDiv}          
         </div>
     );
   }

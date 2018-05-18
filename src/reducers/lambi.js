@@ -12,6 +12,8 @@ const initialState={
 
     isLambiSettled: false,      
     isLambiVoided: false,
+
+    isShowAction:false,
 }
 
 

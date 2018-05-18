@@ -20,7 +20,18 @@ import Cookies from "js-cookie";
 
 
 class WebSocketConnection extends Component {   
-       
+    componentDidMount(){
+        this.props.checkWebSocketSupp()
+        this.props.establishWebSocketConnection()
+    }
+
+    componentWillUnmount(){
+        const { ws } = this.props
+
+        if(ws!==undefined){
+          this.props.closeWebSocketConnection(ws)
+        }      
+    }   
 
     render() {
         return (

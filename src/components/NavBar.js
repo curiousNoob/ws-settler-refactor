@@ -25,8 +25,7 @@ import Cookies from "js-cookie";
 import { isProduction } from '../constants'
 
 
-class NavBar extends Component {
-  
+class NavBar extends Component {  
     
   render() {
     const { isLoggedIn, home, away } = this.props
