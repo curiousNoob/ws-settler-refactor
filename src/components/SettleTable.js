@@ -28,11 +28,6 @@ import { isProduction } from '../constants'
 
 
 class SettleTable extends Component {
-  constructor() {
-    super()    
-
-    this.settleAction = this.settleAction.bind(this)
-  }
 
   componentDidMount(){
     this.props.checkWebSocketSupp()
@@ -47,129 +42,29 @@ class SettleTable extends Component {
     }      
   }
 
-  settleAction(){ 
-    const {
-      finalMo,
-      finalLambi,
-
-      isSettle,
-      isVoid,
-
-      finalMarketSelectedForModal,
-      finalMarketValueForModal,  
-    } = this.props
-
-    let marketSettledObj 
-    let marketVoidedObj
-
-    let settleMsgOverWS
-    let voidMsgOverWS
-
-    let settledFunc=()=>{}
-    let voidedFunc=()=>{}
-
-    switch(finalMarketSelectedForModal){
-      case "matchOdds":
-        if(!finalMo){
-          return
-        }
-        
-        //change loc
-        settledFunc=this.props.settledMatchOdds
-        voidedFunc=this.props.voidedMatchOdds
-
-        settleMsgOverWS=JSON.stringify({ "market": "mo", "settle": finalMo })
-        voidMsgOverWS=JSON.stringify({ "market": "mo", "void": true })
-
-        break
-      case "lambi":
-        if(!finalLambi){
-          return
-        }
-
-        settledFunc=this.props.settledLambi
-        voidedFunc=this.props.voidedLambi
-
-        settleMsgOverWS=JSON.stringify({ "market": "ir_lambi", "settle": Number(finalLambi) })
-        voidMsgOverWS=JSON.stringify({ "market": "ir_lambi", "void": true })
-
-        break
-      case "ir_fancy_1_6":
-        if ( !finalMarketValueForModal) {
-          return
-        }
-
-        settledFunc=this.props.settledFancy_1_6
-        voidedFunc=this.props.voidedFancy_1_6
-
-        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
-        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
-
-        break
-      case "ir_fancy_1_12":
-        if ( !finalMarketValueForModal) {
-          return
-        }
-
-        settledFunc=this.props.settledFancy_1_12
-        voidedFunc=this.props.voidedFancy_1_12
-
-        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
-        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
-
-        break
-      case "ir_fancy_2_6":
-        if ( !finalMarketValueForModal) {
-          return
-        }
-
-        settledFunc=this.props.settledFancy_2_6
-        voidedFunc=this.props.voidedFancy_2_6
-
-        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
-        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
-
-        break
-      case "ir_fancy_2_12":
-        if ( !finalMarketValueForModal) {
-          return
-        }
-
-        settledFunc=this.props.settledFancy_2_12
-        voidedFunc=this.props.voidedFancy_2_12
-
-        settleMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "settle": Number(finalMarketValueForModal) })
-        voidMsgOverWS=JSON.stringify({ "market": finalMarketSelectedForModal, "void": true })
-
-        break
-    }
-
-    if (this.props.ws.readyState === this.props.ws.OPEN) {
-      if (isSettle) {  
-          this.props.ws.send(settleMsgOverWS)
-
-        settledFunc()      
-      } else if (isVoid) {
-        this.props.ws.send(voidMsgOverWS)
-
-        voidedFunc()
-      }
-    }
-
-    this.props.handleHide()
-  } 
-   
-
   render() { 
     const {
+      ws,
+
+      mo,
+      lambi,
+      fancy_1_6,
+      fancy_1_12,
+      fancy_2_6,
+      fancy_2_12,
+
+      finalMo, 
+      finalLambi,
+
       finalMarketSelectedForModal,
       finalMarketValueForModal,
       isShowMarketModal,
       isSettle,
       isVoid,
 
-      handleHide,
 
+      settleAction,
+      handleHide,
     } = this.props
 
     const marketTypeToModalNameMap = {
@@ -194,7 +89,18 @@ class SettleTable extends Component {
           showModal={isShowMarketModal}
           finalValue={finalMarketValueForModal}
                    
-          settleAction={this.settleAction}
+          settleAction={()=>{
+                              settleAction(
+                                ws,
+
+                                lambi,fancy_1_6, fancy_1_12, fancy_2_6, 
+                                fancy_2_12,finalMo, finalLambi, 
+
+                                isSettle, isVoid, finalMarketSelectedForModal,
+                                finalMarketValueForModal,handleHide
+                              )
+                            }
+                        }
 
           handleHide={handleHide}
           isSettle={isSettle}

@@ -1,14 +1,17 @@
-import { applyMiddleware, createStore } from "redux"
+import { applyMiddleware, createStore, compose } from "redux"
 
 import logger from "redux-logger"
 import thunk from 'redux-thunk'
 
 import reducers from "./reducers"
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const middleWare = applyMiddleware(logger, thunk)
+const middleWareArr = [logger, thunk]
 
-const store = createStore(reducers, middleWare)
+const middleWare = applyMiddleware(...middleWareArr)
+
+const store = createStore(reducers, composeEnhancers(middleWare))
 
 const unsubscribe = store.subscribe(() =>
   console.log(store.getState())

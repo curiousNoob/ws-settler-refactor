@@ -19,6 +19,8 @@ const lambi=(state=initialState, action)=>{
 	switch(action.type){
 		case "SET_LAMBI":
 			const { payload } = action
+			
+			const { innings } = payload
 			const { overs } = payload
 			const { runs } = payload
 			const { status } = payload
@@ -26,7 +28,8 @@ const lambi=(state=initialState, action)=>{
 			
 			return {
 					...state,
-					 
+					
+					innings:innings,
 					overs:overs, 
 					runs:runs, 
 					status:status, 

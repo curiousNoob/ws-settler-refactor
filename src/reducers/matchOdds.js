@@ -2,7 +2,7 @@ import { isProduction , cookieName } from '../constants'
 
 const initialState={
 	status:"inactive",
-	winner:"",
+	winner:"No winner yet",
 
 	finalMo:"",
 

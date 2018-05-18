@@ -19,12 +19,22 @@ const fancy_1_12=(state=initialState, action)=>{
 	switch(action.type){
 		case "SET_FANCY_1_12":
 			const { payload } = action
+			
+			const { innings } = payload
 			const { overs } = payload
 			const { runs } = payload
 			const { status } = payload
 			const { team } = payload
 
-			return {...state, overs:overs, runs:runs, status:status, team:team}	
+			return {
+					...state,
+
+					innings:innings,
+					overs:overs, 
+					runs:runs, 
+					status:status, 
+					team:team
+			}
 			
 		case "SET_FINAL_FANCY_1_12":
 			return {...state, final_ir_fancy_1_12:action.payload}

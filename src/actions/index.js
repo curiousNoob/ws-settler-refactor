@@ -19,33 +19,6 @@ import {
 	websocketConnectedSuccess,
 	websocketConnectedErr,
 	establishWebSocketConnection,
-
-
-	initSettleMatchOdds_SendWS,
-	initVoidMatchOdds_SendWS,
-	initSettleLambi_SendWS,
-	initVoidLambi_SendWS,
-	initSettleFancy_1_6_SendWS,
-	initVoidFancy_1_6_SendWS,
-	initSettleFancy_1_12_SendWS,
-	initVoidFancy_1_12_SendWS,
-	initSettleFancy_2_6_SendWS,
-	initVoidFancy_2_6_SendWS,
-	initSettleFancy_2_12_SendWS,
-	initVoidFancy_2_12_SendWS,
-
-	settleMatchOdds_SendWS,
-	voidMatchOdds_SendWS,
-	settleLambi_SendWS,
-	voidLambi_SendWS,
-	settleFancy_1_6_SendWS,
-	voidFancy_1_6_SendWS,
-	settleFancy_1_12_SendWS,
-	voidFancy_1_12_SendWS,
-	settleFancy_2_6_SendWS,
-	voidFancy_2_6_SendWS,
-	settleFancy_2_12_SendWS,
-	voidFancy_2_12_SendWS,
 } from './socket'
 
 import {
@@ -59,38 +32,62 @@ import {
 
 import {
 	setMatchOdds,
+	initSettleMatchOdds_SendWS,
+	initVoidMatchOdds_SendWS,
 	settledMatchOdds,
 	voidedMatchOdds,
+	settleMatchOdds_SendWS,
+	voidMatchOdds_SendWS,
 } from './matchOdds'
 
 import {
 	setLambi,
+	initSettleLambi_SendWS,
+	initVoidLambi_SendWS,
 	settledLambi,
 	voidedLambi,
+	settleLambi_SendWS,
+	voidLambi_SendWS,
 } from './lambi'
 
 import {
 	setFancy_1_6,
+	initSettleFancy_1_6_SendWS,
+	initVoidFancy_1_6_SendWS,
 	settledFancy_1_6,
 	voidedFancy_1_6,
+	settleFancy_1_6_SendWS,
+	voidFancy_1_6_SendWS,
 } from './fancy_1_6'
 
 import {
 	setFancy_1_12,
+	initSettleFancy_1_12_SendWS,
+	initVoidFancy_1_12_SendWS,
 	settledFancy_1_12,
 	voidedFancy_1_12,
+	settleFancy_1_12_SendWS,
+	voidFancy_1_12_SendWS,
 } from './fancy_1_12'
 
 import {
 	setFancy_2_6,
+	initSettleFancy_2_6_SendWS,
+	initVoidFancy_2_6_SendWS,
 	settledFancy_2_6,
 	voidedFancy_2_6,
+	settleFancy_2_6_SendWS,
+	voidFancy_2_6_SendWS,
 } from './fancy_2_6'
 
 import {
 	setFancy_2_12,
+	initSettleFancy_2_12_SendWS,
+	initVoidFancy_2_12_SendWS,
 	settledFancy_2_12,
 	voidedFancy_2_12,
+	settleFancy_2_12_SendWS,
+	voidFancy_2_12_SendWS,
 } from './fancy_2_12'
 
 import {
@@ -123,34 +120,7 @@ const actions={
 	notSuppWebSocket,
 	websocketConnectedSuccess,
 	websocketConnectedErr,
-	establishWebSocketConnection,
-
-	initSettleMatchOdds_SendWS,
-	initVoidMatchOdds_SendWS,
-	initSettleLambi_SendWS,
-	initVoidLambi_SendWS,
-	initSettleFancy_1_6_SendWS,
-	initVoidFancy_1_6_SendWS,
-	initSettleFancy_1_12_SendWS,
-	initVoidFancy_1_12_SendWS,
-	initSettleFancy_2_6_SendWS,
-	initVoidFancy_2_6_SendWS,
-	initSettleFancy_2_12_SendWS,
-	initVoidFancy_2_12_SendWS,
-
-	settleMatchOdds_SendWS,
-	voidMatchOdds_SendWS,
-	settleLambi_SendWS,
-	voidLambi_SendWS,
-	settleFancy_1_6_SendWS,
-	voidFancy_1_6_SendWS,
-	settleFancy_1_12_SendWS,
-	voidFancy_1_12_SendWS,
-	settleFancy_2_6_SendWS,
-	voidFancy_2_6_SendWS,
-	settleFancy_2_12_SendWS,
-	voidFancy_2_12_SendWS,
-	
+	establishWebSocketConnection,	
 
 	setFinalMo,
 	setFinalLambi,
@@ -160,28 +130,52 @@ const actions={
 	setFinalFancy_2_12,
 
 	setMatchOdds,
+	initSettleMatchOdds_SendWS,
+	initVoidMatchOdds_SendWS,
 	settledMatchOdds,
 	voidedMatchOdds,
+	settleMatchOdds_SendWS,
+	voidMatchOdds_SendWS,
 
 	setLambi,
+	initSettleLambi_SendWS,
+	initVoidLambi_SendWS,
 	settledLambi,
 	voidedLambi,
+	settleLambi_SendWS,
+	voidLambi_SendWS,
 
 	setFancy_1_6,
+	initSettleFancy_1_6_SendWS,
+	initVoidFancy_1_6_SendWS,
 	settledFancy_1_6,
 	voidedFancy_1_6,
+	settleFancy_1_6_SendWS,
+	voidFancy_1_6_SendWS,
 	
 	setFancy_1_12,
+	initSettleFancy_1_12_SendWS,
+	initVoidFancy_1_12_SendWS,
 	settledFancy_1_12,
 	voidedFancy_1_12,
+	settleFancy_1_12_SendWS,
+	voidFancy_1_12_SendWS,
 
 	setFancy_2_6,
+	initSettleFancy_2_6_SendWS,
+	initVoidFancy_2_6_SendWS,
 	settledFancy_2_6,
 	voidedFancy_2_6,
+	settleFancy_2_6_SendWS,
+	voidFancy_2_6_SendWS,
 
 	setFancy_2_12,
+	initSettleFancy_2_12_SendWS,
+	initVoidFancy_2_12_SendWS,
 	settledFancy_2_12,
 	voidedFancy_2_12,
+	settleFancy_2_12_SendWS,
+	voidFancy_2_12_SendWS,
 
 	initSettleModal,
 	showSettleModal,

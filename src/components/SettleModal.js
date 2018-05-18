@@ -26,31 +26,34 @@ import { isProduction } from '../constants'
 
 console.log("HERE")
 
-class SettleModal extends Component {
+const SettleModal = ({ 
+  showModal,
+  handleHide,
+
+  isSettle,
+  isVoid,
+
+  marketType,
+  finalValue,
   
+  settleAction, 
+}) => (
+  <Modal bsSize="small" show={showModal} onHide={handleHide}>
+    <Modal.Body>
+      {
+        isSettle ? 
+          `Settle ${marketType} @ ` + finalValue : 
+          (isVoid ? 
+            `Void ${marketType}` : "none")
+      }
+    </Modal.Body>
 
-  render() {
-
-    return (    
-        <Modal bsSize="small" show={this.props.showModal} onHide={this.props.handleHide}>
-          <Modal.Body>
-            {
-              this.props.isSettle ? 
-                `Settle ${this.props.marketType} @ ` + this.props.finalValue : 
-                (this.props.isVoid ? 
-                  `Void ${this.props.marketType}` : "none")
-            }
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button bsStyle="success" onClick={this.props.settleAction}>Yes</Button>
-            <Button bsStyle="danger" onClick={this.props.handleHide}>No</Button>
-          </Modal.Footer>
-        </Modal>
-
-    );
-  }
-}
-
+    <Modal.Footer>
+      <Button bsStyle="success" onClick={settleAction}>Yes</Button>
+      <Button bsStyle="danger" onClick={handleHide}>No</Button>
+    </Modal.Footer>
+  </Modal> 
+)
+  
 
 export default SettleModal
