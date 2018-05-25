@@ -38,6 +38,8 @@ import {
 	voidedMatchOdds,
 	settleMatchOdds_SendWS,
 	voidMatchOdds_SendWS,
+	showMatchOddsAction,
+	hideMatchOddsAction,
 } from './matchOdds'
 
 import {
@@ -48,6 +50,8 @@ import {
 	voidedLambi,
 	settleLambi_SendWS,
 	voidLambi_SendWS,
+	showLambiAction,
+	hideLambiAction,
 } from './lambi'
 
 import {
@@ -58,6 +62,8 @@ import {
 	voidedFancy_1_6,
 	settleFancy_1_6_SendWS,
 	voidFancy_1_6_SendWS,
+	showFancy_1_6_Action,
+	hideFancy_1_6_Action,
 } from './fancy_1_6'
 
 import {
@@ -68,6 +74,8 @@ import {
 	voidedFancy_1_12,
 	settleFancy_1_12_SendWS,
 	voidFancy_1_12_SendWS,
+	showFancy_1_12_Action,
+	hideFancy_1_12_Action,
 } from './fancy_1_12'
 
 import {
@@ -78,6 +86,8 @@ import {
 	voidedFancy_2_6,
 	settleFancy_2_6_SendWS,
 	voidFancy_2_6_SendWS,
+	showFancy_2_6_Action,
+	hideFancy_2_6_Action,
 } from './fancy_2_6'
 
 import {
@@ -88,6 +98,8 @@ import {
 	voidedFancy_2_12,
 	settleFancy_2_12_SendWS,
 	voidFancy_2_12_SendWS,
+	showFancy_2_12_Action,
+	hideFancy_2_12_Action,
 } from './fancy_2_12'
 
 import {
@@ -136,6 +148,8 @@ const actions={
 	voidedMatchOdds,
 	settleMatchOdds_SendWS,
 	voidMatchOdds_SendWS,
+	showMatchOddsAction,
+	hideMatchOddsAction,
 
 	setLambi,
 	initSettleLambi_SendWS,
@@ -144,6 +158,8 @@ const actions={
 	voidedLambi,
 	settleLambi_SendWS,
 	voidLambi_SendWS,
+	showLambiAction,
+	hideLambiAction,
 
 	setFancy_1_6,
 	initSettleFancy_1_6_SendWS,
@@ -152,6 +168,8 @@ const actions={
 	voidedFancy_1_6,
 	settleFancy_1_6_SendWS,
 	voidFancy_1_6_SendWS,
+	showFancy_1_6_Action,
+	hideFancy_1_6_Action,
 	
 	setFancy_1_12,
 	initSettleFancy_1_12_SendWS,
@@ -160,6 +178,8 @@ const actions={
 	voidedFancy_1_12,
 	settleFancy_1_12_SendWS,
 	voidFancy_1_12_SendWS,
+	showFancy_1_12_Action,
+	hideFancy_1_12_Action,
 
 	setFancy_2_6,
 	initSettleFancy_2_6_SendWS,
@@ -168,6 +188,8 @@ const actions={
 	voidedFancy_2_6,
 	settleFancy_2_6_SendWS,
 	voidFancy_2_6_SendWS,
+	showFancy_2_6_Action,
+	hideFancy_2_6_Action,
 
 	setFancy_2_12,
 	initSettleFancy_2_12_SendWS,
@@ -176,6 +198,8 @@ const actions={
 	voidedFancy_2_12,
 	settleFancy_2_12_SendWS,
 	voidFancy_2_12_SendWS,
+	showFancy_2_12_Action,
+	hideFancy_2_12_Action,
 
 	initSettleModal,
 	showSettleModal,

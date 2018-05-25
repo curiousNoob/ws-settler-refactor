@@ -13,6 +13,9 @@ import fancy_2_12 from "./fancy_2_12"
 
 import settleModal from "./settleModal"
 
+import homeTeam from "./homeTeam"
+import awayTeam from "./awayTeam"
+
 
 const reducers = combineReducers({
  	auth,
@@ -27,6 +30,9 @@ const reducers = combineReducers({
 	fancy_2_12,
 
 	settleModal,
+
+	homeTeam,
+	awayTeam,
 })
 
 

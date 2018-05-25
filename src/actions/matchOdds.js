@@ -54,3 +54,15 @@ export const voidMatchOdds_SendWS = (ws)=>{
 		dispatch(voidedMatchOdds())
 	}
 }
+
+
+export const showMatchOddsAction = () =>{
+	return {
+		type: actionTypes.SHOW_MATCH_ODDS_ACTION,
+	}
+}
+export const hideMatchOddsAction = () =>{
+	return {
+		type: actionTypes.HIDE_MATCH_ODDS_ACTION,
+	}
+}

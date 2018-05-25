@@ -54,3 +54,15 @@ export const voidLambi_SendWS = (ws, innings, overs)=>{
 		dispatch(voidedLambi())
 	}
 }
+
+
+export const showLambiAction = () =>{
+	return {
+		type: actionTypes.SHOW_LAMBI_ACTION,
+	}
+}
+export const hideLambiAction = () =>{
+	return {
+		type: actionTypes.HIDE_LAMBI_ACTION,
+	}
+}

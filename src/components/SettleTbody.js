@@ -26,128 +26,6 @@ import ActionBtnContainer from '../containers/ActionBtnContainer'
 
 
 class SettleTbody extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            matchoddsAction: false,
-            lambiAction: false,            
-            fancy_1_6_Action:false,
-            fancy_1_12_Action:false,
-            fancy_2_6_Action:false,
-            fancy_2_12_Action:false,
-        }
-
-        this.showMatchoddsAction = this.showMatchoddsAction.bind(this)
-        this.hideMatchoddsAction = this.hideMatchoddsAction.bind(this)
-
-        this.showLambiAction = this.showLambiAction.bind(this)
-        this.hideLambiAction = this.hideLambiAction.bind(this)
-        
-        this.showFancyMarketAction = this.showFancyMarketAction.bind(this)
-        this.hideFancyMarketAction = this.hideFancyMarketAction.bind(this)        
-    }
-
-    showMatchoddsAction() {
-        if (!this.state.matchoddsAction) {
-            this.setState({
-                matchoddsAction: true,
-            })
-        }
-    }
-
-    hideMatchoddsAction() {
-        if (this.state.matchoddsAction) {
-            this.setState({
-                matchoddsAction: false,
-            })
-        }
-    }
-
-
-    showLambiAction() {
-        if (!this.state.lambiAction) {
-            this.setState({
-                lambiAction: true,
-            })
-        }
-    }
-
-    hideLambiAction() {
-        if (this.state.lambiAction) {
-            this.setState({
-                lambiAction: false,
-            })
-        }
-    }
-    
-
-    showFancyMarketAction(marketType) {
-        switch(marketType){
-            case "fancy_1_6":
-                if (!this.state.fancy_1_6_Action) {
-                    this.setState({
-                        fancy_1_6_Action: true,
-                    })
-                }
-                break
-            case "fancy_1_12":
-                if (!this.state.fancy_1_12_Action) {
-                    this.setState({
-                        fancy_1_12_Action: true,
-                    })
-                }
-                break
-            case "fancy_2_6":
-                if (!this.state.fancy_2_6_Action) {
-                    this.setState({
-                        fancy_2_6_Action: true,
-                    })
-                }
-                break
-            case "fancy_2_12":
-                if (!this.state.fancy_2_12_Action) {
-                    this.setState({
-                        fancy_2_12_Action: true,
-                    })
-                }
-                break
-        }        
-    }
-
-    hideFancyMarketAction(marketType) {
-        switch(marketType){
-            case "fancy_1_6":
-                if (this.state.fancy_1_6_Action) {
-                    this.setState({
-                        fancy_1_6_Action: false,
-                    })
-                }
-                break
-            case "fancy_1_12":
-                if (this.state.fancy_1_12_Action) {
-                    this.setState({
-                        fancy_1_12_Action: false,
-                    })
-                }
-                break
-            case "fancy_2_6":
-                if (this.state.fancy_2_6_Action) {
-                    this.setState({
-                        fancy_2_6_Action: false,
-                    })
-                }
-                break
-            case "fancy_2_12":
-                if (this.state.fancy_2_12_Action) {
-                    this.setState({
-                        fancy_2_12_Action: false,
-                    })
-                }
-                break
-        }        
-    }
-
 
     render() {
         const {
@@ -172,7 +50,6 @@ class SettleTbody extends Component {
             isMatchOddsSettled,
             isLambiVoided,
             isLambiSettled,
-            statusFancyStruct,
 
             isFancy_1_6_Settled,
             isFancy_1_6_Voided,
@@ -182,6 +59,21 @@ class SettleTbody extends Component {
             isFancy_2_6_Voided,
             isFancy_2_12_Settled,
             isFancy_2_12_Voided,
+
+            isShowActionMO,
+            showMatchoddsAction,
+            hideMatchoddsAction,
+
+            isShowActionLambi,
+            showLambiAction,
+            hideLambiAction,
+
+            isShowActionFancy_1_6,
+            isShowActionFancy_1_12,
+            isShowActionFancy_2_6,
+            isShowActionFancy_2_12,
+            showFancyMarketAction,
+            hideFancyMarketAction,
 
         } = this.props
 
@@ -205,40 +97,39 @@ class SettleTbody extends Component {
                                     isSettled={isMatchOddsSettled}
                                     isVoided={isMatchOddsVoided}                                    
 
-                                    showAction={this.showMatchoddsAction}
-                                    hideAction={this.hideMatchoddsAction}
+                                    showAction={showMatchoddsAction}
+                                    hideAction={hideMatchoddsAction}
 
                                     status={mo.status}
-                                    isShowAction={this.state.matchoddsAction}
+                                    isShowAction={isShowActionMO}
 
                                     finalMarketValue={finalMo}
                                     finalMarketSelected={"matchOdds"}
                                 />
 
-
         settleVoidLambiBtn = <ActionBtnContainer
                                     isSettled={isLambiSettled}                                    
                                     isVoided={isLambiVoided}                                    
 
-                                    showAction={this.showLambiAction}
-                                    hideAction={this.hideLambiAction}
+                                    showAction={showLambiAction}
+                                    hideAction={hideLambiAction}
 
                                     status={ir_lambi.status}
-                                    isShowAction={this.state.lambiAction}
+                                    isShowAction={isShowActionLambi}
 
                                     finalMarketValue={finalLambi}
                                     finalMarketSelected={"lambi"}                                    
-                            />        
+                            />     
 
         settleVoidFancy_1_6_Btn = <ActionBtnContainer 
                                     isSettled={isFancy_1_6_Settled}
                                     isVoided={isFancy_1_6_Voided}                                    
 
-                                    showAction={()=>this.showFancyMarketAction("fancy_1_6")}
-                                    hideAction={()=>this.hideFancyMarketAction("fancy_1_6")}
+                                    showAction={()=>showFancyMarketAction("fancy_1_6")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_1_6")}
 
                                     status={ir_fancy_1_6.status}
-                                    isShowAction={this.state.fancy_1_6_Action}
+                                    isShowAction={isShowActionFancy_1_6}
 
                                     finalMarketValue={final_ir_fancy_1_6}
                                     finalMarketSelected={"ir_fancy_1_6"}                                    
@@ -248,11 +139,11 @@ class SettleTbody extends Component {
                                     isSettled={isFancy_1_12_Settled}
                                     isVoided={isFancy_1_12_Voided}                                    
 
-                                    showAction={()=>this.showFancyMarketAction("fancy_1_12")}
-                                    hideAction={()=>this.hideFancyMarketAction("fancy_1_12")}
+                                    showAction={()=>showFancyMarketAction("fancy_1_12")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_1_12")}
 
                                     status={ir_fancy_1_12.status}
-                                    isShowAction={this.state.fancy_1_12_Action}
+                                    isShowAction={isShowActionFancy_1_12}
 
                                     finalMarketValue={final_ir_fancy_1_12}
                                     finalMarketSelected={"ir_fancy_1_12"}                                    
@@ -262,11 +153,11 @@ class SettleTbody extends Component {
                                     isSettled={isFancy_2_6_Settled}
                                     isVoided={isFancy_2_6_Voided}                                    
 
-                                    showAction={()=>this.showFancyMarketAction("fancy_2_6")}
-                                    hideAction={()=>this.hideFancyMarketAction("fancy_2_6")}
+                                    showAction={()=>showFancyMarketAction("fancy_2_6")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_2_6")}
 
                                     status={ir_fancy_2_6.status}
-                                    isShowAction={this.state.fancy_2_6_Action}
+                                    isShowAction={isShowActionFancy_2_6}
 
                                     finalMarketValue={final_ir_fancy_2_6}
                                     finalMarketSelected={"ir_fancy_2_6"} 
@@ -276,11 +167,11 @@ class SettleTbody extends Component {
                                     isSettled={isFancy_2_12_Settled}
                                     isVoided={isFancy_2_12_Voided}                                    
 
-                                    showAction={()=>this.showFancyMarketAction("fancy_2_12")}
-                                    hideAction={()=>this.hideFancyMarketAction("fancy_2_12")}
+                                    showAction={()=>showFancyMarketAction("fancy_2_12")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_2_12")}
 
                                     status={ir_fancy_2_12.status}
-                                    isShowAction={this.state.fancy_2_12_Action}
+                                    isShowAction={isShowActionFancy_2_12}
 
                                     finalMarketValue={final_ir_fancy_2_12}
                                     finalMarketSelected={"ir_fancy_2_12"} 

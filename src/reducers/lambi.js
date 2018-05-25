@@ -46,11 +46,20 @@ const lambi=(state=initialState, action)=>{
 		
 		case "VOIDED_LAMBI":
 			return {...state, isLambiVoided:true}
+
+		case "SHOW_LAMBI_ACTION":
+			return {...state, isShowAction: true}
+
+		case "HIDE_LAMBI_ACTION":
+			return {...state, isShowAction: false}
+			
 			
 		default:
 			return state
 	}
 }
+
+
 
 
 export default lambi

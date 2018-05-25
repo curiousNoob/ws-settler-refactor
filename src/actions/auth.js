@@ -49,8 +49,8 @@ export const auth = (username, password) => {
 	console.log("invalid", username, password)
 
     return dispatch => {
-    	const uri= isProduction?(window.location.origin+'/api/auth'):"http://localhost:1984/api/auth"//when isBackendReady=false
-    	//"https://cct-stage.iosport.co.uk/api/auth"//"http://localhost:8080/api/auth"
+    	const uri= isProduction?(window.location.origin+'/api/auth'):"http://localhost:8080/api/auth"  //"http://localhost:1984/api/auth"//when isBackendReady=false
+    	//"https://cct-stage.iosport.co.uk/api/auth"//
 
         dispatch(authStart());
 

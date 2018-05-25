@@ -25,7 +25,6 @@ const matchOdds=(state=initialState, action)=>{
 					 
 					status:status, 
 					winner:winner,
-
 			}	
 
 		case "SET_FINAL_MO":
@@ -36,6 +35,13 @@ const matchOdds=(state=initialState, action)=>{
 
 		case "VOIDED_MATCH_ODDS":
 			return {...state, isMatchOddsVoided: true}
+
+		case "SHOW_MATCH_ODDS_ACTION":
+			return {...state, isShowAction: true}
+
+		case "HIDE_MATCH_ODDS_ACTION":
+			return {...state, isShowAction: false}
+			
 		
 		default:
 			return state

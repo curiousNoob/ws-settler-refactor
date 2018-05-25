@@ -21,7 +21,7 @@ import Cookies from "js-cookie";
 //uncomment this for PRODUCTION
 import { isProduction } from '../constants'
 
-import { root_url } from '../App'
+import { root_url } from './ConnectedApp'
 
 class TableNavigation extends Component {
   render() {

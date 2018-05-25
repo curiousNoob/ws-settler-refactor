@@ -46,6 +46,13 @@ const fancy_2_6=(state=initialState, action)=>{
 
 		case "VOIDED_FANCY_2_6":
 			return {...state, isFancyVoided: true}
+
+		case "SHOW_FANCY_2_6_ACTION":
+			return {...state, isShowAction: true}
+
+		case "HIDE_FANCY_2_6_ACTION":
+			return {...state, isShowAction: false}
+			
 		
 		default:
 			return state

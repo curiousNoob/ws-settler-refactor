@@ -74,7 +74,7 @@ class TeamModal extends Component {
         return (
             <Modal bsSize="small" show={toShowModal} onHide={onHide}>
                 <Modal.Body>
-                    {isActionSettle ? `Settle ${marketType} @ ` + finalNumRuns : (isActionVoid ? "Void Matchodds" : "none")}
+                    {isActionSettle ? `Settle ${marketType} @ ` + finalNumRuns : (isActionVoid ? `Void ${marketType}` : "none")}
                 </Modal.Body>
 
                 <Modal.Footer>

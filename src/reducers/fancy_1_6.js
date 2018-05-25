@@ -47,11 +47,17 @@ const fancy_1_6=(state=initialState, action)=>{
 
 		case "VOIDED_FANCY_1_6":
 			return {...state, isFancyVoided: true}
+
+		case "SHOW_FANCY_1_6_ACTION":
+			return {...state, isShowAction: true}
+
+		case "HIDE_FANCY_1_6_ACTION":
+			return {...state, isShowAction: false}
+
 		
 		default:
 			return state
 	}
 }
-
 
 export default fancy_1_6

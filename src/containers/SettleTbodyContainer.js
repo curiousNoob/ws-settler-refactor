@@ -41,7 +41,12 @@ const mapStateToProps = (state, ownProps) => {
     isFancy_2_12_Settled:state.fancy_2_12.isFancySettled,
     isFancy_2_12_Voided:state.fancy_2_12.isFancyVoided,
 
-    statusFancyStruct:ownProps.statusFancyStruct,
+    isShowActionMO: state.matchOdds.isShowAction,
+    isShowActionLambi: state.lambi.isShowAction,
+    isShowActionFancy_1_6: state.fancy_1_6.isShowAction,
+    isShowActionFancy_1_12: state.fancy_1_12.isShowAction,
+    isShowActionFancy_2_6: state.fancy_2_6.isShowAction,
+    isShowActionFancy_2_12: state.fancy_2_12.isShowAction,
   }
 }
 
@@ -87,6 +92,62 @@ const mapDispatchToProps= (dispatch, ownProps) => {
           break
       }
     },
+
+    showMatchoddsAction:() => {
+      dispatch(actions.showMatchOddsAction())
+    },
+    hideMatchoddsAction:() => {
+      dispatch(actions.hideMatchOddsAction())
+    },
+
+    showLambiAction:() => {
+      dispatch(actions.showLambiAction())
+    },
+    hideLambiAction:() => {
+      dispatch(actions.hideLambiAction())
+    },
+
+    showFancyMarketAction:(marketType) => {
+      switch(marketType){
+        case "fancy_1_6":
+            dispatch(actions.showFancy_1_6_Action())
+
+            break
+        case "fancy_1_12":
+            dispatch(actions.showFancy_1_12_Action())
+
+            break
+        case "fancy_2_6":
+            dispatch(actions.showFancy_2_6_Action())
+
+            break
+        case "fancy_2_12":
+            dispatch(actions.showFancy_2_12_Action())
+
+            break
+      }       
+    },
+    hideFancyMarketAction:(marketType) => {
+      switch(marketType){
+        case "fancy_1_6":
+            dispatch(actions.hideFancy_1_6_Action())
+
+            break
+        case "fancy_1_12":
+            dispatch(actions.hideFancy_1_12_Action())
+
+            break
+        case "fancy_2_6":
+            dispatch(actions.hideFancy_2_6_Action())
+
+            break
+        case "fancy_2_12":
+            dispatch(actions.hideFancy_2_12_Action())
+
+            break
+      }
+    },
+    
   }
 }
 

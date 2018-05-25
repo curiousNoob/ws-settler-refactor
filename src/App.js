@@ -30,8 +30,7 @@ import TeamA from './pages/TeamA'
 import TeamB from './pages/TeamB' 
 import MarketRuns from './pages/MarketRuns' 
 
-//uncomment this for PRODUCTION
-export const root_url = isProduction?window.location.pathname:""
+import ConnectedApp from './components/ConnectedApp'
 
 
 class App extends Component { 
@@ -40,31 +39,17 @@ class App extends Component {
     this.props.checkCookies()
   }
  
-  render() {    
-    const router = (
-      <Router>
-        <Switch>
-          <Route exact
-            path={isProduction?root_url:"/"}
-            component={MarketRuns}
-          />
-          <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={TeamA} />
-          <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={TeamB} />
-        </Switch>
-      </Router>
-    )
-
+  render() {  
     const loginRequestDiv = (
       <div className="container">
         Please login.
       </div>
     )
 
-    return (
-       
+    return (       
         <div>
           <NavBarContainer />
-          {this.props.isLoggedIn ? router : loginRequestDiv}          
+          {this.props.isLoggedIn ? <ConnectedApp /> : loginRequestDiv}          
         </div>
     );
   }

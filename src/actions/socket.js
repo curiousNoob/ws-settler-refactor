@@ -135,6 +135,15 @@ import {
 } from './cricketApp'
 
 
+import {
+	setHomeTeam,
+} from './homeTeam'
+
+import {
+	setAwayTeam,
+} from './awayTeam'
+
+
 export const openWebSocket = ()=>{
 	return {
 		type:actionTypes.OPEN_WEBSOCKET,
@@ -211,6 +220,10 @@ export const establishWebSocketConnection=()=>{
 	    let ir_fancy_1_12_Arr
 	    let ir_fancy_2_6_Arr
 	    let ir_fancy_2_12_Arr
+
+	    let homeTeamArr
+	    let awayTeamArr
+
 	    
 	    let mo
     	let ir_lambi
@@ -243,6 +256,13 @@ export const establishWebSocketConnection=()=>{
 		let prevFancy_2_12_status
 		let prevFancy_2_12_team
 
+		let prevHomeTeamRunsArr
+		let prevAwayTeamRunsArr
+
+		let prevHomeTeamStatusArr
+		let prevAwayTeamStatusArr
+
+
 	    let once = true;
 
 
@@ -269,6 +289,13 @@ export const establishWebSocketConnection=()=>{
 	    let didFancy_2_12_StatusChange
 	    let didFancy_2_12_TeamChange
 
+	    let didAnyHomeTeamRunsChange
+		let didAnyAwayTeamRunsChange
+
+		let didAnyHomeTeamStatusChange
+		let didAnyAwayTeamStatusChange
+
+
 	    let ws = new WebSocket(uri);
 
 	    ws.onopen = () =>{
@@ -288,21 +315,25 @@ export const establishWebSocketConnection=()=>{
 
 	    	
 	    	ir_lambi_Arr 		= data.ir.filter(market =>(market.innings ==1 && 
-		    										market.overs == 20)
+	    												   market.overs == 20)
 		    							)
 		    ir_fancy_1_6_Arr   	= data.ir.filter(market =>(market.innings ==1 && 
-		    										market.overs == 6)
+		    										       market.overs == 6)
 		    							)
 		    ir_fancy_1_12_Arr   = data.ir.filter(market =>(market.innings ==1&& 
-		    										market.overs == 12)
+		    										       market.overs == 12)
 		    							)
 		    ir_fancy_2_6_Arr    = data.ir.filter(market =>(market.innings ==2 && 
-		    										market.overs == 6)
+		    										       market.overs == 6)
 		    							)
 		    ir_fancy_2_12_Arr   = data.ir.filter(market =>(market.innings ==2 && 
-		    										market.overs == 12)
+		    										       market.overs == 12)
 		    							)
 
+		    homeTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.home))
+		    awayTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.away))
+
+		    
 		    mo              = data.mo		    
 	    	ir_lambi 		= ir_lambi_Arr[0]
 		    ir_fancy_1_6   	= ir_fancy_1_6_Arr[0]
@@ -334,6 +365,33 @@ export const establishWebSocketConnection=()=>{
 		    didFancy_2_12_StatusChange=(prevFancy_2_12_status!==ir_fancy_2_12.status)
 		    didFancy_2_12_TeamChange=(prevFancy_2_12_team!==ir_fancy_2_12.team)
 
+
+		    didAnyHomeTeamRunsChange = prevHomeTeamRunsArr?
+		    	prevHomeTeamRunsArr
+				.reduce((accBool, currRuns, currIndex) =>{
+					return (accBool || currRuns!==homeTeamArr[currIndex].runs)
+				}, 	false) :
+				true
+		    didAnyHomeTeamStatusChange = prevHomeTeamStatusArr?
+		    	prevHomeTeamStatusArr
+				.reduce((accBool, currStatus, currIndex) =>{
+					return (accBool || currStatus!==homeTeamArr[currIndex].status)
+				}, 	false) :
+				true
+			didAnyAwayTeamRunsChange = prevAwayTeamRunsArr?
+				prevAwayTeamRunsArr
+				.reduce((accBool, currRuns, currIndex) =>{
+					return (accBool || currRuns!==awayTeamArr[currIndex].runs)
+				}, 	false) :
+				true			
+			didAnyAwayTeamStatusChange = prevAwayTeamStatusArr?
+				prevAwayTeamStatusArr
+				.reduce((accBool, currStatus, currIndex) =>{
+					return (accBool || currStatus!==awayTeamArr[currIndex].status)
+				}, 	false) :
+				true
+
+				
 			if (didMoWinnerChange) {
 				dispatch(setFinalMo(mo.winner))				
 			}
@@ -394,6 +452,19 @@ export const establishWebSocketConnection=()=>{
 			}
 
 
+			if(didAnyHomeTeamRunsChange ||
+			   didAnyHomeTeamStatusChange
+			){
+				dispatch(setHomeTeam(homeTeamArr))
+			}
+
+			if(didAnyAwayTeamRunsChange ||
+			   didAnyAwayTeamStatusChange
+			){
+				dispatch(setAwayTeam(awayTeamArr))
+			}
+
+
 			if (once){
 				dispatch(setHome(data.home))
 				dispatch(setAway(data.away))
@@ -426,6 +497,13 @@ export const establishWebSocketConnection=()=>{
 			prevFancy_2_12_runs=ir_fancy_2_12.runs
 			prevFancy_2_12_status=ir_fancy_2_12.status
 			prevFancy_2_12_team=ir_fancy_2_12.team
+
+
+			prevHomeTeamRunsArr = homeTeamArr.map(batsmanEl => batsmanEl.runs)
+		    prevHomeTeamStatusArr = homeTeamArr.map(batsmanEl => batsmanEl.status)
+
+		    prevAwayTeamRunsArr = awayTeamArr.map(batsmanEl => batsmanEl.runs)
+		    prevAwayTeamStatusArr = awayTeamArr.map(batsmanEl => batsmanEl.status)
 		}
 	}
 

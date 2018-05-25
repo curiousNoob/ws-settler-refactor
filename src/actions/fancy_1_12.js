@@ -54,3 +54,15 @@ export const voidFancy_1_12_SendWS= (ws, innings, overs)=>{
 		dispatch(voidedFancy_1_12())
 	}
 }
+
+
+export const showFancy_1_12_Action = () =>{
+	return {
+		type: actionTypes.SHOW_FANCY_1_12_ACTION,
+	}
+}
+export const hideFancy_1_12_Action = () =>{
+	return {
+		type: actionTypes.HIDE_FANCY_1_12_ACTION,
+	}
+}

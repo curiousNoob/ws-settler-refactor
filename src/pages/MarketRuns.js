@@ -23,7 +23,6 @@ import TableNavigation from '../components/TableNavigation'
 import SettleTable from '../components/SettleTable'
 
 import SettleModalContainer from '../containers/SettleModalContainer'
-import WebSocketConnectionContainer from '../containers/WebSocketConnectionContainer'
 
 import { isProduction } from '../constants'
 
@@ -31,12 +30,12 @@ import { isProduction } from '../constants'
 class MarketRuns extends Component{
     render(){
         return (
-            <WebSocketConnectionContainer>
+            <div>
                 <TableNavigation activeKey="1" />
                 <SettleTable />
                 
                 <SettleModalContainer /> 
-            </WebSocketConnectionContainer>
+            </div>
         )
     }
 }
