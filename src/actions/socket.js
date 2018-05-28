@@ -331,7 +331,10 @@ export const establishWebSocketConnection=()=>{
 		    							)
 
 		    homeTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.home))
-		    awayTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.away))
+			awayTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.away))
+			
+			// console.log('homeTeamArr',homeTeamArr)
+			// debugger;
 
 		    
 		    mo              = data.mo		    
@@ -390,7 +393,7 @@ export const establishWebSocketConnection=()=>{
 					return (accBool || currStatus!==awayTeamArr[currIndex].status)
 				}, 	false) :
 				true
-
+				
 				
 			if (didMoWinnerChange) {
 				dispatch(setFinalMo(mo.winner))				

@@ -8,3 +8,17 @@ export const setAwayTeam = (awayTeamArr) => {
 		payload: awayTeamArr,
 	}
 }
+
+export const showAwayTeamBatsmanAction = (index) => {
+	return {
+		type:actionTypes.SHOW_AWAY_TEAM_BATSMAN_ACTION,
+		payload: index,
+	}
+}
+
+export const hideAwayTeamBatsmanAction = (index) => {
+	return {
+		type:actionTypes.HIDE_AWAY_TEAM_BATSMAN_ACTION,
+		payload: index,
+	}
+}

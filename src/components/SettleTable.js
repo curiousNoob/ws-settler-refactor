@@ -32,7 +32,7 @@ class SettleTable extends Component {
     
     return (      
         <table className="table table-bordered table-condensed">
-          <SettleThead />
+          <SettleThead haveMarket={true}/>
           <SettleTbodyContainer />
         </table>
     );

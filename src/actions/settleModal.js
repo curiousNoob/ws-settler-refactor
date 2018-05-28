@@ -38,10 +38,10 @@ export const setSettleModalToVoidState = () => {
 	}
 }
 
-export const setSettleModalFinalMarketValue = (finalMarketValue) => {
+export const setSettleModalFinalValue = (finalValue) => {
 	return {
 		type:actionTypes.SET_SETTLE_MODAL_FINAL_MARKET_VALUE,
-		payload: finalMarketValue,
+		payload: finalValue,
 	}
 }
 

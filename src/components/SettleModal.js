@@ -41,7 +41,7 @@ const SettleModal = ({
     <Modal.Body>
       {
         isSettle ? 
-          `Settle ${marketType} @ ` + finalValue : 
+          (<div>Settle {marketType} 	&#8608;  <strong>{finalValue}</strong></div>):
           (isVoid ? 
             `Void ${marketType}` : "none")
       }

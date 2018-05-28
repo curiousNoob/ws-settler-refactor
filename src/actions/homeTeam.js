@@ -8,3 +8,27 @@ export const setHomeTeam = (homeTeamArr) => {
 		payload: homeTeamArr,
 	}
 }
+
+export const showHomeTeamBatsmanAction = (index) => {
+	return {
+		type:actionTypes.SHOW_HOME_TEAM_BATSMAN_ACTION,
+		payload: index,
+	}
+}
+
+export const hideHomeTeamBatsmanAction = (index) => {
+	return {
+		type:actionTypes.HIDE_HOME_TEAM_BATSMAN_ACTION,
+		payload: index,
+	}
+}
+
+export const setFinalHomeTeamBatsmanValue = (index) => {
+	return {
+		type:actionTypes.SET_FINAL_HOME_TEAM_BATSMAN_VALUE,
+		payload: index,
+	}
+}
+
+
+

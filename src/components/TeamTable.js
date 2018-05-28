@@ -19,33 +19,37 @@ import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
 
-import TeamThead from './TeamThead'
 import TeamTbody from './TeamTbody'
+import SettleThead from './SettleThead'
 
 import TableNavigation from './TableNavigation'
 
 import { isProduction } from '../constants'
 
 
-class TeamTable extends Component {  
+class TeamTable extends Component {
   render() {
-    const { 
-      batsmenPlayersList,
+    const {
+      batsmenArr,
+      isShowActionArr,
       isSettledArr,
       isVoidedArr,
-      onSettleChange, 
+      showBatsmanAction,
+      hideBatsmanAction,
     } = this.props
 
     return (
-        <Table striped bordered condensed hover>
-            <TeamThead />
-            <TeamTbody 
-              batsmenPlayersList={batsmenPlayersList} 
-              isSettledArr={isSettledArr}
-              isVoidedArr={isVoidedArr}
-              onSettleChange={onSettleChange}              
-            />
-        </Table>
+      <Table striped bordered condensed hover>
+        <SettleThead haveMarket={false} />
+        <TeamTbody
+          batsmenArr={batsmenArr}
+          isShowActionArr={isShowActionArr}
+          isSettledArr={isSettledArr}
+          isVoidedArr={isVoidedArr}
+          showBatsmanAction={showBatsmanAction}
+          hideBatsmanAction={hideBatsmanAction}
+        />
+      </Table>
     )
   }
 }

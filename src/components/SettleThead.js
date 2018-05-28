@@ -21,8 +21,10 @@ import Cookies from "js-cookie";
 
 class SettleThead extends Component {
     render() {
+
+        const { haveMarket } = this.props
+
         const theadNamesArr = [
-            "Market",
             "Selection",
             "Status",
             "Value",
@@ -32,6 +34,8 @@ class SettleThead extends Component {
             "Undo",
             "CBstatus",      
         ]
+
+        haveMarket && theadNamesArr.unshift("Market")
 
         const theadNamesList = theadNamesArr.map(theadName=>(
             <th key={theadName}>

@@ -1,4 +1,4 @@
-import { 
+import {
 	setUsername,
 	setPassword,
 
@@ -109,12 +109,26 @@ import {
 	resetSettleModal,
 	setSettleModalToSettleState,
 	setSettleModalToVoidState,
-	setSettleModalFinalMarketValue,
+	setSettleModalFinalValue,
 	setSettleModalFinalMarketSelected,
 } from './settleModal'
-	
 
-const actions={
+
+import {
+	setHomeTeam,
+	showHomeTeamBatsmanAction,
+	hideHomeTeamBatsmanAction,
+	setFinalHomeTeamBatsmanValue,
+} from './homeTeam'
+
+import {
+	setAwayTeam,
+	showAwayTeamBatsmanAction,
+	hideAwayTeamBatsmanAction,
+} from './awayTeam'
+
+
+const actions = {
 	setUsername,
 	setPassword,
 
@@ -125,14 +139,14 @@ const actions={
 	logout,
 	checkCookies,
 	rmCookies,
-	
-	openWebSocket,	
+
+	openWebSocket,
 	closeWebsocket,
 	checkWebSocketExist,
 	notSuppWebSocket,
 	websocketConnectedSuccess,
 	websocketConnectedErr,
-	establishWebSocketConnection,	
+	establishWebSocketConnection,
 
 	setFinalMo,
 	setFinalLambi,
@@ -170,7 +184,7 @@ const actions={
 	voidFancy_1_6_SendWS,
 	showFancy_1_6_Action,
 	hideFancy_1_6_Action,
-	
+
 	setFancy_1_12,
 	initSettleFancy_1_12_SendWS,
 	initVoidFancy_1_12_SendWS,
@@ -207,10 +221,20 @@ const actions={
 	resetSettleModal,
 	setSettleModalToSettleState,
 	setSettleModalToVoidState,
-	setSettleModalFinalMarketValue,
+	setSettleModalFinalValue,
 	setSettleModalFinalMarketSelected,
+
+
+	setHomeTeam,
+	showHomeTeamBatsmanAction,
+	hideHomeTeamBatsmanAction,
+	setFinalHomeTeamBatsmanValue,
+
+	setAwayTeam,
+	showAwayTeamBatsmanAction,
+	hideAwayTeamBatsmanAction,
 
 }
 
 
-export  default  actions
+export default actions

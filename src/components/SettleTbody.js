@@ -103,7 +103,7 @@ class SettleTbody extends Component {
                                     status={mo.status}
                                     isShowAction={isShowActionMO}
 
-                                    finalMarketValue={finalMo}
+                                    finalValue={finalMo}
                                     finalMarketSelected={"matchOdds"}
                                 />
 
@@ -117,7 +117,7 @@ class SettleTbody extends Component {
                                     status={ir_lambi.status}
                                     isShowAction={isShowActionLambi}
 
-                                    finalMarketValue={finalLambi}
+                                    finalValue={finalLambi}
                                     finalMarketSelected={"lambi"}                                    
                             />     
 
@@ -131,7 +131,7 @@ class SettleTbody extends Component {
                                     status={ir_fancy_1_6.status}
                                     isShowAction={isShowActionFancy_1_6}
 
-                                    finalMarketValue={final_ir_fancy_1_6}
+                                    finalValue={final_ir_fancy_1_6}
                                     finalMarketSelected={"ir_fancy_1_6"}                                    
                                 /> 
         
@@ -145,7 +145,7 @@ class SettleTbody extends Component {
                                     status={ir_fancy_1_12.status}
                                     isShowAction={isShowActionFancy_1_12}
 
-                                    finalMarketValue={final_ir_fancy_1_12}
+                                    finalValue={final_ir_fancy_1_12}
                                     finalMarketSelected={"ir_fancy_1_12"}                                    
                                 /> 
         
@@ -159,7 +159,7 @@ class SettleTbody extends Component {
                                     status={ir_fancy_2_6.status}
                                     isShowAction={isShowActionFancy_2_6}
 
-                                    finalMarketValue={final_ir_fancy_2_6}
+                                    finalValue={final_ir_fancy_2_6}
                                     finalMarketSelected={"ir_fancy_2_6"} 
                                 />
         
@@ -173,7 +173,7 @@ class SettleTbody extends Component {
                                     status={ir_fancy_2_12.status}
                                     isShowAction={isShowActionFancy_2_12}
 
-                                    finalMarketValue={final_ir_fancy_2_12}
+                                    finalValue={final_ir_fancy_2_12}
                                     finalMarketSelected={"ir_fancy_2_12"} 
                                 />           
 
@@ -220,7 +220,7 @@ class SettleTbody extends Component {
                 />
 
                 <FancyMarketsRow
-                    marketType={"Fancy 2_6"}
+                    marketType={"Fancy 2 6"}
                     team={ir_fancy_2_6.team}
                     status={ir_fancy_2_6.status}
                     runs={ir_fancy_2_6.runs}
@@ -230,7 +230,7 @@ class SettleTbody extends Component {
                 />
 
                 <FancyMarketsRow
-                    marketType={"Fancy 2_12"}
+                    marketType={"Fancy 2 12"}
                     team={ir_fancy_2_12.team}
                     status={ir_fancy_2_12.status}
                     runs={ir_fancy_2_12.runs}

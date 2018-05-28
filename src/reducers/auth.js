@@ -1,13 +1,13 @@
 import Cookies from "js-cookie";
 
-import { isProduction , cookieName } from '../constants'
+import { isProduction , cookieName, isBackendReady } from '../constants'
 
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
 	username:"",
 	password:"",
-	isLoggedIn:false,
+	isLoggedIn:(!isBackendReady?true:false),
 	isLoading:false,
 	isLogInError:false,	
 }
