@@ -27,13 +27,18 @@ class TeamTbody extends Component {
     render() {
         const {
             batsmenArr,
+
             isShowActionArr,
-            isSettledArr,
-            isVoidedArr,
             showBatsmanAction,
             hideBatsmanAction,
-        } = this.props
 
+            isSettledArr,
+            isVoidedArr,
+            
+            finalRunsArr,
+            handleBatsmanRunsChange,
+        } = this.props
+        
         const batsmenRowsList = batsmenArr.map((batsmanEl, index) => {
             return (
                 <BatsmenRow
@@ -48,6 +53,11 @@ class TeamTbody extends Component {
 
                     showBatsmanAction={()=>showBatsmanAction(index)}
                     hideBatsmanAction={()=>hideBatsmanAction(index)}
+
+                    finalValue={finalRunsArr[index]}
+
+                    indexBatsman={index}
+                    handleBatsmanRunsChange={handleBatsmanRunsChange}
                 />
             )
         })

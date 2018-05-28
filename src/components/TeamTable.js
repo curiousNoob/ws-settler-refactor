@@ -31,23 +31,36 @@ class TeamTable extends Component {
   render() {
     const {
       batsmenArr,
+
       isShowActionArr,
+
       isSettledArr,
       isVoidedArr,
+
       showBatsmanAction,
       hideBatsmanAction,
+
+      finalRunsArr,
+      handleBatsmanRunsChange,
     } = this.props
 
     return (
-      <Table striped bordered condensed hover>
+      <Table bordered condensed hover>
         <SettleThead haveMarket={false} />
         <TeamTbody
           batsmenArr={batsmenArr}
+
           isShowActionArr={isShowActionArr}
-          isSettledArr={isSettledArr}
-          isVoidedArr={isVoidedArr}
+
           showBatsmanAction={showBatsmanAction}
           hideBatsmanAction={hideBatsmanAction}
+
+          isSettledArr={isSettledArr}
+          isVoidedArr={isVoidedArr}
+         
+          finalRunsArr={finalRunsArr}
+
+          handleBatsmanRunsChange={handleBatsmanRunsChange}
         />
       </Table>
     )

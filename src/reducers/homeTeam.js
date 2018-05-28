@@ -7,16 +7,18 @@ const initialState = {
 
 	isShowActionArr: [],
 
-	finalRunsArr:[],
+	finalRunsArr: [],
 }
 
-let index 
+let index
 let isShowActionArr
+let finalRunsArr
 
 const homeTeam = (state = initialState, action) => {
 	switch (action.type) {
 		case "SET_HOME_TEAM":
 			const batsmenArr = action.payload
+			finalRunsArr = batsmenArr.map(batsmanEl => (batsmanEl.runs))
 
 			return {
 				...state,
@@ -26,6 +28,7 @@ const homeTeam = (state = initialState, action) => {
 				isSettledArr: Array(batsmenArr.length).fill(false),
 				isVoidedArr: Array(batsmenArr.length).fill(false),
 				isShowActionArr: Array(batsmenArr.length).fill(false),
+				finalRunsArr,
 
 			}
 
@@ -41,6 +44,15 @@ const homeTeam = (state = initialState, action) => {
 			isShowActionArr[index] = false
 			return { ...state, isShowActionArr }
 
+		case "SET_FINAL_HOME_TEAM_BATSMAN_VALUE":
+			const {
+				finalValue,
+				indexBatsman,
+			} = action.payload
+			
+			finalRunsArr = [...state.finalRunsArr]
+			finalRunsArr[indexBatsman] = finalValue
+			return { ...state, finalRunsArr }
 
 		default:
 			return state

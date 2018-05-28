@@ -23,10 +23,13 @@ export const hideHomeTeamBatsmanAction = (index) => {
 	}
 }
 
-export const setFinalHomeTeamBatsmanValue = (index) => {
+export const setFinalHomeTeamBatsmanValue = (finalValue, indexBatsman) => {
 	return {
 		type:actionTypes.SET_FINAL_HOME_TEAM_BATSMAN_VALUE,
-		payload: index,
+		payload: {
+			finalValue,
+			indexBatsman,
+		},
 	}
 }
 

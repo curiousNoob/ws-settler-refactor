@@ -13,6 +13,7 @@ import {
   Button,
   ControlLabel,
   Modal,
+  Table,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
@@ -31,10 +32,10 @@ class SettleTable extends Component {
   render() { 
     
     return (      
-        <table className="table table-bordered table-condensed">
+        <Table bordered condensed hover>
           <SettleThead haveMarket={true}/>
           <SettleTbodyContainer />
-        </table>
+        </Table>
     );
   }
 }

@@ -22,15 +22,23 @@ import Cookies from "js-cookie";
 import ActionBtnContainer from '../containers/ActionBtnContainer'
 
 
-class TeamTbody extends Component {
+class BatsmenRow extends Component {
     render() {
         const {
             batsmanEl,
+
             isShowAction,
-            isSettled,
-            isVoided,
+
             showBatsmanAction,
             hideBatsmanAction,
+
+            isSettled,
+            isVoided,            
+            
+            finalValue,
+            
+            handleBatsmanRunsChange,
+            indexBatsman,
         } = this.props
 
         const labelStyleObj = {
@@ -53,11 +61,11 @@ class TeamTbody extends Component {
                     <input
                         type="number"
                         step="1"
-                        value={""}
-                        onChange={e => { }}
+                        value={finalValue}
+                        onChange={(e)=>handleBatsmanRunsChange(e, indexBatsman)}
                     />
                 </td>
-                <td>{1}</td>
+                <td>{finalValue}</td>
                 <td>
                     <ActionBtnContainer
                         isSettled={isSettled}
@@ -69,7 +77,7 @@ class TeamTbody extends Component {
                         status={batsmanEl.status}
                         isShowAction={isShowAction}
 
-                        finalValue={1}
+                        finalValue={finalValue}
                         finalMarketSelected={`${batsmanEl.batsman} from ${batsmanEl.team}`}
                     />
                 </td>
@@ -83,6 +91,6 @@ class TeamTbody extends Component {
 }
 
 
-export default TeamTbody
+export default BatsmenRow
 
 

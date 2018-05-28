@@ -27,19 +27,17 @@ import TeamModal from '../components/TeamModal'
 
 
 import HomeTeamTableContainer from '../containers/HomeTeamTableContainer'
-import SettleModalContainer from '../containers/SettleModalContainer'
+import BatsmanModalContainer from '../containers/BatsmanModalContainer'
 
 
-class TeamA extends Component {    
-
-    render() {          
-
+class TeamA extends Component {   
+    render() {
         return (
             <div>
                 <TableNavigation activeKey="2" />
                 <HomeTeamTableContainer />
 
-                <SettleModalContainer />
+                <BatsmanModalContainer />
             </div>
         )
     }
