@@ -109,9 +109,22 @@ const mapDispatchToProps = dispatch => {
 
           if (ws.readyState === ws.OPEN) {
             if (isSettle) {
-              dispatch(actions.settleFancy_1_6_SendWS(ws, fancy_1_6.innings, fancy_1_6.overs, finalMarketValueForModal))
+              dispatch(
+                actions.settleFancy_1_6_SendWS(
+                  ws,
+                  fancy_1_6.innings,
+                  fancy_1_6.overs,
+                  finalMarketValueForModal
+                )
+              )
             } else if (isVoid) {
-              dispatch(actions.voidFancy_1_6_SendWS(ws, fancy_1_6.innings, fancy_1_6.overs))
+              dispatch(
+                actions.voidFancy_1_6_SendWS(
+                  ws, 
+                  fancy_1_6.innings, 
+                  fancy_1_6.overs
+                )
+              )
             }
           }
 
@@ -123,7 +136,14 @@ const mapDispatchToProps = dispatch => {
 
           if (ws.readyState === ws.OPEN) {
             if (isSettle) {
-              dispatch(actions.settleFancy_1_12_SendWS(ws, fancy_1_12.innings, fancy_1_12.overs, finalMarketValueForModal))
+              dispatch(
+                actions.settleFancy_1_12_SendWS(
+                  ws, 
+                  fancy_1_12.innings, 
+                  fancy_1_12.overs, 
+                  finalMarketValueForModal
+                )
+              )
             } else if (isVoid) {
               dispatch(actions.voidFancy_1_12_SendWS(ws, fancy_1_12.innings, fancy_1_12.overs))
             }
@@ -137,9 +157,22 @@ const mapDispatchToProps = dispatch => {
 
           if (ws.readyState === ws.OPEN) {
             if (isSettle) {
-              dispatch(actions.settleFancy_2_6_SendWS(ws, fancy_2_6.innings, fancy_2_6.overs, finalMarketValueForModal))
+              dispatch(
+                actions.settleFancy_2_6_SendWS(
+                  ws, 
+                  fancy_2_6.innings, 
+                  fancy_2_6.overs, 
+                  finalMarketValueForModal
+                )
+              )
             } else if (isVoid) {
-              dispatch(actions.voidFancy_2_6_SendWS(ws, fancy_2_6.innings, fancy_2_6.overs))
+              dispatch(
+                actions.voidFancy_2_6_SendWS(
+                  ws, 
+                  fancy_2_6.innings, 
+                  fancy_2_6.overs
+                )
+              )
             }
           }
 
@@ -151,9 +184,22 @@ const mapDispatchToProps = dispatch => {
 
           if (ws.readyState === ws.OPEN) {
             if (isSettle) {
-              dispatch(actions.settleFancy_2_12_SendWS(ws, fancy_2_12.innings, fancy_2_12.overs, finalMarketValueForModal))
+              dispatch(
+                actions.settleFancy_2_12_SendWS(
+                  ws, 
+                  fancy_2_12.innings, 
+                  fancy_2_12.overs, 
+                  finalMarketValueForModal
+                )
+              )
             } else if (isVoid) {
-              dispatch(actions.voidFancy_2_12_SendWS(ws, fancy_2_12.innings, fancy_2_12.overs))
+              dispatch(
+                actions.voidFancy_2_12_SendWS(
+                  ws, 
+                  fancy_2_12.innings, 
+                  fancy_2_12.overs
+                )
+              )
             }
           }
 

@@ -27,7 +27,7 @@ import TeamModal from '../components/TeamModal'
 
 
 import AwayTeamTableContainer from '../containers/AwayTeamTableContainer'
-import SettleModalContainer from '../containers/SettleModalContainer'
+import BatsmanModalContainer from '../containers/BatsmanModalContainer'
 
 
 class TeamA extends Component {    
@@ -39,7 +39,7 @@ class TeamA extends Component {
                 <TableNavigation activeKey="3" />
                 <AwayTeamTableContainer />
 
-                <SettleModalContainer />
+                <BatsmanModalContainer />
             </div>
         )
     }

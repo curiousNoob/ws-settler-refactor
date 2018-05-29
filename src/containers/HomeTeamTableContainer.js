@@ -20,13 +20,13 @@ const mapDispatchToProps = dispatch => {
     showBatsmanAction: (index) => { dispatch(actions.showHomeTeamBatsmanAction(index)) },
     hideBatsmanAction:(index) => { dispatch(actions.hideHomeTeamBatsmanAction(index)) },
 
-    handleBatsmanRunsChange:(e, indexBatsman) => {
+    handleBatsmanRunsChange:(e, batsmanIndex) => {
       const finalValue=e.target.value
       
       if(finalValue<0)
         return
 
-      dispatch(actions.setFinalHomeTeamBatsmanValue(finalValue, indexBatsman)) 
+      dispatch(actions.setFinalHomeTeamBatsmanValue(finalValue, batsmanIndex)) 
     },
   }
 }

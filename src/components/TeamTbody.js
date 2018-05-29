@@ -56,7 +56,7 @@ class TeamTbody extends Component {
 
                     finalValue={finalRunsArr[index]}
 
-                    indexBatsman={index}
+                    batsmanIndex={index}
                     handleBatsmanRunsChange={handleBatsmanRunsChange}
                 />
             )

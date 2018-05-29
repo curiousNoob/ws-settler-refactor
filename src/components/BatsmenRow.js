@@ -38,7 +38,7 @@ class BatsmenRow extends Component {
             finalValue,
             
             handleBatsmanRunsChange,
-            indexBatsman,
+            batsmanIndex,
         } = this.props
 
         const labelStyleObj = {
@@ -62,7 +62,7 @@ class BatsmenRow extends Component {
                         type="number"
                         step="1"
                         value={finalValue}
-                        onChange={(e)=>handleBatsmanRunsChange(e, indexBatsman)}
+                        onChange={(e)=>handleBatsmanRunsChange(e, batsmanIndex)}
                     />
                 </td>
                 <td>{finalValue}</td>
@@ -78,7 +78,7 @@ class BatsmenRow extends Component {
                         isShowAction={isShowAction}
 
                         finalValue={finalValue}
-                        finalMarketSelected={`${batsmanEl.batsman} from ${batsmanEl.team}`}
+                        finalMarketSelected={batsmanIndex}
                     />
                 </td>
                 <td>

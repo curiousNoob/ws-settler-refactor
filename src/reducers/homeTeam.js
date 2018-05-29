@@ -8,6 +8,8 @@ const initialState = {
 	isShowActionArr: [],
 
 	finalRunsArr: [],
+
+	selectedBatsmanIndexForModal: null,//is 'finalMarketSelectedForModal', not necessary here actually maybe I use in future somehow
 }
 
 let index
@@ -47,12 +49,29 @@ const homeTeam = (state = initialState, action) => {
 		case "SET_FINAL_HOME_TEAM_BATSMAN_VALUE":
 			const {
 				finalValue,
-				indexBatsman,
+				batsmanIndex,
 			} = action.payload
-			
+
 			finalRunsArr = [...state.finalRunsArr]
-			finalRunsArr[indexBatsman] = finalValue
+			finalRunsArr[batsmanIndex] = finalValue
 			return { ...state, finalRunsArr }
+
+		case "SET_HOME_TEAM_SELECTED_BATSMAN_INDEX":
+			return { ...state, selectedBatsmanIndexForModal: action.payload }
+
+		case "SETTLED_HOME_TEAM_BATSMAN":
+			const selectedBatsmanIndex = action.payload
+
+			const isSettledArr = [...state.isSettledArr]
+			isSettledArr[selectedBatsmanIndex] = true
+
+			return { ...state, isSettledArr }
+
+		case "VOIDED_HOME_TEAM_BATSMAN":
+			const isVoidedArr = [...state.isVoidedArr]
+			isVoidedArr[state.selectedBatsmanIndexForModal] = true
+
+			return { ...state, isVoidedArr }
 
 		default:
 			return state

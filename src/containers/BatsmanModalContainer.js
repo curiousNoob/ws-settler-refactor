@@ -9,22 +9,12 @@ import SettleModal from '../components/SettleModal'
 const mapStateToProps = state => {
     return {
         ws: state.socket.ws,
+        
+        batsmenArr:state.homeTeam.batsmenArr,
+        selectedBatsmanIndexForModal:state.settleModal.finalMarketSelectedForModal,//finalMarketSelectedForModal is index now
 
-        mo: state.matchOdds,
-        lambi: state.lambi,
-        fancy_1_6: state.fancy_1_6,
-        fancy_1_12: state.fancy_1_12,
-        fancy_2_6: state.fancy_2_6,
-        fancy_2_12: state.fancy_2_12,
-
-        finalMo: state.matchOdds.finalMo,
-        finalLambi: state.lambi.finalLambi,
-
-
-        finalMarketSelectedForModal: state.settleModal.finalMarketSelectedForModal,
         isSettle: state.settleModal.isSettle,
         isVoid: state.settleModal.isVoid,
-
         finalValue: state.settleModal.finalMarketValueForModal,
         showModal: state.settleModal.isShowMarketModal,
 
@@ -43,14 +33,8 @@ const mapDispatchToProps = dispatch => {
         settleAction: (
             ws,
 
-            lambi,
-            fancy_1_6,
-            fancy_1_12,
-            fancy_2_6,
-            fancy_2_12,
-
-            finalMo,
-            finalLambi,
+            batsmenArr,
+            selectedBatsmanIndexForModal,
 
             isSettle,
             isVoid,
@@ -60,91 +44,40 @@ const mapDispatchToProps = dispatch => {
 
             handleHide,
         ) => {
-            switch (finalMarketSelectedForModal) {
-                case "matchOdds":
-                    if (!finalMo) {
-                        return
-                    }
+            const { 
+                innings,
+                batsman, 
+            } = batsmenArr[selectedBatsmanIndexForModal]
 
-                    if (ws.readyState === ws.OPEN) {
-                        if (isSettle) {
-                            dispatch(actions.settleMatchOdds_SendWS(ws, finalMo))
-                        } else if (isVoid) {
-                            dispatch(actions.voidMatchOdds_SendWS(ws))
-                        }
-                    }
+            const numRuns = finalMarketValueForModal
 
-                    break
-                case "lambi":
-                    if (!finalLambi) {
-                        return
-                    }
+            if (!finalMarketValueForModal) {
+                return
+            }
 
-                    if (ws.readyState === ws.OPEN) {
-                        if (isSettle) {
-                            dispatch(actions.settleLambi_SendWS(ws, lambi.innings, lambi.overs, finalLambi))
-                        } else if (isVoid) {
-                            dispatch(actions.voidLambi_SendWS(ws, lambi.innings, lambi.overs))
-                        }
-                    }
+            if (ws.readyState === ws.OPEN) {
+                if (isSettle) {
+                    dispatch(
+                        actions.settle_HomeTeamBatsman_SendWS(
+                            ws,
+                            innings,
+                            batsman,
+                            numRuns,
 
-                    break
-                case "ir_fancy_1_6":
-                    if (!finalMarketValueForModal) {
-                        return
-                    }
+                            selectedBatsmanIndexForModal,
+                        )
+                    )
+                } else if (isVoid) {
+                    dispatch(
+                        actions.void_HomeTeamBatsman_SendWS(
+                            ws,
+                            innings,
+                            batsman,
 
-                    if (ws.readyState === ws.OPEN) {
-                        if (isSettle) {
-                            dispatch(actions.settleFancy_1_6_SendWS(ws, fancy_1_6.innings, fancy_1_6.overs, finalMarketValueForModal))
-                        } else if (isVoid) {
-                            dispatch(actions.voidFancy_1_6_SendWS(ws, fancy_1_6.innings, fancy_1_6.overs))
-                        }
-                    }
-
-                    break
-                case "ir_fancy_1_12":
-                    if (!finalMarketValueForModal) {
-                        return
-                    }
-
-                    if (ws.readyState === ws.OPEN) {
-                        if (isSettle) {
-                            dispatch(actions.settleFancy_1_12_SendWS(ws, fancy_1_12.innings, fancy_1_12.overs, finalMarketValueForModal))
-                        } else if (isVoid) {
-                            dispatch(actions.voidFancy_1_12_SendWS(ws, fancy_1_12.innings, fancy_1_12.overs))
-                        }
-                    }
-
-                    break
-                case "ir_fancy_2_6":
-                    if (!finalMarketValueForModal) {
-                        return
-                    }
-
-                    if (ws.readyState === ws.OPEN) {
-                        if (isSettle) {
-                            dispatch(actions.settleFancy_2_6_SendWS(ws, fancy_2_6.innings, fancy_2_6.overs, finalMarketValueForModal))
-                        } else if (isVoid) {
-                            dispatch(actions.voidFancy_2_6_SendWS(ws, fancy_2_6.innings, fancy_2_6.overs))
-                        }
-                    }
-
-                    break
-                case "ir_fancy_2_12":
-                    if (!finalMarketValueForModal) {
-                        return
-                    }
-
-                    if (ws.readyState === ws.OPEN) {
-                        if (isSettle) {
-                            dispatch(actions.settleFancy_2_12_SendWS(ws, fancy_2_12.innings, fancy_2_12.overs, finalMarketValueForModal))
-                        } else if (isVoid) {
-                            dispatch(actions.voidFancy_2_12_SendWS(ws, fancy_2_12.innings, fancy_2_12.overs))
-                        }
-                    }
-
-                    break
+                            selectedBatsmanIndexForModal,
+                        )
+                    )
+                }
             }
 
             handleHide()
@@ -165,14 +98,8 @@ const BatsmanModalContainer = connect(
             dispatchProps.settleAction(
                 stateProps.ws,
 
-                stateProps.lambi,
-                stateProps.fancy_1_6,
-                stateProps.fancy_1_12,
-                stateProps.fancy_2_6,
-                stateProps.fancy_2_12,
-
-                stateProps.finalMo,
-                stateProps.finalLambi,
+                stateProps. batsmenArr,
+                stateProps.selectedBatsmanIndexForModal,
 
                 stateProps.isSettle,
                 stateProps.isVoid,

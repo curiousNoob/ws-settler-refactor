@@ -119,6 +119,8 @@ import {
 	showHomeTeamBatsmanAction,
 	hideHomeTeamBatsmanAction,
 	setFinalHomeTeamBatsmanValue,
+	settle_HomeTeamBatsman_SendWS,
+	void_HomeTeamBatsman_SendWS,
 } from './homeTeam'
 
 import {
@@ -229,6 +231,8 @@ const actions = {
 	showHomeTeamBatsmanAction,
 	hideHomeTeamBatsmanAction,
 	setFinalHomeTeamBatsmanValue,
+	settle_HomeTeamBatsman_SendWS,
+	void_HomeTeamBatsman_SendWS,
 
 	setAwayTeam,
 	showAwayTeamBatsmanAction,
