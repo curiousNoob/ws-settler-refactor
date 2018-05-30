@@ -2,9 +2,9 @@
 export const cookieName ="cricket~settler";
 
 //define if it is local or production
-export const isProduction = false//true
+export const isProduction = true//true
 
-export const isBackendReady = false//true
+export const isBackendReady = true//true
 
 
 

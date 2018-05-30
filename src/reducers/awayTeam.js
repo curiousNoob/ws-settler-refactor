@@ -27,7 +27,7 @@ const awayTeam = (state = initialState, action) => {
 				...state,
 
 				batsmenArr: batsmenArr,
-				teamName: batsmenArr[0].team,
+				teamName: batsmenArr.length?batsmenArr[0].team:"No Team",
 				isSettledArr: Array(batsmenArr.length).fill(false),
 				isVoidedArr: Array(batsmenArr.length).fill(false),
 				isShowActionArr: Array(batsmenArr.length).fill(false),
