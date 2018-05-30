@@ -41,7 +41,7 @@ const mapDispatchToProps= dispatch=>{
   }
 }
 
-console.log("ACTIONS--->", actions)
+//console.log("ACTIONS--->", actions)
 
 const NavbarContainer=connect(mapStateToProps, mapDispatchToProps)(NavBar)
 
