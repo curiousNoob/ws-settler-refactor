@@ -8,17 +8,25 @@ import TeamTable from '../components/TeamTable'
 const mapStateToProps = state =>{
   return {    
     batsmenArr: state.awayTeam.batsmenArr,
-    isShowActionArr: state.homeTeam.isShowActionArr,
-    isSettledArr: state.homeTeam.isSettledArr,
-    isVoidedArr: state.homeTeam.isVoidedArr,
-    finalRunsArr:state.homeTeam.finalRunsArr,
+    isShowActionArr: state.awayTeam.isShowActionArr,
+    isSettledArr: state.awayTeam.isSettledArr,
+    isVoidedArr: state.awayTeam.isVoidedArr,
+    finalRunsArr:state.awayTeam.finalRunsArr,
   }
 }
 
 const mapDispatchToProps= dispatch=>{
   return {    
-    showBatsmanAction: (index) => { dispatch(actions.showHomeTeamBatsmanAction(index)) },
-    hideBatsmanAction:(index) => { dispatch(actions.hideHomeTeamBatsmanAction(index)) },
+    showBatsmanAction: (index) => { 
+      dispatch(
+        actions.showAwayTeamBatsmanAction(index)
+      ) 
+    },
+    hideBatsmanAction:(index) => { 
+      dispatch(
+        actions.hideAwayTeamBatsmanAction(index)
+      ) 
+    },
 
     handleBatsmanRunsChange:(e, batsmanIndex) => {
       const finalValue=e.target.value
@@ -26,12 +34,15 @@ const mapDispatchToProps= dispatch=>{
       if(finalValue<0)
         return
 
-      dispatch(actions.setFinalHomeTeamBatsmanValue(finalValue, batsmanIndex)) 
+      dispatch(actions.setFinalAwayTeamBatsmanValue(finalValue, batsmanIndex)) 
     },
   }
 }
 
-const AwayTeamTableContainer=connect(mapStateToProps, mapDispatchToProps)(TeamTable)
+const AwayTeamTableContainer=connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(TeamTable)
 
 
 export default AwayTeamTableContainer

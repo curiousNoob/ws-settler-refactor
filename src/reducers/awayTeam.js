@@ -21,6 +21,7 @@ const awayTeam = (state = initialState, action) => {
 	switch (action.type) {
 		case "SET_AWAY_TEAM":
 			const batsmenArr = action.payload
+			finalRunsArr = batsmenArr.map(batsmanEl => (batsmanEl.runs))
 
 			return {
 				...state,
@@ -30,8 +31,10 @@ const awayTeam = (state = initialState, action) => {
 				isSettledArr: Array(batsmenArr.length).fill(false),
 				isVoidedArr: Array(batsmenArr.length).fill(false),
 				isShowActionArr: Array(batsmenArr.length).fill(false),
+				finalRunsArr,
 
 			}
+
 		case "SHOW_AWAY_TEAM_BATSMAN_ACTION":
 			index = action.payload
 			isShowActionArr = [...state.isShowActionArr]

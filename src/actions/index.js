@@ -127,6 +127,9 @@ import {
 	setAwayTeam,
 	showAwayTeamBatsmanAction,
 	hideAwayTeamBatsmanAction,
+	setFinalAwayTeamBatsmanValue,
+	settle_AwayTeamBatsman_SendWS,
+	void_AwayTeamBatsman_SendWS,
 } from './awayTeam'
 
 
@@ -237,6 +240,9 @@ const actions = {
 	setAwayTeam,
 	showAwayTeamBatsmanAction,
 	hideAwayTeamBatsmanAction,
+	setFinalAwayTeamBatsmanValue,
+	settle_AwayTeamBatsman_SendWS,
+	void_AwayTeamBatsman_SendWS,
 
 }
 

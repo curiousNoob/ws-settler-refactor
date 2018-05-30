@@ -27,8 +27,8 @@ import TeamModal from '../components/TeamModal'
 
 
 import HomeTeamTableContainer from '../containers/HomeTeamTableContainer'
-import BatsmanModalContainer from '../containers/BatsmanModalContainer'
-
+import BatsmanHomeModalContainer from '../containers/BatsmanHomeModalContainer'
+BatsmanHomeModalContainer
 
 class TeamA extends Component {   
     render() {
@@ -37,7 +37,7 @@ class TeamA extends Component {
                 <TableNavigation activeKey="2" />
                 <HomeTeamTableContainer />
 
-                <BatsmanModalContainer />
+                <BatsmanHomeModalContainer />
             </div>
         )
     }
