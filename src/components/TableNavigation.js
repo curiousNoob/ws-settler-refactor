@@ -17,6 +17,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 //uncomment this for PRODUCTION
 import { isProduction } from '../constants'
@@ -35,17 +36,22 @@ class TableNavigation extends Component {
         </LinkContainer>
         <LinkContainer exact to={isProduction?(root_url+"/teamA"):"/teamA"} >
           <NavItem eventKey="2">
-            TeamA
+            Home
           </NavItem>
         </LinkContainer>
         <LinkContainer exact to={isProduction?(root_url+"/teamB"):"/teamB"} >
           <NavItem eventKey="3">
-            TeamB
+            Away
           </NavItem>
         </LinkContainer>
       </Nav>
     );
   }
 }
+
+TableNavigation.propTypes = {
+  activeKey: PropTypes.string.isRequired,
+}
+
 
 export default TableNavigation

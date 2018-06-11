@@ -18,6 +18,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 import MatchOddsRow from './MatchOddsRow'
 import FancyMarketsRow from './FancyMarketsRow'
@@ -242,6 +243,167 @@ class SettleTbody extends Component {
             </tbody>
         )
     }
+}
+
+SettleTbody.propTypes = {
+    mo: PropTypes.shape({
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,
+
+        winner: PropTypes.string,
+
+        finalMo: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        
+
+        isMatchOddsSettled: PropTypes.bool,      
+        isMatchOddsVoided: PropTypes.bool,
+
+        isShowAction:PropTypes.bool,
+    }).isRequired,
+
+    ir_lambi: PropTypes.shape({
+        innings: PropTypes.oneOf([0, 1, 2]).isRequired,
+
+        overs: PropTypes.number,
+        runs: PropTypes.number,        
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,       
+        team: PropTypes.string,
+
+        finalLambi: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        isLambiSettled: PropTypes.bool,      
+        isLambiVoided: PropTypes.bool,
+
+        isShowAction:PropTypes.bool,
+    }).isRequired,
+
+    ir_fancy_1_6: PropTypes.shape({
+        innings: PropTypes.oneOf([0, 1, 2]).isRequired,
+
+        overs: PropTypes.number,
+        runs: PropTypes.number,        
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,       
+        team: PropTypes.string,
+
+        final_ir_fancy_1_6: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        isFancySettled: PropTypes.bool,      
+        isFancyVoided: PropTypes.bool,
+
+        isShowAction:PropTypes.bool,
+    }).isRequired,
+
+    ir_fancy_1_12: PropTypes.shape({
+        innings: PropTypes.oneOf([0, 1, 2]).isRequired,
+
+        overs: PropTypes.number,
+        runs: PropTypes.number,        
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,       
+        team: PropTypes.string,
+
+        final_ir_fancy_1_12: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        isFancySettled: PropTypes.bool,      
+        isFancyVoided: PropTypes.bool,
+
+        isShowAction:PropTypes.bool,
+    }).isRequired,
+
+    ir_fancy_2_6: PropTypes.shape({
+        innings: PropTypes.oneOf([0, 1, 2]).isRequired,
+
+        overs: PropTypes.number,
+        runs: PropTypes.number,        
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,       
+        team: PropTypes.string,
+
+        final_ir_fancy_2_6: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        isFancySettled: PropTypes.bool,      
+        isFancyVoided: PropTypes.bool,
+
+        isShowAction:PropTypes.bool,
+    }).isRequired,
+
+    ir_fancy_2_12: PropTypes.shape({
+        innings: PropTypes.oneOf([0, 1, 2]).isRequired,
+
+        overs: PropTypes.number,
+        runs: PropTypes.number,        
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,       
+        team: PropTypes.string,
+
+        final_ir_fancy_2_12: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+
+        isFancySettled: PropTypes.bool,      
+        isFancyVoided: PropTypes.bool,
+
+        isShowAction:PropTypes.bool,
+    }).isRequired,
+
+    home: PropTypes.string,
+    away: PropTypes.string,  
+
+    showMatchoddsAction: PropTypes.func.isRequired,
+    hideMatchoddsAction: PropTypes.func.isRequired,
+
+    showLambiAction: PropTypes.func.isRequired,
+    hideLambiAction: PropTypes.func.isRequired,
+
+    showFancyMarketAction: PropTypes.func.isRequired,
+    hideFancyMarketAction: PropTypes.func.isRequired,
+
+    handleMatchoddsChange: PropTypes.func.isRequired,
+    handleLambiChange: PropTypes.func.isRequired,
+    handleFancyMarketsChange: PropTypes.func.isRequired,
+
 }
 
 export default SettleTbody

@@ -18,9 +18,10 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types";
 
 
-class MatchoddsRow extends Component {
+class MatchOddsRow extends Component {
 
     render() {
         const {
@@ -74,4 +75,24 @@ class MatchoddsRow extends Component {
     }
 }
 
-export default MatchoddsRow
+MatchOddsRow.propTypes = {
+    status: PropTypes.oneOf([
+        "inactive", 
+        "active", 
+        "ready_to_settle", 
+        "settled"
+    ]).isRequired,
+    winner: PropTypes.string,
+    onMatchoddsChange: PropTypes.func,
+    home:PropTypes.string,
+    away:PropTypes.string,
+    finalMo: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+
+    settleVoidMatchoddsBtn: PropTypes.element,
+}
+
+
+export default MatchOddsRow

@@ -26,8 +26,8 @@ import { isProduction } from './constants'
 import NavBarContainer from './containers/NavBarContainer'
 import TableNavigation from './components/TableNavigation'
 
-import TeamA from './pages/TeamA'
-import TeamB from './pages/TeamB' 
+import HomeTeam from './pages/HomeTeam'
+import AwayTeam from './pages/AwayTeam' 
 import MarketRuns from './pages/MarketRuns' 
 
 import ConnectedApp from './components/ConnectedApp'

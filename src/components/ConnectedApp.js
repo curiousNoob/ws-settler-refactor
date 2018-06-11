@@ -25,8 +25,8 @@ import { cookieName, isProduction } from '../constants'
 import NavBarContainer from '../containers/NavBarContainer'
 import TableNavigation from './TableNavigation'
 
-import TeamA from '../pages/TeamA'
-import TeamB from '../pages/TeamB' 
+import HomeTeam from '../pages/HomeTeam'
+import AwayTeam from '../pages/AwayTeam' 
 import MarketRuns from '../pages/MarketRuns' 
 
 import WebSocketConnectionContainer from '../containers/WebSocketConnectionContainer'
@@ -45,8 +45,8 @@ class ConnectedApp extends Component{
               path={isProduction?root_url:"/"}
               component={MarketRuns}
             />
-            <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={TeamA} />
-            <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={TeamB} />
+            <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={HomeTeam} />
+            <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={AwayTeam} />
           </Switch>
         </Router>
       </WebSocketConnectionContainer>

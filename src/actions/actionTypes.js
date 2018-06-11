@@ -111,6 +111,10 @@ export const HIDE_FANCY_2_12_ACTION="HIDE_FANCY_2_12_ACTION"
 export const SET_HOME_TEAM="SET_HOME_TEAM"
 export const SET_AWAY_TEAM="SET_AWAY_TEAM"
 
+/*action fired after [] gets filled*/
+export const INIT_HOME_TEAM_UI_STATE="INIT_HOME_TEAM_UI_STATE"
+export const INIT_AWAY_TEAM_UI_STATE="INIT_AWAY_TEAM_UI_STATE"
+
 /*for buttons on ActionBtn - settle/void*/
 export const SHOW_HOME_TEAM_BATSMAN_ACTION="SHOW_HOME_TEAM_BATSMAN_ACTION"
 export const HIDE_HOME_TEAM_BATSMAN_ACTION="HIDE_HOME_TEAM_BATSMAN_ACTION"

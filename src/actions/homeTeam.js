@@ -9,6 +9,12 @@ export const setHomeTeam = (homeTeamArr) => {
 	}
 }
 
+export const initHomeTeamUIstate = () => {
+	return {
+		type:actionTypes.INIT_HOME_TEAM_UI_STATE,
+	}
+}
+
 export const showHomeTeamBatsmanAction = (index) => {
 	return {
 		type:actionTypes.SHOW_HOME_TEAM_BATSMAN_ACTION,

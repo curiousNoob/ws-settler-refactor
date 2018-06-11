@@ -18,6 +18,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 
 class FancyMarketsRow extends Component {
@@ -66,5 +67,24 @@ class FancyMarketsRow extends Component {
         )
     }
 }
+
+FancyMarketsRow.propTypes = {
+    marketType: PropTypes.string,
+    team: PropTypes.string,
+    status: PropTypes.oneOf([
+        "inactive", 
+        "active", 
+        "ready_to_settle", 
+        "settled"
+    ]).isRequired,
+    runs: PropTypes.number,
+    finalMarketValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    onFancyMarketChange: PropTypes.func,
+    settleVoidBtn: PropTypes.element,
+}
+
 
 export default FancyMarketsRow

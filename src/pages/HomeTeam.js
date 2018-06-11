@@ -26,24 +26,22 @@ import { isProduction } from '../constants'
 import TeamModal from '../components/TeamModal'
 
 
-import AwayTeamTableContainer from '../containers/AwayTeamTableContainer'
-import BatsmanAwayModalContainer from '../containers/BatsmanAwayModalContainer'
+import HomeTeamTableContainer from '../containers/HomeTeamTableContainer'
+import BatsmanHomeModalContainer from '../containers/BatsmanHomeModalContainer'
+BatsmanHomeModalContainer
 
-
-class TeamA extends Component {    
-
-    render() {          
-
+class HomeTeam extends Component {   
+    render() {
         return (
             <div>
-                <TableNavigation activeKey="3" />
-                <AwayTeamTableContainer />
+                <TableNavigation activeKey="2" />
+                <HomeTeamTableContainer />
 
-                <BatsmanAwayModalContainer />
+                <BatsmanHomeModalContainer />
             </div>
         )
     }
 }
 
-export default TeamA
+export default HomeTeam
 

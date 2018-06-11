@@ -137,10 +137,12 @@ import {
 
 import {
 	setHomeTeam,
+	initHomeTeamUIstate,
 } from './homeTeam'
 
 import {
 	setAwayTeam,
+	initAwayTeamUIstate,
 } from './awayTeam'
 
 
@@ -213,24 +215,28 @@ export const establishWebSocketConnection=()=>{
 	    	}else{
 	    		uri = "ws://localhost:8080/api/settler/ws"//"wss://cct-stage.iosport.co.uk/api/settler/ws"
 	    	}
-	    }
-
-    	let ir_lambi_Arr
-	    let ir_fancy_1_6_Arr
-	    let ir_fancy_1_12_Arr
-	    let ir_fancy_2_6_Arr
-	    let ir_fancy_2_12_Arr
-
-	    let homeTeamArr
-	    let awayTeamArr
+	    }   
 
 	    
-	    let mo
-    	let ir_lambi
-	    let ir_fancy_1_6
-	    let ir_fancy_1_12
-	    let ir_fancy_2_6
-	    let ir_fancy_2_12
+	    let mo,
+	    	ir_lambi,
+		    ir_fancy_1_6,
+		    ir_fancy_1_12,
+		    ir_fancy_2_6,
+		    ir_fancy_2_12
+
+		let ir_lambi_Arr,
+		    ir_fancy_1_6_Arr,
+		    ir_fancy_1_12_Arr,
+		    ir_fancy_2_6_Arr,
+		    ir_fancy_2_12_Arr
+
+		let homeTeamArr, 
+	    	awayTeamArr
+
+	    let isHomeTeamArrEmpty=true
+	    let isAwayTeamArrEmpty=true
+
 
 
 	    let prevMoWinner
@@ -330,12 +336,13 @@ export const establishWebSocketConnection=()=>{
 		    										       market.overs == 12)
 		    							)
 
-		    homeTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.home))
-			awayTeamArr			=data.batsmen.filter(batsmanEl =>(batsmanEl.team===data.away))
+		    homeTeamArr			=data.batsmen
+				.filter(batsmanEl =>(batsmanEl.team===data.home))//it starts as empty []
+			awayTeamArr			=data.batsmen
+				.filter(batsmanEl =>(batsmanEl.team===data.away))//too
 			
 			// console.log('homeTeamArr',homeTeamArr)
 			// debugger;
-
 		    
 		    mo              = data.mo		    
 	    	ir_lambi 		= ir_lambi_Arr[0]
@@ -369,30 +376,69 @@ export const establishWebSocketConnection=()=>{
 		    didFancy_2_12_TeamChange=(prevFancy_2_12_team!==ir_fancy_2_12.team)
 
 
-		    didAnyHomeTeamRunsChange = prevHomeTeamRunsArr?
-		    	prevHomeTeamRunsArr
+		    didAnyHomeTeamRunsChange = homeTeamArr?
+		    	homeTeamArr
+		    	.map(batsmanEl => {
+		    		return batsmanEl.runs
+		    	})
 				.reduce((accBool, currRuns, currIndex) =>{
-					return (accBool || currRuns!==homeTeamArr[currIndex].runs)
+					return (accBool || 
+						currRuns!==(
+							prevHomeTeamRunsArr?
+							prevHomeTeamRunsArr[currIndex]:
+							true//when prevHomeTeamRunsArr is [], implies change 
+						)
+					)
 				}, 	false) :
-				true
-		    didAnyHomeTeamStatusChange = prevHomeTeamStatusArr?
-		    	prevHomeTeamStatusArr
-				.reduce((accBool, currStatus, currIndex) =>{
-					return (accBool || currStatus!==homeTeamArr[currIndex].status)
-				}, 	false) :
-				true
-			didAnyAwayTeamRunsChange = prevAwayTeamRunsArr?
-				prevAwayTeamRunsArr
+				false//homeTeamArr is []
+				
+		    didAnyHomeTeamStatusChange = homeTeamArr?
+		    	homeTeamArr
+		    	.map(batsmanEl => {
+		    		return batsmanEl.status
+		    	})
 				.reduce((accBool, currRuns, currIndex) =>{
-					return (accBool || currRuns!==awayTeamArr[currIndex].runs)
+					return (accBool || 
+						currRuns!==(
+							prevHomeTeamStatusArr?
+							prevHomeTeamStatusArr[currIndex]:
+							true
+						)
+					)
 				}, 	false) :
-				true			
-			didAnyAwayTeamStatusChange = prevAwayTeamStatusArr?
-				prevAwayTeamStatusArr
-				.reduce((accBool, currStatus, currIndex) =>{
-					return (accBool || currStatus!==awayTeamArr[currIndex].status)
+				false
+				
+			didAnyAwayTeamRunsChange = awayTeamArr?
+		    	awayTeamArr
+		    	.map(batsmanEl => {
+		    		return batsmanEl.runs
+		    	})
+				.reduce((accBool, currRuns, currIndex) =>{
+					return (accBool || 
+						currRuns!==(
+							prevAwayTeamRunsArr?
+							prevAwayTeamRunsArr[currIndex]:
+							true
+						)
+					)
 				}, 	false) :
-				true
+				false
+
+			didAnyAwayTeamStatusChange = awayTeamArr?
+		    	awayTeamArr
+		    	.map(batsmanEl => {
+		    		return batsmanEl.status
+		    	})
+				.reduce((accBool, currRuns, currIndex) =>{
+					return (accBool || 
+						currRuns!==(
+							prevAwayTeamStatusArr?
+							prevAwayTeamStatusArr[currIndex]:
+							true
+						)
+					)
+				}, 	false) :
+				false
 				
 				
 			if (didMoWinnerChange) {
@@ -454,7 +500,7 @@ export const establishWebSocketConnection=()=>{
 				dispatch(setFancy_2_12(ir_fancy_2_12))
 			}
 
-
+			
 			if(didAnyHomeTeamRunsChange ||
 			   didAnyHomeTeamStatusChange
 			){
@@ -465,6 +511,17 @@ export const establishWebSocketConnection=()=>{
 			   didAnyAwayTeamStatusChange
 			){
 				dispatch(setAwayTeam(awayTeamArr))
+			}
+
+			if(isHomeTeamArrEmpty && homeTeamArr.length){
+				dispatch(initHomeTeamUIstate())
+
+				isHomeTeamArrEmpty=false
+			}
+			if(isAwayTeamArrEmpty && awayTeamArr.length){
+				dispatch(initAwayTeamUIstate())
+
+				isAwayTeamArrEmpty=false
 			}
 
 

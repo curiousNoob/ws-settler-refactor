@@ -12,38 +12,69 @@ const initialState = {
 	selectedBatsmanIndexForModal: null,//is 'finalMarketSelectedForModal', not necessary here actually maybe I use in future somehow
 }
 
-let index
-let isShowActionArr
-let finalRunsArr
 
 const homeTeam = (state = initialState, action) => {
+	let index,
+		batsmenArr,
+
+		isSettledArr,
+		isVoidedArr,
+		isShowActionArr,
+		finalRunsArr
+
+
 	switch (action.type) {
 		case "SET_HOME_TEAM":
-			const batsmenArr = action.payload
+			batsmenArr = action.payload
 			finalRunsArr = batsmenArr.map(batsmanEl => (batsmanEl.runs))
 
 			return {
 				...state,
 
-				batsmenArr: batsmenArr,
-				teamName: batsmenArr.length?batsmenArr[0].team:"No Team",
-				isSettledArr: Array(batsmenArr.length).fill(false),
-				isVoidedArr: Array(batsmenArr.length).fill(false),
-				isShowActionArr: Array(batsmenArr.length).fill(false),
+				batsmenArr,
 				finalRunsArr,
 
 			}
+
+		case "INIT_HOME_TEAM_UI_STATE":
+			batsmenArr=state.batsmenArr	
+
+			// console.log("batsmenArr", batsmenArr)
+			// debugger;
+
+			const teamName = batsmenArr[0].team
+			const batsmenArrLen = batsmenArr.length			
+
+			isSettledArr = Array(batsmenArrLen).fill(false)
+			isVoidedArr = Array(batsmenArrLen).fill(false)
+			isShowActionArr = Array(batsmenArrLen).fill(false)
+
+			finalRunsArr = batsmenArr.map(batsmanEl => (batsmanEl.runs))
+
+			return {
+				...state,
+
+				teamName,
+
+				isSettledArr,
+				isVoidedArr,
+				isShowActionArr,
+				finalRunsArr,
+			}
+
 
 		case "SHOW_HOME_TEAM_BATSMAN_ACTION":
 			index = action.payload
 			isShowActionArr = [...state.isShowActionArr]
 			isShowActionArr[index] = true
+
 			return { ...state, isShowActionArr }
 
 		case "HIDE_HOME_TEAM_BATSMAN_ACTION":
 			index = action.payload
 			isShowActionArr = [...state.isShowActionArr]
 			isShowActionArr[index] = false
+
 			return { ...state, isShowActionArr }
 
 		case "SET_FINAL_HOME_TEAM_BATSMAN_VALUE":
@@ -54,6 +85,7 @@ const homeTeam = (state = initialState, action) => {
 
 			finalRunsArr = [...state.finalRunsArr]
 			finalRunsArr[batsmanIndex] = finalValue
+
 			return { ...state, finalRunsArr }
 
 		case "SET_HOME_TEAM_SELECTED_BATSMAN_INDEX":
@@ -62,13 +94,13 @@ const homeTeam = (state = initialState, action) => {
 		case "SETTLED_HOME_TEAM_BATSMAN":
 			const selectedBatsmanIndex = action.payload
 
-			const isSettledArr = [...state.isSettledArr]
+			isSettledArr = [...state.isSettledArr]
 			isSettledArr[selectedBatsmanIndex] = true
 
 			return { ...state, isSettledArr }
 
 		case "VOIDED_HOME_TEAM_BATSMAN":
-			const isVoidedArr = [...state.isVoidedArr]
+			isVoidedArr = [...state.isVoidedArr]
 			isVoidedArr[state.selectedBatsmanIndexForModal] = true
 
 			return { ...state, isVoidedArr }

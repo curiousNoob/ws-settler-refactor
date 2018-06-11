@@ -116,6 +116,7 @@ import {
 
 import {
 	setHomeTeam,
+	initHomeTeamUIstate,
 	showHomeTeamBatsmanAction,
 	hideHomeTeamBatsmanAction,
 	setFinalHomeTeamBatsmanValue,
@@ -125,6 +126,7 @@ import {
 
 import {
 	setAwayTeam,
+	initAwayTeamUIstate,
 	showAwayTeamBatsmanAction,
 	hideAwayTeamBatsmanAction,
 	setFinalAwayTeamBatsmanValue,
@@ -231,6 +233,7 @@ const actions = {
 
 
 	setHomeTeam,
+	initHomeTeamUIstate,
 	showHomeTeamBatsmanAction,
 	hideHomeTeamBatsmanAction,
 	setFinalHomeTeamBatsmanValue,
@@ -238,6 +241,7 @@ const actions = {
 	void_HomeTeamBatsman_SendWS,
 
 	setAwayTeam,
+	initAwayTeamUIstate,
 	showAwayTeamBatsmanAction,
 	hideAwayTeamBatsmanAction,
 	setFinalAwayTeamBatsmanValue,

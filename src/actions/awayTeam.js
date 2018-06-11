@@ -9,6 +9,12 @@ export const setAwayTeam = (awayTeamArr) => {
 	}
 }
 
+export const initAwayTeamUIstate = () => {
+	return {
+		type:actionTypes.INIT_AWAY_TEAM_UI_STATE,
+	}
+}
+
 export const showAwayTeamBatsmanAction = (index) => {
 	return {
 		type:actionTypes.SHOW_AWAY_TEAM_BATSMAN_ACTION,

@@ -17,6 +17,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types";
 
 
 class SettleThead extends Component {
@@ -52,6 +53,16 @@ class SettleThead extends Component {
         )
     }
 }
+
+//if props not provided in parent component, show "market" table heading
+SettleThead.defaultProps = {
+    haveMarket: true,
+}
+
+SettleThead.propTypes = {
+    haveMarket: PropTypes.bool,
+}
+
 
 
 export default SettleThead

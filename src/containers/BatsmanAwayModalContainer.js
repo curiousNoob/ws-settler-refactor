@@ -49,9 +49,9 @@ const mapDispatchToProps = dispatch => {
                 batsman, 
             } = batsmenArr[selectedBatsmanIndexForModal]
 
-            const numRuns = finalMarketValueForModal
+            const numRuns = parseInt(finalMarketValueForModal)
 
-            if (!finalMarketValueForModal) {
+            if (finalMarketValueForModal<0) {
                 return
             }
 

@@ -18,6 +18,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 
 const ActionBtn = ({ 
@@ -31,8 +32,6 @@ const ActionBtn = ({
     isShowAction,
 
     onAction,
-
-    marketType,
 
 })  => {
 
@@ -102,6 +101,26 @@ const ActionBtn = ({
     return (
         actionBtn
     )
+}
+
+ActionBtn.propTypes = {
+    isVoided: PropTypes.bool,
+    isSettled: PropTypes.bool,
+
+    showAction: PropTypes.func,
+    hideAction: PropTypes.func,
+
+    status:  PropTypes.oneOf([
+        "inactive", 
+        "active", 
+        "ready_to_settle", 
+        "settled"
+    ]).isRequired,
+
+    isShowAction: PropTypes.bool,
+
+    onAction: PropTypes.func,
+
 }
 
 export default ActionBtn
