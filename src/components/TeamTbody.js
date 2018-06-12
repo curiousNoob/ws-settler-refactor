@@ -18,6 +18,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 import BatsmenRow from './BatsmenRow'
 
@@ -68,6 +69,34 @@ class TeamTbody extends Component {
             </tbody>
         )
     }
+}
+
+TeamTbody.propTypes = {
+    batsmenArr:  PropTypes.arrayOf(
+        PropTypes.shape({
+            batsman: PropTypes.string,
+            innings: PropTypes.oneOf([1, 2]),
+            lineup_id: PropTypes.number,
+            runs: PropTypes.number,
+            status: PropTypes.oneOf([
+                "inactive", 
+                "active", 
+                "ready_to_settle", 
+                "settled"
+            ]).isRequired,
+            team: PropTypes.string,
+        })  
+    ),
+
+    isShowActionArr: PropTypes.arrayOf(PropTypes.bool),
+    showBatsmanAction: PropTypes.func,
+    hideBatsmanAction: PropTypes.func,
+
+    isSettledArr: PropTypes.arrayOf(PropTypes.bool),
+    isVoidedArr: PropTypes.arrayOf(PropTypes.bool),
+    
+    finalRunsArr: PropTypes.arrayOf(PropTypes.number),
+    handleBatsmanRunsChange: PropTypes.func,
 }
 
 

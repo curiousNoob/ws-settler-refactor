@@ -78,7 +78,7 @@ const awayTeam = (state = initialState, action) => {
 			} = action.payload
 
 			finalRunsArr = [...state.finalRunsArr]
-			finalRunsArr[batsmanIndex] = finalValue
+			finalRunsArr[batsmanIndex] = parseInt(finalValue)
 
 			return { ...state, finalRunsArr }
 

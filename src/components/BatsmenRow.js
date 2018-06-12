@@ -18,6 +18,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 import ActionBtnContainer from '../containers/ActionBtnContainer'
 
@@ -90,6 +91,34 @@ class BatsmenRow extends Component {
     }
 }
 
+BatsmenRow.propTypes={
+    batsmanEl: PropTypes.shape({
+        batsman: PropTypes.string,
+        innings: PropTypes.oneOf([1, 2]),
+        lineup_id: PropTypes.number,
+        runs: PropTypes.number,
+        status: PropTypes.oneOf([
+            "inactive", 
+            "active", 
+            "ready_to_settle", 
+            "settled"
+        ]).isRequired,
+        team: PropTypes.string,
+    }),
+
+    isShowAction: PropTypes.bool,
+
+    showBatsmanAction: PropTypes.func,
+    hideBatsmanAction: PropTypes.func,
+
+    isSettled: PropTypes.bool,
+    isVoided: PropTypes.bool,            
+
+    finalValue: PropTypes.number,
+
+    handleBatsmanRunsChange: PropTypes.func,
+    batsmanIndex: PropTypes.number,
+}
 
 export default BatsmenRow
 

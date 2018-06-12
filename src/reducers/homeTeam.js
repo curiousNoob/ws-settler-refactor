@@ -84,7 +84,7 @@ const homeTeam = (state = initialState, action) => {
 			} = action.payload
 
 			finalRunsArr = [...state.finalRunsArr]
-			finalRunsArr[batsmanIndex] = finalValue
+			finalRunsArr[batsmanIndex] = Number(finalValue)
 
 			return { ...state, finalRunsArr }
 

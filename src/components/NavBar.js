@@ -78,6 +78,19 @@ class NavBar extends Component {
   }
 }
 
+NavBar.propTypes = {
+  isLoggedIn:PropTypes.bool,
+
+  home: PropTypes.string,
+  away: PropTypes.string,
+
+  username: PropTypes.string,
+  password: PropTypes.string,
+
+  handleUsernameChange: PropTypes.func,
+  handlePasswordChange: PropTypes.func,
+  handleLogout: PropTypes.func,
+}
 
 
 export default NavBar

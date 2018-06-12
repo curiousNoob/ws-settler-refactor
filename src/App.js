@@ -55,5 +55,10 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  checkCookies: PropTypes.func,
+}
+
 
 export default App;
