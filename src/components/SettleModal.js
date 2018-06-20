@@ -63,7 +63,10 @@ SettleModal.propTypes={
   isVoid: PropTypes.bool,
 
   marketType: PropTypes.string,
-  finalValue: PropTypes.string,
+  finalValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   
   settleAction: PropTypes.func, 
 }

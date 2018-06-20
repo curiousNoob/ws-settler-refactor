@@ -21,6 +21,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import PropTypes from "prop-types"
 
 import { isProduction } from '../constants'
 

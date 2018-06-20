@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch => {
 
       switch (finalMarketSelectedForModal) {
         case "matchOdds":
-          if (!finalMo) {
+          if (finalMo<0) {
             return
           }
 
@@ -89,7 +89,7 @@ const mapDispatchToProps = dispatch => {
 
           break
         case "lambi":
-          if (!finalLambi) {
+          if (finalLambi<0) {
             return
           }
 
@@ -103,7 +103,7 @@ const mapDispatchToProps = dispatch => {
 
           break
         case "ir_fancy_1_6":
-          if (!finalMarketValueForModal) {
+          if (finalMarketValueForModal<0) {
             return
           }
 
@@ -130,7 +130,7 @@ const mapDispatchToProps = dispatch => {
 
           break
         case "ir_fancy_1_12":
-          if (!finalMarketValueForModal) {
+          if (finalMarketValueForModal<0) {
             return
           }
 
@@ -151,7 +151,7 @@ const mapDispatchToProps = dispatch => {
 
           break
         case "ir_fancy_2_6":
-          if (!finalMarketValueForModal) {
+          if (finalMarketValueForModal<0) {
             return
           }
 
@@ -178,7 +178,7 @@ const mapDispatchToProps = dispatch => {
 
           break
         case "ir_fancy_2_12":
-          if (!finalMarketValueForModal) {
+          if (finalMarketValueForModal<0) {
             return
           }
 

@@ -51,7 +51,7 @@ const mapDispatchToProps = dispatch => {
 
             const numRuns = finalMarketValueForModal
 
-            if (!finalMarketValueForModal) {
+            if (finalMarketValueForModal<0) {
                 return
             }
 

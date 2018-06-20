@@ -61,7 +61,7 @@ export const SETTLED_FANCY_1_6="SETTLED_FANCY_1_6"
 export const VOIDED_FANCY_1_6="VOIDED_FANCY_1_6"
 
 export const SETTLED_FANCY_1_12="SETTLED_FANCY_1_12"
-export const VOIDED_FANCY_1_12="VOIDEDWebSocketConnectionContainer_FANCY_1_12"
+export const VOIDED_FANCY_1_12="VOIDED_FANCY_1_12"
 
 export const SETTLED_FANCY_2_6="SETTLED_FANCY_2_6"
 export const VOIDED_FANCY_2_6="VOIDED_FANCY_2_6"

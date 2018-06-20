@@ -23,9 +23,6 @@ import TableNavigation from '../components/TableNavigation'
 import SettleThead from '../components/SettleThead'
 import { isProduction } from '../constants'
 
-import TeamModal from '../components/TeamModal'
-
-
 import AwayTeamTableContainer from '../containers/AwayTeamTableContainer'
 import BatsmanAwayModalContainer from '../containers/BatsmanAwayModalContainer'
 

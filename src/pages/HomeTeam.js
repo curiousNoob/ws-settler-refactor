@@ -23,12 +23,9 @@ import TableNavigation from '../components/TableNavigation'
 import SettleThead from '../components/SettleThead'
 import { isProduction } from '../constants'
 
-import TeamModal from '../components/TeamModal'
-
-
 import HomeTeamTableContainer from '../containers/HomeTeamTableContainer'
 import BatsmanHomeModalContainer from '../containers/BatsmanHomeModalContainer'
-BatsmanHomeModalContainer
+
 
 class HomeTeam extends Component {   
     render() {

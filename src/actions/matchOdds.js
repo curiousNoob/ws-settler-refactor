@@ -27,7 +27,7 @@ export const settledMatchOdds = ()=>{
 }
 export const voidedMatchOdds = ()=>{
 	return {
-		type:actionTypes.SETTLED_MATCH_ODDS,
+		type:actionTypes.VOIDED_MATCH_ODDS,
 	}
 }
 
