@@ -86,9 +86,13 @@ import {
 	setFinalMo,
 	setFinalLambi,
 	setFinalFancy_1_6,
+	setFinalFancy_1_10,
 	setFinalFancy_1_12,
+	setFinalFancy_1_15,
 	setFinalFancy_2_6,
+	setFinalFancy_2_10,
 	setFinalFancy_2_12,	
+	setFinalFancy_2_15,	
 } from './finalMarketValues'
 
 import {
@@ -110,10 +114,22 @@ import {
 } from './fancy_1_6'
 
 import {
+	setFancy_1_10,
+	settledFancy_1_10,
+	voidedFancy_1_10,
+} from './fancy_1_10'
+
+import {
 	setFancy_1_12,
 	settledFancy_1_12,
 	voidedFancy_1_12,
 } from './fancy_1_12'
+
+import {
+	setFancy_1_15,
+	settledFancy_1_15,
+	voidedFancy_1_15,
+} from './fancy_1_15'
 
 import {
 	setFancy_2_6,
@@ -122,10 +138,22 @@ import {
 } from './fancy_2_6'
 
 import {
+	setFancy_2_10,
+	settledFancy_2_10,
+	voidedFancy_2_10,
+} from './fancy_2_10'
+
+import {
 	setFancy_2_12,
 	settledFancy_2_12,
 	voidedFancy_2_12,
 } from './fancy_2_12'
+
+import {
+	setFancy_2_15,
+	settledFancy_2_15,
+	voidedFancy_2_15,
+} from './fancy_2_15'
 
 import {
 	setHome,
@@ -546,6 +574,16 @@ export const establishWebSocketConnection=()=>{
 				didFancy_1_6_TeamChange
 			){
 				dispatch(setFancy_1_6(ir_fancy_1_6))
+			}
+
+			if(didFancy_1_10_RunsChange){
+				dispatch(setFinalFancy_1_10(ir_fancy_1_10.runs))								
+			}
+			if(	didFancy_1_10_RunsChange ||
+				didFancy_1_10_StatusChange ||
+				didFancy_1_10_TeamChange
+			){
+				dispatch(setFancy_1_10(ir_fancy_1_10))
 			}			
 
 			if(didFancy_1_12_RunsChange){
@@ -556,6 +594,16 @@ export const establishWebSocketConnection=()=>{
 				didFancy_1_12_TeamChange					
 			){
 				dispatch(setFancy_1_12(ir_fancy_1_12))					
+			}
+
+			if(didFancy_1_15_RunsChange){
+				dispatch(setFinalFancy_1_15(ir_fancy_1_15.runs))							
+			}
+			if(	didFancy_1_15_RunsChange ||				
+				didFancy_1_15_StatusChange ||
+				didFancy_1_15_TeamChange					
+			){
+				dispatch(setFancy_1_15(ir_fancy_1_15))					
 			}			
 
 			if(didFancy_2_6_RunsChange){
@@ -566,6 +614,16 @@ export const establishWebSocketConnection=()=>{
 				didFancy_2_6_TeamChange					
 			){
 				dispatch(setFancy_2_6(ir_fancy_2_6))					
+			}
+
+			if(didFancy_2_10_RunsChange){
+				dispatch(setFinalFancy_2_10(ir_fancy_2_10.runs))							
+			}
+			if( didFancy_2_10_RunsChange ||
+				didFancy_2_10_StatusChange ||
+				didFancy_2_10_TeamChange					
+			){
+				dispatch(setFancy_2_10(ir_fancy_2_10))					
 			}			
 
 			if(didFancy_2_12_RunsChange){
@@ -576,6 +634,16 @@ export const establishWebSocketConnection=()=>{
 				didFancy_2_12_TeamChange
 			){
 				dispatch(setFancy_2_12(ir_fancy_2_12))
+			}
+
+			if(didFancy_2_15_RunsChange){
+				dispatch(setFinalFancy_2_15(ir_fancy_2_15.runs))							
+			}
+			if( didFancy_2_15_RunsChange ||
+				didFancy_2_15_StatusChange ||
+				didFancy_2_15_TeamChange
+			){
+				dispatch(setFancy_2_15(ir_fancy_2_15))
 			}
 
 			

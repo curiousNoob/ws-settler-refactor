@@ -25,9 +25,13 @@ const reducers = combineReducers({
 	matchOdds,
 	lambi,
 	fancy_1_6,
+	fancy_1_10,
 	fancy_1_12,
+	fancy_1_15,
 	fancy_2_6,
+	fancy_2_10,
 	fancy_2_12,
+	fancy_2_15,
 
 	settleModal,
 

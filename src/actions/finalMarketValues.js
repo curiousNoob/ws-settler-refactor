@@ -23,10 +23,24 @@ export const setFinalFancy_1_6 = (finalFancy_1_6)=>{
 	}
 }
 
+export const setFinalFancy_1_10 = (finalFancy_1_10)=>{
+	return {
+		type:actionTypes.SET_FINAL_FANCY_1_10,
+		payload:finalFancy_1_10,
+	}
+}
+
 export const setFinalFancy_1_12 = (finalFancy_1_12)=>{
 	return {
 		type:actionTypes.SET_FINAL_FANCY_1_12,
 		payload:finalFancy_1_12,
+	}
+}
+
+export const setFinalFancy_1_15 = (finalFancy_1_15)=>{
+	return {
+		type:actionTypes.SET_FINAL_FANCY_1_15,
+		payload:finalFancy_1_15,
 	}
 }
 
@@ -37,9 +51,23 @@ export const setFinalFancy_2_6 = (finalFancy_2_6)=>{
 	}
 }
 
+export const setFinalFancy_2_10 = (finalFancy_2_10)=>{
+	return {
+		type:actionTypes.SET_FINAL_FANCY_2_10,
+		payload:finalFancy_2_10,
+	}
+}
+
 export const setFinalFancy_2_12 = (finalFancy_2_12)=>{
 	return {
 		type:actionTypes.SET_FINAL_FANCY_2_12,
 		payload:finalFancy_2_12,
+	}
+}
+
+export const setFinalFancy_2_15 = (finalFancy_2_15)=>{
+	return {
+		type:actionTypes.SET_FINAL_FANCY_2_15,
+		payload:finalFancy_2_15,
 	}
 }

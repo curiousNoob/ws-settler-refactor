@@ -25,9 +25,13 @@ import {
 	setFinalMo,
 	setFinalLambi,
 	setFinalFancy_1_6,
+	setFinalFancy_1_10,
 	setFinalFancy_1_12,
+	setFinalFancy_1_15,
 	setFinalFancy_2_6,
+	setFinalFancy_2_10,
 	setFinalFancy_2_12,
+	setFinalFancy_2_15,
 } from './finalMarketValues'
 
 import {
@@ -67,6 +71,18 @@ import {
 } from './fancy_1_6'
 
 import {
+	setFancy_1_10,
+	initSettleFancy_1_10_SendWS,
+	initVoidFancy_1_10_SendWS,
+	settledFancy_1_10,
+	voidedFancy_1_10,
+	settleFancy_1_10_SendWS,
+	voidFancy_1_10_SendWS,
+	showFancy_1_10_Action,
+	hideFancy_1_10_Action,
+} from './fancy_1_10'
+
+import {
 	setFancy_1_12,
 	initSettleFancy_1_12_SendWS,
 	initVoidFancy_1_12_SendWS,
@@ -77,6 +93,18 @@ import {
 	showFancy_1_12_Action,
 	hideFancy_1_12_Action,
 } from './fancy_1_12'
+
+import {
+	setFancy_1_15,
+	initSettleFancy_1_15_SendWS,
+	initVoidFancy_1_15_SendWS,
+	settledFancy_1_15,
+	voidedFancy_1_15,
+	settleFancy_1_15_SendWS,
+	voidFancy_1_15_SendWS,
+	showFancy_1_15_Action,
+	hideFancy_1_15_Action,
+} from './fancy_1_15'
 
 import {
 	setFancy_2_6,
@@ -91,6 +119,18 @@ import {
 } from './fancy_2_6'
 
 import {
+	setFancy_2_10,
+	initSettleFancy_2_10_SendWS,
+	initVoidFancy_2_10_SendWS,
+	settledFancy_2_10,
+	voidedFancy_2_10,
+	settleFancy_2_10_SendWS,
+	voidFancy_2_10_SendWS,
+	showFancy_2_10_Action,
+	hideFancy_2_10_Action,
+} from './fancy_2_10'
+
+import {
 	setFancy_2_12,
 	initSettleFancy_2_12_SendWS,
 	initVoidFancy_2_12_SendWS,
@@ -101,6 +141,18 @@ import {
 	showFancy_2_12_Action,
 	hideFancy_2_12_Action,
 } from './fancy_2_12'
+
+import {
+	setFancy_2_15,
+	initSettleFancy_2_15_SendWS,
+	initVoidFancy_2_15_SendWS,
+	settledFancy_2_15,
+	voidedFancy_2_15,
+	settleFancy_2_15_SendWS,
+	voidFancy_2_15_SendWS,
+	showFancy_2_15_Action,
+	hideFancy_2_15_Action,
+} from './fancy_2_15'
 
 import {
 	initSettleModal,
@@ -158,9 +210,13 @@ const actions = {
 	setFinalMo,
 	setFinalLambi,
 	setFinalFancy_1_6,
+	setFinalFancy_1_10,
 	setFinalFancy_1_12,
+	setFinalFancy_1_15,
 	setFinalFancy_2_6,
+	setFinalFancy_2_10,
 	setFinalFancy_2_12,
+	setFinalFancy_2_15,
 
 	setMatchOdds,
 	initSettleMatchOdds_SendWS,
@@ -192,6 +248,16 @@ const actions = {
 	showFancy_1_6_Action,
 	hideFancy_1_6_Action,
 
+	setFancy_1_10,
+	initSettleFancy_1_10_SendWS,
+	initVoidFancy_1_10_SendWS,
+	settledFancy_1_10,
+	voidedFancy_1_10,
+	settleFancy_1_10_SendWS,
+	voidFancy_1_10_SendWS,
+	showFancy_1_10_Action,
+	hideFancy_1_10_Action,
+
 	setFancy_1_12,
 	initSettleFancy_1_12_SendWS,
 	initVoidFancy_1_12_SendWS,
@@ -202,6 +268,16 @@ const actions = {
 	showFancy_1_12_Action,
 	hideFancy_1_12_Action,
 
+	setFancy_1_15,
+	initSettleFancy_1_15_SendWS,
+	initVoidFancy_1_15_SendWS,
+	settledFancy_1_15,
+	voidedFancy_1_15,
+	settleFancy_1_15_SendWS,
+	voidFancy_1_15_SendWS,
+	showFancy_1_15_Action,
+	hideFancy_1_15_Action,
+
 	setFancy_2_6,
 	initSettleFancy_2_6_SendWS,
 	initVoidFancy_2_6_SendWS,
@@ -211,6 +287,16 @@ const actions = {
 	voidFancy_2_6_SendWS,
 	showFancy_2_6_Action,
 	hideFancy_2_6_Action,
+
+	setFancy_2_10,
+	initSettleFancy_2_10_SendWS,
+	initVoidFancy_2_10_SendWS,
+	settledFancy_2_10,
+	voidedFancy_2_10,
+	settleFancy_2_10_SendWS,
+	voidFancy_2_10_SendWS,
+	showFancy_2_10_Action,
+	hideFancy_2_10_Action,
 
 	setFancy_2_12,
 	initSettleFancy_2_12_SendWS,
