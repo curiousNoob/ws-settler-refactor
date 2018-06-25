@@ -14,12 +14,13 @@ const initialState={
     isFancyVoided: false,
 
     isShowAction:false,
+    	
 }
 
 
-const fancy_2_6=(state=initialState, action)=>{
+const fancy_2_15=(state=initialState, action)=>{
 	switch(action.type){
-		case "SET_FANCY_2_6":
+		case "SET_FANCY_2_15":
 			const { payload } = action
 			
 			const { innings } = payload
@@ -37,27 +38,26 @@ const fancy_2_6=(state=initialState, action)=>{
 					status:status, 
 					team:team
 			}
-			
-		case "SET_FINAL_FANCY_2_6":
-			return {...state, final_ir_fancy:action.payload}
 
-		case "SETTLED_FANCY_2_6":
+		case "SET_FINAL_FANCY_2_15":
+			return {...state, final_ir_fancy: action.payload}
+			
+		case "SETTLED_FANCY_2_15":
 			return {...state, isFancySettled: true}
 
-		case "VOIDED_FANCY_2_6":
+		case "VOIDED_FANCY_2_15":
 			return {...state, isFancyVoided: true}
 
-		case "SHOW_FANCY_2_6_ACTION":
+		case "SHOW_FANCY_2_15_ACTION":
 			return {...state, isShowAction: true}
 
-		case "HIDE_FANCY_2_6_ACTION":
+		case "HIDE_FANCY_2_15_ACTION":
 			return {...state, isShowAction: false}
-			
+
 		
 		default:
 			return state
 	}
 }
 
-
-export default fancy_2_6
+export default fancy_2_15

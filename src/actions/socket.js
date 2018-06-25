@@ -394,32 +394,32 @@ export const establishWebSocketConnection=()=>{
 
 	    	
 	    	ir_lambi_Arr 		= data.ir.filter(market =>(market.innings ==1 && 
-	    												   market.overs == 20)
+	    												   (market.overs == 20 || market.overs == 50))
 		    							)
 		    ir_fancy_1_6_Arr   	= data.ir.filter(market =>(market.innings ==1 && 
-		    										       market.overs == 6)
+		    										       (market.overs == 6 || market.overs == 10))
 		    							)
 		    ir_fancy_1_10_Arr   = data.ir.filter(market =>(market.innings ==1 && 
-		    										       market.overs == 10)
+		    										       (market.overs == 10 || market.overs == 20))
 		    							)
 		    ir_fancy_1_12_Arr   = data.ir.filter(market =>(market.innings ==1&& 
-		    										       market.overs == 12)
+		    										       (market.overs == 12 || market.overs == 30))
 		    							)
 		    ir_fancy_1_15_Arr   = data.ir.filter(market =>(market.innings ==1&& 
-		    										       market.overs == 15)
+		    										       (market.overs == 15 || market.overs == 40))
 		    							)
 		    ir_fancy_2_6_Arr    = data.ir.filter(market =>(market.innings ==2 && 
-		    										       market.overs == 6)
+		    										       (market.overs == 6 || market.overs == 10))
 		    							)
 		    ir_fancy_2_10_Arr    = data.ir.filter(market =>(market.innings ==2 && 
-		    										       market.overs == 10)
+		    										       (market.overs == 10 || market.overs == 20))
 		    							)
 		    ir_fancy_2_12_Arr   = data.ir.filter(market =>(market.innings ==2 && 
-		    										       market.overs == 12)
+		    										       (market.overs == 12 || market.overs == 30))
 
 		    							)
 		    ir_fancy_2_15_Arr   = data.ir.filter(market =>(market.innings ==2 && 
-		    										       market.overs == 15)
+		    										       (market.overs == 15 || market.overs == 40))
 		    							)
 
 		    homeTeamArr			=data.batsmen

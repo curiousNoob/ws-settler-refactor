@@ -9,9 +9,13 @@ const marketTypeToModalNameMap = {
   matchOdds: "[ Match Odds ]",
   lambi: "[ Lambi ]",
   ir_fancy_1_6: "[ FANCY-1-6 ]",
+  ir_fancy_1_10: "[ FANCY-1-10 ]",
   ir_fancy_1_12: "[ FANCY-1-12 ]",
+  ir_fancy_1_15: "[ FANCY-1-15 ]",
   ir_fancy_2_6: "[ FANCY-2-6 ]",
+  ir_fancy_2_10: "[ FANCY-2-10 ]",
   ir_fancy_2_12: "[ FANCY-2-12 ]",
+  ir_fancy_2_15: "[ FANCY-2-15 ]",
 }
 
 
@@ -20,11 +24,15 @@ const mapStateToProps = state => {
     ws: state.socket.ws,
 
     mo: state.matchOdds,
-    lambi: state.lambi,
-    fancy_1_6: state.fancy_1_6,
+    lambi:      state.lambi,
+    fancy_1_6:  state.fancy_1_6,
+    fancy_1_10: state.fancy_1_10,
     fancy_1_12: state.fancy_1_12,
-    fancy_2_6: state.fancy_2_6,
+    fancy_1_15: state.fancy_1_15,
+    fancy_2_6:  state.fancy_2_6,
+    fancy_2_10: state.fancy_2_10,
     fancy_2_12: state.fancy_2_12,
+    fancy_2_15: state.fancy_2_15,
 
     finalMo: state.matchOdds.finalMo,
     finalLambi: state.lambi.finalLambi,
@@ -57,9 +65,13 @@ const mapDispatchToProps = dispatch => {
 
       lambi,
       fancy_1_6,
+      fancy_1_10,
       fancy_1_12,
+      fancy_1_15,
       fancy_2_6,
+      fancy_2_10,
       fancy_2_12,
+      fancy_2_15,
 
       finalMo,
       finalLambi,
@@ -129,6 +141,33 @@ const mapDispatchToProps = dispatch => {
           }
 
           break
+        case "ir_fancy_1_10":
+          if (finalMarketValueForModal<0) {
+            return
+          }
+
+          if (ws.readyState === ws.OPEN) {
+            if (isSettle) {
+              dispatch(
+                actions.settleFancy_1_10_SendWS(
+                  ws,
+                  fancy_1_10.innings,
+                  fancy_1_10.overs,
+                  finalMarketValueForModal
+                )
+              )
+            } else if (isVoid) {
+              dispatch(
+                actions.voidFancy_1_10_SendWS(
+                  ws, 
+                  fancy_1_10.innings, 
+                  fancy_1_10.overs
+                )
+              )
+            }
+          }
+
+          break
         case "ir_fancy_1_12":
           if (finalMarketValueForModal<0) {
             return
@@ -146,6 +185,27 @@ const mapDispatchToProps = dispatch => {
               )
             } else if (isVoid) {
               dispatch(actions.voidFancy_1_12_SendWS(ws, fancy_1_12.innings, fancy_1_12.overs))
+            }
+          }
+
+          break
+        case "ir_fancy_1_15":
+          if (finalMarketValueForModal<0) {
+            return
+          }
+
+          if (ws.readyState === ws.OPEN) {
+            if (isSettle) {
+              dispatch(
+                actions.settleFancy_1_15_SendWS(
+                  ws, 
+                  fancy_1_15.innings, 
+                  fancy_1_15.overs, 
+                  finalMarketValueForModal
+                )
+              )
+            } else if (isVoid) {
+              dispatch(actions.voidFancy_1_15_SendWS(ws, fancy_1_15.innings, fancy_1_15.overs))
             }
           }
 
@@ -171,6 +231,33 @@ const mapDispatchToProps = dispatch => {
                   ws, 
                   fancy_2_6.innings, 
                   fancy_2_6.overs
+                )
+              )
+            }
+          }
+
+          break
+        case "ir_fancy_2_10":
+          if (finalMarketValueForModal<0) {
+            return
+          }
+
+          if (ws.readyState === ws.OPEN) {
+            if (isSettle) {
+              dispatch(
+                actions.settleFancy_2_10_SendWS(
+                  ws, 
+                  fancy_2_10.innings, 
+                  fancy_2_10.overs, 
+                  finalMarketValueForModal
+                )
+              )
+            } else if (isVoid) {
+              dispatch(
+                actions.voidFancy_2_10_SendWS(
+                  ws, 
+                  fancy_2_10.innings, 
+                  fancy_2_10.overs
                 )
               )
             }
@@ -204,6 +291,33 @@ const mapDispatchToProps = dispatch => {
           }
 
           break
+        case "ir_fancy_2_15":
+          if (finalMarketValueForModal<0) {
+            return
+          }
+
+          if (ws.readyState === ws.OPEN) {
+            if (isSettle) {
+              dispatch(
+                actions.settleFancy_2_15_SendWS(
+                  ws, 
+                  fancy_2_15.innings, 
+                  fancy_2_15.overs, 
+                  finalMarketValueForModal
+                )
+              )
+            } else if (isVoid) {
+              dispatch(
+                actions.voidFancy_2_15_SendWS(
+                  ws, 
+                  fancy_2_15.innings, 
+                  fancy_2_15.overs
+                )
+              )
+            }
+          }
+
+          break
       }
 
       handleHide()
@@ -226,9 +340,13 @@ const SettleModalContainer = connect(
 
         stateProps.lambi,
         stateProps.fancy_1_6,
+        stateProps.fancy_1_10,
         stateProps.fancy_1_12,
+        stateProps.fancy_1_15,
         stateProps.fancy_2_6,
+        stateProps.fancy_2_10,
         stateProps.fancy_2_12,
+        stateProps.fancy_2_15,
 
         stateProps.finalMo,
         stateProps.finalLambi,

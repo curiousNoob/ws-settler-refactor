@@ -77,7 +77,10 @@ FancyMarketsRow.propTypes = {
         "ready_to_settle", 
         "settled"
     ]).isRequired,
-    runs: PropTypes.number,
+    runs: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+    ]), 
     finalMarketValue: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number

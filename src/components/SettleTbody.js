@@ -33,16 +33,24 @@ class SettleTbody extends Component {
             mo,
             ir_lambi,
             ir_fancy_1_6,
+            ir_fancy_1_10,
             ir_fancy_1_12,
+            ir_fancy_1_15,
             ir_fancy_2_6,
+            ir_fancy_2_10,
             ir_fancy_2_12,
+            ir_fancy_2_15,
 
             finalMo,
             finalLambi,
             final_ir_fancy_1_6,            
+            final_ir_fancy_1_10,            
             final_ir_fancy_1_12,            
+            final_ir_fancy_1_15,            
             final_ir_fancy_2_6,            
+            final_ir_fancy_2_10,            
             final_ir_fancy_2_12,
+            final_ir_fancy_2_15,
             
             home,
             away,
@@ -54,12 +62,20 @@ class SettleTbody extends Component {
 
             isFancy_1_6_Settled,
             isFancy_1_6_Voided,
+            isFancy_1_10_Settled,
+            isFancy_1_10_Voided,
             isFancy_1_12_Settled,
-            isFancy_1_12_Voided,            
+            isFancy_1_12_Voided,
+            isFancy_1_15_Settled,
+            isFancy_1_15_Voided,             
             isFancy_2_6_Settled,
             isFancy_2_6_Voided,
+            isFancy_2_10_Settled,
+            isFancy_2_10_Voided,
             isFancy_2_12_Settled,
             isFancy_2_12_Voided,
+            isFancy_2_15_Settled,
+            isFancy_2_15_Voided,
 
             isShowActionMO,
             showMatchoddsAction,
@@ -70,9 +86,13 @@ class SettleTbody extends Component {
             hideLambiAction,
 
             isShowActionFancy_1_6,
+            isShowActionFancy_1_10,
             isShowActionFancy_1_12,
+            isShowActionFancy_1_15,
             isShowActionFancy_2_6,
+            isShowActionFancy_2_10,
             isShowActionFancy_2_12,
+            isShowActionFancy_2_15,
             showFancyMarketAction,
             hideFancyMarketAction,
 
@@ -89,9 +109,13 @@ class SettleTbody extends Component {
         let settleVoidMatchoddsBtn 
         let settleVoidLambiBtn
         let settleVoidFancy_1_6_Btn
+        let settleVoidFancy_1_10_Btn
         let settleVoidFancy_1_12_Btn
+        let settleVoidFancy_1_15_Btn
         let settleVoidFancy_2_6_Btn
+        let settleVoidFancy_2_10_Btn
         let settleVoidFancy_2_12_Btn
+        let settleVoidFancy_2_15_Btn
 
 
         settleVoidMatchoddsBtn = <ActionBtnContainer
@@ -134,6 +158,20 @@ class SettleTbody extends Component {
 
                                     finalValue={final_ir_fancy_1_6}
                                     finalMarketSelected={"ir_fancy_1_6"}                                    
+                                />
+
+        settleVoidFancy_1_10_Btn = <ActionBtnContainer 
+                                    isSettled={isFancy_1_10_Settled}
+                                    isVoided={isFancy_1_10_Voided}                                    
+
+                                    showAction={()=>showFancyMarketAction("fancy_1_10")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_1_10")}
+
+                                    status={ir_fancy_1_10.status}
+                                    isShowAction={isShowActionFancy_1_10}
+
+                                    finalValue={final_ir_fancy_1_10}
+                                    finalMarketSelected={"ir_fancy_1_10"}                                    
                                 /> 
         
         settleVoidFancy_1_12_Btn = <ActionBtnContainer 
@@ -149,6 +187,20 @@ class SettleTbody extends Component {
                                     finalValue={final_ir_fancy_1_12}
                                     finalMarketSelected={"ir_fancy_1_12"}                                    
                                 /> 
+
+        settleVoidFancy_1_15_Btn = <ActionBtnContainer 
+                                    isSettled={isFancy_1_15_Settled}
+                                    isVoided={isFancy_1_15_Voided}                                    
+
+                                    showAction={()=>showFancyMarketAction("fancy_1_15")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_1_15")}
+
+                                    status={ir_fancy_1_15.status}
+                                    isShowAction={isShowActionFancy_1_15}
+
+                                    finalValue={final_ir_fancy_1_15}
+                                    finalMarketSelected={"ir_fancy_1_15"}                                    
+                                /> 
         
         settleVoidFancy_2_6_Btn = <ActionBtnContainer 
                                     isSettled={isFancy_2_6_Settled}
@@ -163,6 +215,20 @@ class SettleTbody extends Component {
                                     finalValue={final_ir_fancy_2_6}
                                     finalMarketSelected={"ir_fancy_2_6"} 
                                 />
+
+        settleVoidFancy_2_10_Btn = <ActionBtnContainer 
+                                    isSettled={isFancy_2_10_Settled}
+                                    isVoided={isFancy_2_10_Voided}                                    
+
+                                    showAction={()=>showFancyMarketAction("fancy_2_10")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_2_10")}
+
+                                    status={ir_fancy_2_10.status}
+                                    isShowAction={isShowActionFancy_2_10}
+
+                                    finalValue={final_ir_fancy_2_10}
+                                    finalMarketSelected={"ir_fancy_2_10"} 
+                                />
         
         settleVoidFancy_2_12_Btn = <ActionBtnContainer 
                                     isSettled={isFancy_2_12_Settled}
@@ -176,7 +242,21 @@ class SettleTbody extends Component {
 
                                     finalValue={final_ir_fancy_2_12}
                                     finalMarketSelected={"ir_fancy_2_12"} 
-                                />           
+                                />
+
+        settleVoidFancy_2_15_Btn = <ActionBtnContainer 
+                                    isSettled={isFancy_2_15_Settled}
+                                    isVoided={isFancy_2_15_Voided}                                    
+
+                                    showAction={()=>showFancyMarketAction("fancy_2_15")}
+                                    hideAction={()=>hideFancyMarketAction("fancy_2_15")}
+
+                                    status={ir_fancy_2_15.status}
+                                    isShowAction={isShowActionFancy_2_15}
+
+                                    finalValue={final_ir_fancy_2_15}
+                                    finalMarketSelected={"ir_fancy_2_15"} 
+                                />             
 
         return (
             <tbody>
@@ -201,17 +281,27 @@ class SettleTbody extends Component {
                 /> 
 
                 <FancyMarketsRow
-                    marketType={"Fancy 1 6"}
+                    marketType={`Fancy ${ir_fancy_1_6.innings} ${ir_fancy_1_6.overs}`}
                     team={ir_fancy_1_6.team}
                     status={ir_fancy_1_6.status}
                     runs={ir_fancy_1_6.runs}
                     finalMarketValue={final_ir_fancy_1_6}
                     onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_1_6")}
                     settleVoidBtn={settleVoidFancy_1_6_Btn}
+                />
+
+                <FancyMarketsRow
+                    marketType={`Fancy ${ir_fancy_1_10.innings} ${ir_fancy_1_10.overs}`}
+                    team={ir_fancy_1_10.team}
+                    status={ir_fancy_1_10.status}
+                    runs={ir_fancy_1_10.runs}
+                    finalMarketValue={final_ir_fancy_1_10}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_1_10")}
+                    settleVoidBtn={settleVoidFancy_1_10_Btn}
                 /> 
 
                 <FancyMarketsRow
-                    marketType={"Fancy 1 12"}
+                    marketType={`Fancy ${ir_fancy_1_12.innings} ${ir_fancy_1_12.overs}`}
                     team={ir_fancy_1_12.team}
                     status={ir_fancy_1_12.status}
                     runs={ir_fancy_1_12.runs}
@@ -221,7 +311,17 @@ class SettleTbody extends Component {
                 />
 
                 <FancyMarketsRow
-                    marketType={"Fancy 2 6"}
+                    marketType={`Fancy ${ir_fancy_1_15.innings} ${ir_fancy_1_15.overs}`}
+                    team={ir_fancy_1_15.team}
+                    status={ir_fancy_1_15.status}
+                    runs={ir_fancy_1_15.runs}
+                    finalMarketValue={final_ir_fancy_1_15}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_1_15")}
+                    settleVoidBtn={settleVoidFancy_1_15_Btn}
+                />
+
+                <FancyMarketsRow
+                    marketType={`Fancy ${ir_fancy_2_6.innings} ${ir_fancy_2_6.overs}`}
                     team={ir_fancy_2_6.team}
                     status={ir_fancy_2_6.status}
                     runs={ir_fancy_2_6.runs}
@@ -230,14 +330,34 @@ class SettleTbody extends Component {
                     settleVoidBtn={settleVoidFancy_2_6_Btn}
                 />
 
+                 <FancyMarketsRow
+                    marketType={`Fancy ${ir_fancy_2_10.innings} ${ir_fancy_2_10.overs}`}
+                    team={ir_fancy_2_10.team}
+                    status={ir_fancy_2_10.status}
+                    runs={ir_fancy_2_10.runs}
+                    finalMarketValue={final_ir_fancy_2_10}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_2_10")}
+                    settleVoidBtn={settleVoidFancy_2_10_Btn}
+                />
+
                 <FancyMarketsRow
-                    marketType={"Fancy 2 12"}
+                    marketType={`Fancy ${ir_fancy_2_12.innings} ${ir_fancy_2_12.overs}`}
                     team={ir_fancy_2_12.team}
                     status={ir_fancy_2_12.status}
                     runs={ir_fancy_2_12.runs}
                     finalMarketValue={final_ir_fancy_2_12}
                     onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_2_12")}
                     settleVoidBtn={settleVoidFancy_2_12_Btn}
+                />
+
+                <FancyMarketsRow
+                    marketType={`Fancy ${ir_fancy_2_15.innings} ${ir_fancy_2_15.overs}`}
+                    team={ir_fancy_2_15.team}
+                    status={ir_fancy_2_15.status}
+                    runs={ir_fancy_2_15.runs}
+                    finalMarketValue={final_ir_fancy_2_15}
+                    onFancyMarketChange={e=>this.props.handleFancyMarketsChange(e, "fancy_2_15")}
+                    settleVoidBtn={settleVoidFancy_2_15_Btn}
                 />  
                
             </tbody>
@@ -272,7 +392,10 @@ SettleTbody.propTypes = {
         innings: PropTypes.oneOf([0, 1, 2]).isRequired,
 
         overs: PropTypes.number,
-        runs: PropTypes.number,        
+        runs: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),        
         status: PropTypes.oneOf([
             "inactive", 
             "active", 
@@ -296,7 +419,10 @@ SettleTbody.propTypes = {
         innings: PropTypes.oneOf([0, 1, 2]).isRequired,
 
         overs: PropTypes.number,
-        runs: PropTypes.number,        
+        runs: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),       
         status: PropTypes.oneOf([
             "inactive", 
             "active", 
@@ -320,7 +446,10 @@ SettleTbody.propTypes = {
         innings: PropTypes.oneOf([0, 1, 2]).isRequired,
 
         overs: PropTypes.number,
-        runs: PropTypes.number,        
+        runs: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),        
         status: PropTypes.oneOf([
             "inactive", 
             "active", 
@@ -344,7 +473,10 @@ SettleTbody.propTypes = {
         innings: PropTypes.oneOf([0, 1, 2]).isRequired,
 
         overs: PropTypes.number,
-        runs: PropTypes.number,        
+        runs: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),       
         status: PropTypes.oneOf([
             "inactive", 
             "active", 
@@ -368,7 +500,10 @@ SettleTbody.propTypes = {
         innings: PropTypes.oneOf([0, 1, 2]).isRequired,
 
         overs: PropTypes.number,
-        runs: PropTypes.number,        
+        runs: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),        
         status: PropTypes.oneOf([
             "inactive", 
             "active", 

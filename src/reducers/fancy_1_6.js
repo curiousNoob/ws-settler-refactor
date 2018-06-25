@@ -8,7 +8,7 @@ const initialState={
     status: "inactive",        
     team: "No team",
 
-    final_ir_fancy_1_6: "",
+    final_ir_fancy: "",
 
     isFancySettled: false,
     isFancyVoided: false,
@@ -40,7 +40,7 @@ const fancy_1_6=(state=initialState, action)=>{
 			}
 
 		case "SET_FINAL_FANCY_1_6":
-			return {...state, final_ir_fancy_1_6: action.payload}
+			return {...state, final_ir_fancy: action.payload}
 			
 		case "SETTLED_FANCY_1_6":
 			return {...state, isFancySettled: true}

@@ -308,6 +308,16 @@ const actions = {
 	showFancy_2_12_Action,
 	hideFancy_2_12_Action,
 
+	setFancy_2_15,
+	initSettleFancy_2_15_SendWS,
+	initVoidFancy_2_15_SendWS,
+	settledFancy_2_15,
+	voidedFancy_2_15,
+	settleFancy_2_15_SendWS,
+	voidFancy_2_15_SendWS,
+	showFancy_2_15_Action,
+	hideFancy_2_15_Action,
+
 	initSettleModal,
 	showSettleModal,
 	hideSettleModal,
