@@ -374,6 +374,10 @@ export const establishWebSocketConnection=()=>{
 		let didAnyHomeTeamStatusChange
 		let didAnyAwayTeamStatusChange
 
+		let checkOnceGameType
+		let isT220
+		let isODI
+
 
 	    let ws = new WebSocket(uri);
 
@@ -390,30 +394,63 @@ export const establishWebSocketConnection=()=>{
 	    }
 
 	    ws.onmessage = (response) => {
+	    	checkOnceGameType=false
+	    	isT220=false
+			isODI=false
+
 	    	const data = JSON.parse(response.data)
 
 	    	
-	    	ir_lambi_Arr 		= data.ir.filter(market =>(market.innings ==1 && 
-	    												   (market.overs == 20 || market.overs == 50))
-		    							)
-		    ir_fancy_1_6_Arr   	= data.ir.filter(market =>(market.innings ==1 && 
-		    										       (market.overs == 6 || market.overs == 10))
-		    							)
-		    ir_fancy_1_10_Arr   = data.ir.filter(market =>(market.innings ==1 && 
-		    										       (market.overs == 10 || market.overs == 20))
-		    							)
-		    ir_fancy_1_12_Arr   = data.ir.filter(market =>(market.innings ==1&& 
+	    	ir_lambi_Arr 		= data.ir.filter(market =>{
+	    		if(!checkOnceGameType && market.overs==6){
+	    			checkOnceGameType=true
+	    			isT220=true
+	    		}else if(!checkOnceGameType && market.overs==50){
+	    			checkOnceGameType=true
+	    			isODI=true
+	    		}
+
+	    		if(isT220){
+	    			return (market.innings ==1 && (market.overs == 20))
+	    		}else if(isODI){
+	    			return (market.innings ==1 && (market.overs == 50))
+	    		}
+	    		
+			})
+		    ir_fancy_1_6_Arr   	= data.ir.filter(market =>{
+		    	if(isT220){
+	    			return (market.innings ==1 && (market.overs == 6))
+	    		}else if(isODI){
+	    			return (market.innings ==1 && (market.overs == 10))
+	    		}
+		    })
+		    ir_fancy_1_10_Arr   = data.ir.filter(market =>{
+		    	if(isT220){
+	    			return (market.innings ==1 && (market.overs == 10))
+	    		}else if(isODI){
+	    			return (market.innings ==1 && (market.overs == 20))
+	    		}
+		    })
+		    ir_fancy_1_12_Arr   = data.ir.filter(market =>(market.innings ==1 && 
 		    										       (market.overs == 12 || market.overs == 30))
 		    							)
-		    ir_fancy_1_15_Arr   = data.ir.filter(market =>(market.innings ==1&& 
+		    ir_fancy_1_15_Arr   = data.ir.filter(market =>(market.innings ==1 && 
 		    										       (market.overs == 15 || market.overs == 40))
 		    							)
-		    ir_fancy_2_6_Arr    = data.ir.filter(market =>(market.innings ==2 && 
-		    										       (market.overs == 6 || market.overs == 10))
-		    							)
-		    ir_fancy_2_10_Arr    = data.ir.filter(market =>(market.innings ==2 && 
-		    										       (market.overs == 10 || market.overs == 20))
-		    							)
+		    ir_fancy_2_6_Arr    = data.ir.filter(market =>{
+		    	if(isT220){
+	    			return (market.innings ==2 && (market.overs == 6))
+	    		}else if(isODI){
+	    			return (market.innings ==2 && (market.overs == 10))
+	    		}
+		    })
+		    ir_fancy_2_10_Arr    = data.ir.filter(market =>{
+		    	if(isT220){
+	    			return (market.innings ==2 && (market.overs == 10))
+	    		}else if(isODI){
+	    			return (market.innings ==2 && (market.overs == 20))
+	    		}
+		    })
 		    ir_fancy_2_12_Arr   = data.ir.filter(market =>(market.innings ==2 && 
 		    										       (market.overs == 12 || market.overs == 30))
 
