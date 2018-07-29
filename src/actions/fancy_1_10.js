@@ -33,11 +33,19 @@ export const voidedFancy_1_10 = ()=>{
 
 export const settleFancy_1_10_SendWS = (ws, innings, overs, numRuns)=>{
 	return dispatch => {
+		let err=null
+
 		dispatch(initSettleFancy_1_10_SendWS())
 
 		const settleMsgOverWS=JSON.stringify({"market": "ir", "innings": innings, "overs": overs, "settle": numRuns})
 
-		ws.send(settleMsgOverWS)
+		try{
+			ws.send(settleMsgOverWS)
+		}catch(err){			
+			console.error("WS FAILED WHEN SEND_WS!", err)
+			throw new Error("Websocket connection failed")
+		}
+		
 
 		dispatch(settledFancy_1_10())
 	}
