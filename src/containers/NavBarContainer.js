@@ -37,7 +37,12 @@ const mapDispatchToProps= dispatch=>{
     handleLogout:()=>{
       dispatch(actions.rmCookies())
       dispatch(actions.logout())
-    },   
+    },
+    handleKeyPress:(e, username, password)=>{
+      if(e.charCode==13){
+        dispatch(actions.auth(username, password))
+      }      
+    },
   }
 }
 

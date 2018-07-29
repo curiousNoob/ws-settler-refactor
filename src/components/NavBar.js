@@ -49,6 +49,7 @@ class NavBar extends Component {
             placeholder="password"
             value={this.props.password}
             onChange={this.props.handlePasswordChange}
+            onKeyPress={(e)=>this.props.handleKeyPress(e, this.props.username, this.props.password)}
           />
         </FormGroup>{' '}
         <Button type="submit" onClick={()=>this.props.handleLogin(this.props.username, this.props.password)}>Login</Button>
