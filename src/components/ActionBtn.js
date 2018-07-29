@@ -37,12 +37,6 @@ const ActionBtn = ({
 
     let actionBtn
 
-    const labelStyleObj = {
-        "inactive": "info",
-        "active": "danger",
-        "ready_to_settle": "warning",
-        "settled": "success"
-    }
 
     const badgeSignal = {
         "inactive": "..",
