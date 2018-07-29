@@ -41,6 +41,14 @@ const matchOdds=(state=initialState, action)=>{
 
 		case "HIDE_MATCH_ODDS_ACTION":
 			return {...state, isShowAction: false}
+
+		case "RESET_ACTION_BTN_MATCHODDS":
+			return {
+						...state,
+						
+						isMatchOddsSettled: false,      
+    					isMatchOddsVoided: false, 
+					}
 			
 		
 		default:

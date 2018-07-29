@@ -99,60 +99,70 @@ import {
 	setMatchOdds,
 	settledMatchOdds,
 	voidedMatchOdds,
+	resetActionBtnMatchOdds,
 } from './matchOdds'
 
 import {
 	setLambi,
 	settledLambi,
 	voidedLambi,
+	resetActionBtn_Lambi,
 } from './lambi'
 
 import {
 	setFancy_1_6,
 	settledFancy_1_6,
 	voidedFancy_1_6,
+	resetActionBtn_Fancy_1_6,
 } from './fancy_1_6'
 
 import {
 	setFancy_1_10,
 	settledFancy_1_10,
 	voidedFancy_1_10,
+	resetActionBtn_Fancy_1_10,
 } from './fancy_1_10'
 
 import {
 	setFancy_1_12,
 	settledFancy_1_12,
 	voidedFancy_1_12,
+	resetActionBtn_Fancy_1_12,
 } from './fancy_1_12'
 
 import {
 	setFancy_1_15,
 	settledFancy_1_15,
 	voidedFancy_1_15,
+	resetActionBtn_Fancy_1_15,
 } from './fancy_1_15'
 
 import {
 	setFancy_2_6,
 	settledFancy_2_6,
 	voidedFancy_2_6,
+	resetActionBtn_Fancy_2_6,
 } from './fancy_2_6'
 
 import {
 	setFancy_2_10,
 	settledFancy_2_10,
 	voidedFancy_2_10,
+	resetActionBtn_Fancy_2_10,
 } from './fancy_2_10'
 
 import {
 	setFancy_2_12,
 	settledFancy_2_12,
 	voidedFancy_2_12,
+	resetActionBtn_Fancy_2_12,
 } from './fancy_2_12'
 
 import {
 	setFancy_2_15,
 	settledFancy_2_15,
 	voidedFancy_2_15,
+	resetActionBtn_Fancy_2_15,
 } from './fancy_2_15'
 
 import {
@@ -375,7 +385,7 @@ export const establishWebSocketConnection=()=>{
 		let didAnyAwayTeamStatusChange
 
 		let checkOnceGameType
-		let isT220
+		let isT20
 		let isODI
 
 
@@ -395,22 +405,24 @@ export const establishWebSocketConnection=()=>{
 
 	    ws.onmessage = (response) => {
 	    	checkOnceGameType=false
-	    	isT220=false
+	    	isT20=false
 			isODI=false
 
 	    	const data = JSON.parse(response.data)
 
+
+	    	mo=data.mo	    	
 	    	
 	    	ir_lambi_Arr 		= data.ir.filter(market =>{
 	    		if(!checkOnceGameType && market.overs==6){
 	    			checkOnceGameType=true
-	    			isT220=true
+	    			isT20=true
 	    		}else if(!checkOnceGameType && market.overs==50){
 	    			checkOnceGameType=true
 	    			isODI=true
 	    		}
 
-	    		if(isT220){
+	    		if(isT20){
 	    			return (market.innings ==1 && (market.overs == 20))
 	    		}else if(isODI){
 	    			return (market.innings ==1 && (market.overs == 50))
@@ -418,14 +430,14 @@ export const establishWebSocketConnection=()=>{
 	    		
 			})
 		    ir_fancy_1_6_Arr   	= data.ir.filter(market =>{
-		    	if(isT220){
+		    	if(isT20){
 	    			return (market.innings ==1 && (market.overs == 6))
 	    		}else if(isODI){
 	    			return (market.innings ==1 && (market.overs == 10))
 	    		}
 		    })
 		    ir_fancy_1_10_Arr   = data.ir.filter(market =>{
-		    	if(isT220){
+		    	if(isT20){
 	    			return (market.innings ==1 && (market.overs == 10))
 	    		}else if(isODI){
 	    			return (market.innings ==1 && (market.overs == 20))
@@ -438,14 +450,14 @@ export const establishWebSocketConnection=()=>{
 		    										       (market.overs == 15 || market.overs == 40))
 		    							)
 		    ir_fancy_2_6_Arr    = data.ir.filter(market =>{
-		    	if(isT220){
+		    	if(isT20){
 	    			return (market.innings ==2 && (market.overs == 6))
 	    		}else if(isODI){
 	    			return (market.innings ==2 && (market.overs == 10))
 	    		}
 		    })
 		    ir_fancy_2_10_Arr    = data.ir.filter(market =>{
-		    	if(isT220){
+		    	if(isT20){
 	    			return (market.innings ==2 && (market.overs == 10))
 	    		}else if(isODI){
 	    			return (market.innings ==2 && (market.overs == 20))
@@ -477,7 +489,40 @@ export const establishWebSocketConnection=()=>{
 		    ir_fancy_2_10   = ir_fancy_2_10_Arr[0]
 		    ir_fancy_2_12   = ir_fancy_2_12_Arr[0]
 		    ir_fancy_2_15   = ir_fancy_2_15_Arr[0]
-		    
+
+
+		    //reset action btn when new game begins (status=inactive)
+		    if(mo.status=="inactive"){
+	    		dispatch(resetActionBtnMatchOdds())
+	    	}
+		    if(ir_lambi.status=="inactive"){
+		    	dispatch(resetActionBtn_Lambi())
+		    }
+		    if(ir_fancy_1_6.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_1_6())
+		    }
+		    if(ir_fancy_1_10.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_1_10())
+		    }
+		    if(ir_fancy_1_12.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_1_12())
+		    }
+		    if(ir_fancy_1_15.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_1_15())
+		    }
+		    if(ir_fancy_2_6.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_2_6())
+		    }
+		    if(ir_fancy_2_10.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_2_10())
+		    }
+		    if(ir_fancy_2_12.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_2_12())
+		    }
+		    if(ir_fancy_2_15.status=="inactive"){
+		    	dispatch(resetActionBtn_Fancy_2_15())
+		    }
+		    	    
 
 	    	didMoWinnerChange=(prevMoWinner !== mo.winner)
 	    	didMoStatusChange=(prevMoStatus!==mo.status)

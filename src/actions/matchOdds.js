@@ -66,3 +66,10 @@ export const hideMatchOddsAction = () =>{
 		type: actionTypes.HIDE_MATCH_ODDS_ACTION,
 	}
 }
+
+//if status is inactive put action btn default back(s/v)
+export const resetActionBtnMatchOdds=()=>{
+	return {
+		type: actionTypes.RESET_ACTION_BTN_MATCHODDS
+	}
+}

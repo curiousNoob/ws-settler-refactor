@@ -52,6 +52,14 @@ const fancy_2_6=(state=initialState, action)=>{
 
 		case "HIDE_FANCY_2_6_ACTION":
 			return {...state, isShowAction: false}
+
+		case "RESET_ACTION_BTN_FANCY_2_6":
+			return {
+						...state,
+						
+						isFancySettled: false,
+    					isFancyVoided: false,
+					}
 			
 		
 		default:

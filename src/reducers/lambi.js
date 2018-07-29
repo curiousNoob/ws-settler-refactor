@@ -52,6 +52,14 @@ const lambi=(state=initialState, action)=>{
 
 		case "HIDE_LAMBI_ACTION":
 			return {...state, isShowAction: false}
+
+		case "RESET_ACTION_BTN_LAMBI":
+			return {
+						...state,
+						
+						isLambiSettled: false,      
+    					isLambiVoided: false, 
+					}
 			
 			
 		default:

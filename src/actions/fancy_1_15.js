@@ -65,3 +65,10 @@ export const hideFancy_1_15_Action = () =>{
 		type: actionTypes.HIDE_FANCY_1_15_ACTION,
 	}
 }
+
+//if status is inactive put action btn default back(s/v)
+export const resetActionBtn_Fancy_1_15=()=>{
+	return {
+		type: actionTypes.RESET_ACTION_BTN_FANCY_1_15
+	}
+}

@@ -66,3 +66,11 @@ export const hideLambiAction = () =>{
 		type: actionTypes.HIDE_LAMBI_ACTION,
 	}
 }
+
+
+//if status is inactive put action btn default back(s/v)
+export const resetActionBtn_Lambi=()=>{
+	return {
+		type: actionTypes.RESET_ACTION_BTN_LAMBI
+	}
+}
