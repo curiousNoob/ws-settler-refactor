@@ -28,7 +28,9 @@ const mapDispatchToProps= (dispatch, ownProps) => {
       }
 
       dispatch(actions.setSettleModalFinalValue(ownProps.finalValue))
-      dispatch(actions.setSettleModalFinalMarketSelected(ownProps.finalMarketSelected))     
+      dispatch(actions.setSettleModalFinalMarketSelected(ownProps.finalMarketSelected))
+
+      dispatch(actions.setMarketType(ownProps.marketType))   
       
     },
 

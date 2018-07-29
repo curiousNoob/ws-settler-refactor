@@ -51,3 +51,11 @@ export const setSettleModalFinalMarketSelected = (marketTypeSelected) => {
 		payload: marketTypeSelected,		
 	}
 }
+
+
+export const setMarketType = (marketTypeSelected) => {
+	return {
+		type:actionTypes.SET_MARKET_TYPE,
+		payload: marketTypeSelected,		
+	}
+}

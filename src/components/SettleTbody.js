@@ -130,6 +130,8 @@ class SettleTbody extends Component {
 
                                     finalValue={finalMo}
                                     finalMarketSelected={"matchOdds"}
+
+                                    marketType={"matchOdds"}
                                 />
 
         settleVoidLambiBtn = <ActionBtnContainer
@@ -143,7 +145,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionLambi}
 
                                     finalValue={finalLambi}
-                                    finalMarketSelected={"lambi"}                                    
+                                    finalMarketSelected={"lambi"}
+
+                                    marketType={"lambi"}
                             />     
 
         settleVoidFancy_1_6_Btn = <ActionBtnContainer 
@@ -157,7 +161,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_1_6}
 
                                     finalValue={final_ir_fancy_1_6}
-                                    finalMarketSelected={"ir_fancy_1_6"}                                    
+                                    finalMarketSelected={"ir_fancy_1_6"} 
+
+                                    marketType={`ir_fancy_${ir_fancy_1_6.innings}_${ir_fancy_1_6.overs}`}                                  
                                 />
 
         settleVoidFancy_1_10_Btn = <ActionBtnContainer 
@@ -171,7 +177,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_1_10}
 
                                     finalValue={final_ir_fancy_1_10}
-                                    finalMarketSelected={"ir_fancy_1_10"}                                    
+                                    finalMarketSelected={"ir_fancy_1_10"}
+
+                                    marketType={`ir_fancy_${ir_fancy_1_10.innings}_${ir_fancy_1_10.overs}`}                                     
                                 /> 
         
         settleVoidFancy_1_12_Btn = <ActionBtnContainer 
@@ -185,7 +193,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_1_12}
 
                                     finalValue={final_ir_fancy_1_12}
-                                    finalMarketSelected={"ir_fancy_1_12"}                                    
+                                    finalMarketSelected={"ir_fancy_1_12"}
+
+                                    marketType={`ir_fancy_${ir_fancy_1_12.innings}_${ir_fancy_1_12.overs}`}                                     
                                 /> 
 
         settleVoidFancy_1_15_Btn = <ActionBtnContainer 
@@ -199,7 +209,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_1_15}
 
                                     finalValue={final_ir_fancy_1_15}
-                                    finalMarketSelected={"ir_fancy_1_15"}                                    
+                                    finalMarketSelected={"ir_fancy_1_15"}
+
+                                    marketType={`ir_fancy_${ir_fancy_1_15.innings}_${ir_fancy_1_15.overs}`}                                    
                                 /> 
         
         settleVoidFancy_2_6_Btn = <ActionBtnContainer 
@@ -213,7 +225,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_2_6}
 
                                     finalValue={final_ir_fancy_2_6}
-                                    finalMarketSelected={"ir_fancy_2_6"} 
+                                    finalMarketSelected={"ir_fancy_2_6"}
+
+                                    marketType={`ir_fancy_${ir_fancy_2_6.innings}_${ir_fancy_2_6.overs}`}  
                                 />
 
         settleVoidFancy_2_10_Btn = <ActionBtnContainer 
@@ -227,7 +241,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_2_10}
 
                                     finalValue={final_ir_fancy_2_10}
-                                    finalMarketSelected={"ir_fancy_2_10"} 
+                                    finalMarketSelected={"ir_fancy_2_10"}
+
+                                    marketType={`ir_fancy_${ir_fancy_2_10.innings}_${ir_fancy_2_10.overs}`}  
                                 />
         
         settleVoidFancy_2_12_Btn = <ActionBtnContainer 
@@ -242,6 +258,8 @@ class SettleTbody extends Component {
 
                                     finalValue={final_ir_fancy_2_12}
                                     finalMarketSelected={"ir_fancy_2_12"} 
+
+                                    marketType={`ir_fancy_${ir_fancy_2_12.innings}_${ir_fancy_2_12.overs}`} 
                                 />
 
         settleVoidFancy_2_15_Btn = <ActionBtnContainer 
@@ -255,7 +273,9 @@ class SettleTbody extends Component {
                                     isShowAction={isShowActionFancy_2_15}
 
                                     finalValue={final_ir_fancy_2_15}
-                                    finalMarketSelected={"ir_fancy_2_15"} 
+                                    finalMarketSelected={"ir_fancy_2_15"}
+
+                                    marketType={`ir_fancy_${ir_fancy_2_15.innings}_${ir_fancy_2_15.overs}`}  
                                 />             
 
         return (

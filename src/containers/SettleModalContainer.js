@@ -16,6 +16,13 @@ const marketTypeToModalNameMap = {
   ir_fancy_2_10: "[ FANCY-2-10 ]",
   ir_fancy_2_12: "[ FANCY-2-12 ]",
   ir_fancy_2_15: "[ FANCY-2-15 ]",
+
+  ir_fancy_1_20: "[ FANCY-1-20 ]",
+  ir_fancy_1_30: "[ FANCY-1-30 ]",
+  ir_fancy_1_40: "[ FANCY-1-40 ]",
+  ir_fancy_2_20: "[ FANCY-2-20 ]",
+  ir_fancy_2_30: "[ FANCY-2-30 ]",
+  ir_fancy_2_40: "[ FANCY-2-40 ]",
 }
 
 
@@ -45,8 +52,8 @@ const mapStateToProps = state => {
     finalValue: state.settleModal.finalMarketValueForModal,
     showModal: state.settleModal.isShowMarketModal,
 
-    marketType: (state.settleModal.finalMarketSelectedForModal != "" ?
-      marketTypeToModalNameMap[state.settleModal.finalMarketSelectedForModal] :
+    marketType: (state.settleModal.marketType != "" ?
+      marketTypeToModalNameMap[state.settleModal.marketType] :
       "No Market"
     ),
 

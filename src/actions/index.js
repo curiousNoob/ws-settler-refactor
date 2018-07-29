@@ -163,6 +163,7 @@ import {
 	setSettleModalToVoidState,
 	setSettleModalFinalValue,
 	setSettleModalFinalMarketSelected,
+	setMarketType,
 } from './settleModal'
 
 
@@ -326,7 +327,8 @@ const actions = {
 	setSettleModalToVoidState,
 	setSettleModalFinalValue,
 	setSettleModalFinalMarketSelected,
-
+	setMarketType,
+	
 
 	setHomeTeam,
 	initHomeTeamUIstate,
