@@ -19,6 +19,7 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 import axios from 'axios';
 import Cookies from "js-cookie";
+import { ConnectedRouter } from 'connected-react-router'
 
 import { cookieName, isProduction } from '../constants'
 
@@ -31,6 +32,8 @@ import MarketRuns from '../pages/MarketRuns'
 
 import WebSocketConnectionContainer from '../containers/WebSocketConnectionContainer'
 
+import { history } from "../store"
+
 //uncomment this for PRODUCTION
 export const root_url = isProduction?window.location.pathname:""
 
@@ -39,7 +42,7 @@ class ConnectedApp extends Component{
   render(){
     return (
       <WebSocketConnectionContainer>
-        <Router>
+      <ConnectedRouter history={history}>
           <Switch>
             <Route exact
               path={isProduction?root_url:"/"}
@@ -48,7 +51,7 @@ class ConnectedApp extends Component{
             <Route path={isProduction?(root_url + "/teamA"):"/teamA"} component={HomeTeam} />
             <Route path={isProduction?(root_url + "/teamB"):"/teamB"} component={AwayTeam} />
           </Switch>
-        </Router>
+        </ConnectedRouter>
       </WebSocketConnectionContainer>
     )
   }
