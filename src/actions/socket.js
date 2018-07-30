@@ -384,6 +384,7 @@ export const establishWebSocketConnection=()=>{
 		let didAnyHomeTeamStatusChange
 		let didAnyAwayTeamStatusChange
 
+		//types of games T20(6, 10, 12, 15) then ODI(10, 20, 30, 40)
 		let checkOnceGameType
 		let isT20
 		let isODI
@@ -490,36 +491,37 @@ export const establishWebSocketConnection=()=>{
 		    ir_fancy_2_12   = ir_fancy_2_12_Arr[0]
 		    ir_fancy_2_15   = ir_fancy_2_15_Arr[0]
 
-
+			
 		    //reset action btn when new game begins (status=inactive)
-		    if(mo.status=="inactive"){
+		    if(mo.status=="inactive" && prevMoStatus!="inactive"){
 	    		dispatch(resetActionBtnMatchOdds())
+	    		once=true
 	    	}
-		    if(ir_lambi.status=="inactive"){
+		    if(ir_lambi.status=="inactive" && prevLambiStatus!="inactive"){
 		    	dispatch(resetActionBtn_Lambi())
 		    }
-		    if(ir_fancy_1_6.status=="inactive"){
+		    if(ir_fancy_1_6.status=="inactive" && prevFancy_1_6_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_1_6())
 		    }
-		    if(ir_fancy_1_10.status=="inactive"){
+		    if(ir_fancy_1_10.status=="inactive" && prevFancy_1_10_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_1_10())
 		    }
-		    if(ir_fancy_1_12.status=="inactive"){
+		    if(ir_fancy_1_12.status=="inactive" && prevFancy_1_12_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_1_12())
 		    }
-		    if(ir_fancy_1_15.status=="inactive"){
+		    if(ir_fancy_1_15.status=="inactive" && prevFancy_1_15_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_1_15())
 		    }
-		    if(ir_fancy_2_6.status=="inactive"){
+		    if(ir_fancy_2_6.status=="inactive" && prevFancy_2_6_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_2_6())
 		    }
-		    if(ir_fancy_2_10.status=="inactive"){
+		    if(ir_fancy_2_10.status=="inactive" && prevFancy_2_10_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_2_10())
 		    }
-		    if(ir_fancy_2_12.status=="inactive"){
+		    if(ir_fancy_2_12.status=="inactive" && prevFancy_2_12_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_2_12())
 		    }
-		    if(ir_fancy_2_15.status=="inactive"){
+		    if(ir_fancy_2_15.status=="inactive" && prevFancy_2_15_status!="inactive"){
 		    	dispatch(resetActionBtn_Fancy_2_15())
 		    }
 		    	    
