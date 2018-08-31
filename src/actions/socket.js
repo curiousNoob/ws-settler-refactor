@@ -393,7 +393,9 @@ export const establishWebSocketConnection=()=>{
 	    let ws = new WebSocket(uri);
 
 	    ws.onopen = () =>{
-	    	dispatch(websocketConnectedSuccess(ws))
+			dispatch(websocketConnectedSuccess(ws))
+			
+			ws.send(JSON.stringify({"eventid":window.location.search}))
 	    }
 
 	    ws.onerror = (err) =>{
